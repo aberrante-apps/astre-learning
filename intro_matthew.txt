@@ -1,0 +1,14 @@
+INSTRUCTIONS: Please fill in the information below. Each intro file is meant to be a test to see if you can successfully push/pull
+              from the remote repository on GitLab.
+
+Full Name: Matthew Zerrath
+Camosun Program: Interactive Media Developer
+Target Credential: Certificate
+Career Goal: Enter video game industry and eventually become a Creative Director.
+Favourite Song: "Showbiz" by Muse.
+Favourite Animal: Cats.
+Favourite Game: Hard to pick, but Nier Replicant ver. 1.22 is my most recent favourite.
+Random Fact about Yourself: I was a grocery cashier before I enrolled in the IMD program at Camosun.
+                            Obviously, working as a cashier during the Covid-19 pandemic made me
+                            reconsider the direction I was going in my life, so now I am
+                            working towards making my dreams come true.

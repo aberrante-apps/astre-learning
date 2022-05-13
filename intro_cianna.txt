@@ -1,0 +1,11 @@
+INSTRUCTIONS: Please fill in the information below. Each intro file is meant to be a test to see if you can successfully push/pull
+              from the remote repository on GitLab.
+
+Full Name:
+Camosun Program:
+Target Credential:
+Career Goal:
+Favourite Song:
+Favourite Animal:
+Favourite Game:
+Random Fact about Yourself:
