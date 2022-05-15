@@ -1,11 +1,13 @@
 INSTRUCTIONS: Please fill in the information below. Each intro file is meant to be a test to see if you can successfully push/pull
               from the remote repository on GitLab.
 
-Full Name:
-Camosun Program:
-Target Credential:
-Career Goal:
-Favourite Song:
-Favourite Animal:
-Favourite Game:
-Random Fact about Yourself:
+Full Name: Cianna
+Camosun Program: Interactive Media Developer Technologist
+Target Credential: Diploma
+Career Goal: To become a Ux/Ui designer and children's book illustrator.
+ I also want to create video games in my free time and possibly dip my toes into designing training simulators and doing paid 3D Modelling and Animating work.
+Favourite Song: A Place to Call Home (FFIX Theme) by Nobuo Uematsu
+Favourite Animal: Changes often but likely some species of bird such as an American Kestrel or a Crow. I've also once called a Frog, a Koi Fish, and a Polar Bear my favourite animal at some point in time.  
+Nostalgic Top Favourite Game: Final Fantasy IX
+Current Favourite Game: Tales of Arise
+Random Fact about Yourself: When I was four I found and looked through an Atlas for the first time and ever since then I have wanted to be an explorer. 
