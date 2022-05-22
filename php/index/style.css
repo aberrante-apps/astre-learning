@@ -1,0 +1,756 @@
+@media only screen and (max-width: 600px) {
+    .main-nav {
+        font-size: 0.4em;
+        padding:0;
+    }
+
+    .nav-link {
+        padding: 10px;
+    }
+}
+
+ 
+body {
+    margin: auto 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+ 
+.zone {
+        /* padding:30px 50px;
+        margin:40px 60px; */
+        cursor:pointer;
+        /* display:inline-block; */
+        color:#FFF;
+        font-size:2em;
+        border-radius:4px;
+        border:1px solid #bbb;
+        transition: all 0.3s linear;
+}
+
+.container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*********************************
+* HEADER - MAIN NAV & TOGGLE NAV BAR
+***********************************/
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.main-nav {
+    
+    display: flex;
+    list-style: none;
+    font-size: 0.8em;
+    margin: 0;
+    align-items: center;
+}
+
+.main-nav>li {
+    padding: 20px
+}
+
+.push>li {
+    padding: 20px;
+}
+
+.navbar-2 {
+    position: relative;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+ 
+ .nav-link {
+     width: 150px;
+     text-align: center;
+ }
+.push {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+}
+
+ 
+a {
+    color: #f5f5f6;
+    text-decoration: none;
+}
+
+.container {
+    width: auto;
+}
+
+.nav-item {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.card-header {
+    padding: 0;
+    border: none;
+    
+}
+
+.logo {
+    text-shadow: 2px 2px rgba(0,0,0,.2) ;
+}
+ 
+/***********************************************************************
+ *  Shopping Cart Button
+ **********************************************************************/
+.fa {
+    color:white;
+    padding: 5px;
+}
+ 
+.fa-lightbulb {
+    padding-right: 10px;
+}
+ 
+.shopping-cart-btn {
+    background-color: transparent;
+    border:2px solid white;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+ /*********************************
+Cover
+***********************************/
+
+.cover {
+    margin-top: 30px;
+    height: 30vh;
+    font-size: xxx-large;
+}
+
+ /*********************************
+Product Display
+***********************************/
+/* .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 20px;
+} */
+
+
+ /*********************************************
+ ** SIDE-NAV SHOPPING CART 
+************************************************/
+ .sidenav {
+    height: 100%;
+    width: 500px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 20px 10px 0 rgb(0 0 0 / 50%);
+    overflow-x: hidden; 
+    transition: 0.5s;
+    padding-top: 90px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 85px;
+    display: none; 
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .nav-link {
+      border-radius: 5px;
+  }
+
+  .shoppingcart>h2 {
+      padding-left: 20px;
+  }
+  
+    .card-price, .card-title, .card-rating, .add-to-cart {
+      text-align: center;
+    }
+  
+    #shopping-cart-wrapper {
+        padding: 20px;
+    }
+  
+    table {
+        width: 100%;
+    }
+   
+    td {
+      flex-wrap: wrap;
+      word-wrap: break-word;
+    }
+    table>thead>tr>th, table>thead>tr>td {
+      vertical-align: bottom;
+  }
+  
+    table th {
+        text-align: left;
+    }
+    
+    .cart-table {
+      border-bottom: 1px solid #b8bebb;
+      padding-top: 24px;
+      text-align: left;
+  }
+  
+  tr {
+    border-bottom: 1px solid #b8bebb;
+  }
+  
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .cart.table-wrapper {
+    padding: 20px
+  }
+  .cart.table-wrapper .cart>tbody>tr>td {
+      vertical-align: middle;
+  }
+  
+  .shoppingCart-footer {
+    padding: 10px;
+  }
+  
+  .checkout-btn, .confirmOrder-btn, .validatePayment-btn, .validateBilling-btn, .validateShipping-btn {
+    background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184));
+  }
+  
+  .col {
+    width: auto;
+  }
+
+  /*********************************************
+ ** CHECKOUT modals
+************************************************/
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  .required:after {
+    content:" *";
+    color: red;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .modal-header {
+    flex-direction: row-reverse;
+  }
+  
+  a.closebtn {
+    float: right;
+  }
+  
+  input[type=text], select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  input[type=number] {
+    width: 40px;
+    text-align: right;
+  }
+  
+  td div {
+    display: inline-block;
+  }
+  
+  .col-50 {
+    padding:0;
+    flex:50%;
+  }
+  
+  .subtext {
+    color: grey;
+    font-size: 10px;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+ /*********************************************
+ ** LOGIN / REGISTER FORM
+************************************************/
+
+.wrapper {
+    overflow: hidden;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    max-width: 390px;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+}
+
+.wrapper .title-text {
+    display:flex;
+    width: 200%;
+}
+
+.wrapper .title-text .title {
+    width: 50%;
+    font-size: 35px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.68,-0.55, 0.265, 1);
+}
+
+.wrapper .form-container{
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-container .slide-controls{
+    position:relative;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 30px 0 10px 0;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+}
+
+.slide-controls .slide {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 48px;
+    cursor:pointer;
+    transition: all 0.6s ease;
+}
+
+.slide-controls .register {
+    color: #000;
+}
+
+.slide-controls .slide-tab {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    z-index:0;
+    border-radius: 5px;
+    transition: all 0.6s cubic-bezier(0.68,-0.55, 0.265, 1);
+    background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184)); 
+    /* background: -webkit-linear-gradient(left, #5372F0, #8484f0); */
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+#register:checked ~ .slide-tab{
+    left: 50%;
+}
+
+#register:checked ~ .register{
+    color: #fff;
+}
+
+#register:checked ~ .login{
+    color: #000;
+}
+
+.form-container .form-inner{
+display: flex;
+width: 200%;
+}
+
+.form-container .form-inner form{
+    width: 50%;
+    transition: all 0.6s cubic-bezier(0.68,-0.55, 0.265, 1);
+}
+
+.form-container .form-inner form .field{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-inner form .field input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    transition: all 0.4s ease;
+}
+
+.form-inner form .field input:focus{
+    border-color:#00de90;
+}
+
+.form-inner form .pass-link{
+    margin-top: 5px;
+}
+
+.form-inner form .pass-link a,
+.form-inner form .register-link a,
+.form-inner form .login-link a{
+    color:rgb(19, 189, 167);
+    text-decoration: none;
+}
+
+.form-inner form .register-link,
+.form-inner form .login-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-inner form .pass-link a:hover,
+.form-inner form .register-link a:hover{
+    text-decoration: underline;
+}
+
+.form-inner form .field input[type="submit"]{
+    color: #fff;
+    font-size: 20px;
+    background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184));
+    /* background: -webkit-linear-gradient(left, #5372F0, #8484f0); */
+    font-weight: 600;
+    padding-left:0;
+    border: none;
+    cursor: pointer;
+}
+
+/***********************************************************************
+ *  ADMIN's ACCOUNT & Add Product Form
+ **********************************************************************/
+
+ .grid-container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: rgba(238,238,238,1);
+    
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    
+    font-size: 30px;
+    padding: 0px;
+    
+  }
+
+  .t-header-block{
+    display: block;
+    margin: 0;
+    background-color: grey;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5em;
+    color: #fff;
+    line-height: 1.4em;
+  }
+
+  .col-12 {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-12 a{
+    color: black;
+    font-size: 20px;
+    
+}
+
+.col-pad {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: .5em;
+}
+
+.t-header-block .col-12 li{
+    position: relative;
+    align-items: center;
+    border-bottom: 1px solid rgba(238,238,238,1);
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+.grid-item .col-12 ul li{
+    position: relative;
+    align-items: center;
+    border-bottom: 1px solid rgba(238,238,238,1);
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    list-style: none;
+}
+
+.grid-item .col-12 ul li a {
+    width: 100%;
+    padding: 1rem;
+    display: block;
+}
+
+.c-account-line-title{
+    border-top:1px solid #404041;
+    max-width:36.4em;
+}
+
+.vert-margin-lg {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.grid-item .col-12 ul li.is-active:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 0.3em;
+    height: 96%;
+    background-color: teal;
+}
+
+
+
+.t-white-block {
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.t-field-container{
+    margin-bottom: 1em;
+}
+
+.is-darkteal {
+    color: rgb(2, 108, 105);
+}
+
+input[type="file"]{
+    border: 1px solid black;
+    padding: 10px;
+    width: 100%;
+}
+
+input[type="select"]{
+padding: 10px;
+}
+/***********************************************************************
+ *  Teal Background
+ **********************************************************************/
+ .teal{
+    background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184));
+}
+
+/***********************************************************************
+ *  Blue Background
+ **********************************************************************/
+ .blue{
+    background: #7abcff; /* Old browsers */
+    background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
+    background: linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
+}
+ 
+/***********************************************************************
+ *  Green Background
+ **********************************************************************/
+ .green{
+    background: #cdeb8e; /* Old browsers */
+    background: -moz-linear-gradient(top, #cdeb8e 0%, #7ab200 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cdeb8e), color-stop(100%,#a5c956)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #cdeb8e 0%,#7ab200 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #cdeb8e 0%,#7ab200 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #cdeb8e 0%,#7ab200 100%); /* IE10+ */
+    background: linear-gradient(top, #cdeb8e 0%,#7ab200 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 ); /* IE6-9 */
+}
+
+/***********************************************************************
+ *  Red Background
+ **********************************************************************/
+ .orange{
+    background: #ff3019; /* Old browsers */
+    background: -moz-linear-gradient(top, #ec7466 0%, #cf6604 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3019), color-stop(100%,#cf0404)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #e98b80 0%,#cf7404 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f28e83 0%,#cf6d04 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f09d94 0%,#cf6d04 100%); /* IE10+ */
+    background: linear-gradient(top, #e6948b 0%,#cf7004 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+}
+
+.red {
+    background: #C655BE; /* Old browsers */
+    background: -moz-linear-gradient(top, #C655BE 0%, #cf0404 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C655BE), color-stop(100%,#cf0404)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #C655BE 0%,#cf0404 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #C655BE 0%,#cf0404 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #C655BE 0%,#cf0404 100%); /* IE10+ */
+    background: linear-gradient(top, #C655BE 0%,#cf0404 100%); /* W3C */
+}
+ 
+/***********************************************************************
+ *  Yellow Background
+ **********************************************************************/
+ .yellow{
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffd65e 0%,#febf04 100%); /* IE10+ */
+    background: linear-gradient(top, #ffd65e 0%,#febf04 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#febf04',GradientType=0 ); /* IE6-9 */
+}
+
+/***********************************************************************
+ *  Purple Background
+ **********************************************************************/
+ .purple{
+    background: rgb(144, 96, 203); /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(144, 96, 203,1) 0%, rgba(147, 101, 240,1) 50%, rgba(222,71,172,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(203,96,179,1)), color-stop(50%,rgba(173,18,131,1)), color-stop(100%,rgba(222,71,172,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(144, 96, 203,1)  0%,rgba(173,18,131,1) 50%,rgba(222,71,172,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(144, 96, 203,1) 0%,rgba(173,18,131,1) 50%,rgba(222,71,172,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, rgba(144, 96, 203,1)  0%,rgba(173,18,131,1) 50%,rgba(222,71,172,1) 100%); /* IE10+ */
+    background: linear-gradient(left, rgba(144, 96, 203,1)  0%,rgba(173,18,131,1) 50%,rgba(222,71,172,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#de47ac',GradientType=1 ); /* IE6-9 */
+}
+
+/***********************************************************************
+ *  Grey Background
+ **********************************************************************/
+ .grey{
+    background: rgb(238,238,238); /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+    background: linear-gradient(left, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=1 ); /* IE6-9 */
+}
+
+/* <!-- HEADER NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">Astre Learning</a>
+ 
+            <div class="account">
+            <form class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class='fas fa-user-alt'></i>Account
+                    <span class="account_name"></span>
+                </button>
+            </form>
+            </div>
+            <div class="cart">
+            <form class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </button>
+            </form>
+        </div>
+        </div>
+        </div>
+    </nav> */
+ 
+    /* <!-- SHOP NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-4 px-lg-5">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Shop All</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">Astronomy</a>
+                                <li><a class="dropdown-item" href="#!">Biology</a></li>
+                                <li><a class="dropdown-item" href="#!">Chemistry</a></li>
+                                <li><a class="dropdown-item" href="#!">Math</a></li>
+                                <li><a class="dropdown-item" href="#!">Physics</a></li>
+                                <li><a class="dropdown-item" href="#!">Technology</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    </ul>
+                </div>
+        </div>
+    </nav> */
+
