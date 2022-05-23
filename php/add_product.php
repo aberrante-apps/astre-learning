@@ -107,9 +107,9 @@
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
+                    <input type="submit" class="btn btn-light btn-outline-dark" value="SUBMIT" role="button"></input>
                 </div>
             </div>
-            <input type="submit" value="SUBMIT" />
         </form>
     </div>
 </div>
