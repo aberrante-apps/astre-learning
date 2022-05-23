@@ -94,7 +94,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodImg">Image <span class="is-light"> *</span></label>
                         <div>
-                            <input type="file" class="ProdImg" id="ProdImg">
+                            <input type="file" id="ProdImg" name="ProdImg">
                         </div>
                         <span class="field-validation-valid "></span>
                     </div>
@@ -107,7 +107,7 @@
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-light btn-outline-dark" value="SUBMIT" role="button"></input>
+                    <input type="submit" class="btn btn-light btn-outline-dark" name="productSubmit"value="SUBMIT" role="button"></input>
                 </div>
             </div>
         </form>
