@@ -36,7 +36,7 @@
             <div class="c-account-line-title"></div>
         </div>
         <h2>Add a New Product</h2>
-        <form action="add_product_to_database.php" method="post">
+        <form name="addProduct" action="add_product_to_database.php" method="post" enctype="multipart/form-data">
             <div class="col-12 vert-margin-lg">
                 <div class="t-white-block row">
 
@@ -44,7 +44,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodName">Product Name <span class="is-light">*</span></label>
                         <div>
-                            <input class="text-box col-12 text-box single-line" id="ProdName" name="ProdName" type="text" value="">
+                            <input class="text-box col-12 text-box single-line" id="ProdName" name="ProdName" type="text" value="" required>
                             <span class="field-validation-valid"></span>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodDesc">Product Description <span class="is-light"> *</span></label>
                         <div>
-                            <textarea class="text-box col-12 text-box single-line" id="ProdDesc" name="ProdDesc" type="text-area" value=""></textarea>
+                            <textarea class="text-box col-12 text-box single-line" id="ProdDesc" name="ProdDesc" type="text-area" value="" required></textarea>
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodImg">Image <span class="is-light"> *</span></label>
                         <div>
-                            <input type="file" class="ProdImg" id="ProdImg">
+                            <input type="file" id="ProdImg" name="ProdImg" required>
                         </div>
                         <span class="field-validation-valid "></span>
                     </div>
@@ -103,13 +103,15 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodPrice">Price <span class="is-light"> *</span></label>
                         <div>
-                            <input type="number" name="ProdPrice" min="1" step="any" />
+                            <input type="text" pattern="^[0-9]*.[0-9][0-9]" name="ProdPrice" min="1" step="any" required>
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
+
+                    <input type="hidden" name="MAX_FILE_SIZE" value="100000"><BR><BR>
+                    <input type="submit" class="btn btn-light btn-outline-dark" name="productSubmit"value="SUBMIT" role="button"></input>
                 </div>
             </div>
-            <input type="submit" value="SUBMIT" />
         </form>
     </div>
 </div>
