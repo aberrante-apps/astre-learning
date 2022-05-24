@@ -44,12 +44,40 @@
                     $productDescription = $_POST['ProdDesc'];
                     $productPrice = $_POST['ProdPrice'];
 
+                    // Handles Image Upload
+                    if ($_FILES['ProdImg']['error'] > 0){
+                        $Valid_Input = FALSE;
+                        ?>  <script>
+                                window.alert("Image file not uploaded to server.");
+                            </script>
+                        <?php
+                    } else {
+                        if (is_uploaded_file($_FILES['ProdImg']['tmp_name'])) {
+                            $filename = $_FILES['ProdImg']['name'];
+                            $upfile = "product_images//" . $filename;
+                            $filename = "'" . $filename . "'";
+                            if (!move_uploaded_file($_FILES['ProdImg']['tmp_name'], $upfile)) {
+                                $Valid_Input = FALSE;
+                                ?> <script>
+                                    window.alert("Image file move failed on server.");
+                                </script> <?php
+                            }
+                        } else {
+                            $Valid_Input = FALSE;
+                            ?> <script>
+                            window.alert("Image file not uploaded to temp file on server.");
+                            </script><?php
+                        }
+                    }
+
 
                     echo "<p>The name of the product is $productName.</p><br>";
                     echo "<p>The category of the product is $productCategory.</p><br>";
                     echo "<p>The type of the product is $productType.</p><br>";
                     echo "<p>The description of the product is: '$productDescription'</p><br>";
+                    // echo "<p>The image of the product is $filename, and is located at $upfile.</p>"
                     echo "<p>The price of the product is $$productPrice.</p><br>";
+                    phpinfo();
                     ?>
 
                 </div>
