@@ -60,7 +60,7 @@
                                 <option value="Biology">Biology</option>
                                 <option value="Chemistry">Chemisty</option>
                                 <option value="Math">Math</option>
-                                <option value="Math">Physics</option>
+                                <option value="Physics">Physics</option>
                                 <option value="Technology">Technology</option>
                             </select>
                             <span class="field-validation-valid"></span>

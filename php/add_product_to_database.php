@@ -91,6 +91,7 @@
                         if (is_uploaded_file($_FILES['ProdImg']['tmp_name'])) {
                             $filename = $_FILES['ProdImg']['name'];
                             $upfile = "product_images//" . $filename;
+                            $productImage = "product_images/" . $filename;
                             $filename = "'" . $filename . "'";
                             if (!move_uploaded_file($_FILES['ProdImg']['tmp_name'], $upfile)) {
                                 $Valid_Input = FALSE;
@@ -106,59 +107,58 @@
                         }
                     }
 
-                    // // MySQL INSERT statement into Product Database
-                    // $productSQLTable = "INSERT INTO Products (name, description, picture, price, stock) VALUES ($productName, $productDescription, $productImage, $productPrice, $productStock);";
-                    // $result1 = mysqli_query($dbc, $productSQLTable);
-                    // if ($result1) {
-                    //     echo "<p>Main Product Table successfully inserted.</p>";
-                    // } else {
-                    //     print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
-                    //     print mysqli_error($dbc);
-                    // }
+                    // MySQL INSERT statement into Product Database
+                    $productSQLTable = "INSERT INTO Products (name, description, picture, price, stock) VALUES ('$productName', '$productDescription', '$productImage', $productPrice, $productStock);";
+                    $result1 = mysqli_query($dbc, $productSQLTable);
+                    if ($result1) {
+                        echo "<p>Main Product Table successfully inserted.</p>";
+                    } else {
+                        print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
+                        print mysqli_error($dbc);
+                    }
 
-                    // // Retrieve product ID of the newly inserted product
-                    // $productIDQuery = "SELECT id from Products WHERE name = $productName;";
-                    // $productID = 0;
-                    // $result2 = mysqli_query($dbc, $productIDQuery);
-                    // if ($result2) {
-                    //     $row = $result2 -> fetch_assoc();
-                    //     $productID = $row["id"];
-                    //     echo "<p>Product ID retrieved</p>"
-                    // } else {
-                    //     print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
-                    //     print mysqli_error($dbc);
-                    // }
+                    // Retrieve product ID of the newly inserted product
+                    $productIDQuery = "SELECT id from Products WHERE name = '$productName';";
+                    $productID = 0;
+                    $result2 = mysqli_query($dbc, $productIDQuery);
+                    if ($result2) {
+                        $row = $result2 -> fetch_array(MYSQLI_NUM);
+                        $productID = $row[0];
+                        echo "<p>Product ID retrieved</p>";
+                    } else {
+                        print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
+                        print mysqli_error($dbc);
+                    }
 
-                    // // INSERT product category info into the Product Category table
-                    // $categorySQLTable = "INSERT INTO ProductCategories (product_id, category_id) VALUES ($productID, $categoryCode);";
-                    // $result3 = mysqli_query($dbc, $categorySQLTable);
-                    // if ($result3) {
-                    //     echo "<p>Product Category Table successfully inserted.</p>";
-                    // } else {
-                    //     print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
-                    //     print mysqli_error($dbc);
-                    // }
+                    // INSERT product category info into the Product Category table
+                    $categorySQLTable = "INSERT INTO ProductCategories (product_id, category_id) VALUES ($productID, $categoryCode);";
+                    $result3 = mysqli_query($dbc, $categorySQLTable);
+                    if ($result3) {
+                        echo "<p>Product Category Table successfully inserted.</p>";
+                    } else {
+                        print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
+                        print mysqli_error($dbc);
+                    }
 
-                    // // Insert product type info into the Product Type table
-                    // $typeSQLTable = "INSERT INTO ProductTypes (product_id, type_id) VALUES ($productID, $typeCode);";
-                    // $result4 = mysqli_query($dbc, $typeSQLTable);
-                    // if ($result4) {
-                    //     echo "<p>Product Type Table successfully inserted.</p>";
-                    // } else {
-                    //     print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
-                    //     print mysqli_error($dbc);
-                    // }
+                    // Insert product type info into the Product Type table
+                    $typeSQLTable = "INSERT INTO ProductTypes (product_id, type_id) VALUES ($productID, $typeCode);";
+                    $result4 = mysqli_query($dbc, $typeSQLTable);
+                    if ($result4) {
+                        echo "<p>Product Type Table successfully inserted.</p>";
+                    } else {
+                        print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
+                        print mysqli_error($dbc);
+                    }
 
-                    // Display confirmation of product details
+
+                    // Display confirmation details of the product.
                     echo "<p>The name of the product is $productName.</p><br>";
-                    echo "<p>The id number of the product is $productID.</p>"
+                    echo "<p>The product ID is $productID</p><br>";
                     echo "<p>The category of the product is $productCategory.</p><br>";
                     echo "<p>The type of the product is $productType.</p><br>";
                     echo "<p>The description of the product is: '$productDescription'</p><br>";
-                    // echo "<p>The image of the product is $productImage.</p>"
                     echo "<p>The price of the product is $$productPrice.</p><br>";
-                    echo "<p>There are $productStock units of this product in stock.</p>"
-                    phpinfo();
+                    echo "<p>There are $productStock units of the product in stock.</p>"
                     ?>
 
                 </div>
