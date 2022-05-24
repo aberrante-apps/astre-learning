@@ -1,3 +1,4 @@
+<?php require 'connection.php'; ?>
 <?php include 'header.php'; ?>
 
  <!-- LEFT-SIDE ACCOUNT DIRECTORY -->
