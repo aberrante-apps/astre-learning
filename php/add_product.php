@@ -1,3 +1,4 @@
+<?php require 'connection.php'; ?>
 <?php include 'header.php'; ?>
 
 <!-----------------------------------------------------------------
@@ -104,6 +105,15 @@
                         <label class="float-left is-darkteal" for="prodPrice">Price <span class="is-light"> *</span></label>
                         <div>
                             <input type="text" pattern="^[0-9]*.[0-9][0-9]" name="ProdPrice" min="1" step="any" required>
+                            <span class="field-validation-valid "></span>
+                        </div>
+                    </div>
+
+                    <!-- Stock Amount -->
+                    <div class="col-12 t-field-container">
+                        <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
+                        <div>
+                            <input type="number" name="ProdStock" min="1" step="any" required>
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
