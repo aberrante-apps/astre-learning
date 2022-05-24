@@ -13,6 +13,8 @@ $dbc = mysqli_connect($server,$user,$pswd,$db);
 if (!$dbc) {
     die ('MySQL Error:' . mysqli_connect_error());
 }
+// Note from Matthew: When we get to the final production stages, we will need to get rid of this else statement.
+// Otherwise, it will show up on screen, which will be weird for the user.
  else {
      print "Connecting to database " . $db . "<BR><BR>";
  }
