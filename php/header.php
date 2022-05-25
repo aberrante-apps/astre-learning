@@ -25,8 +25,8 @@
  <div class="zone teal">
     
         <ul class="main-nav">
-            
-            <li><a href="" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
+          
+            <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
             <!-- Add <span class="account_name"></span> to have Account name appear -->
             <div class="push">
             <li><a href=""></i>Account</a></li>
@@ -55,25 +55,25 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Shop All <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="homepage.php">Shop All <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link purple" style="color: white" href="#">Astronomy</a>
+            <a class="nav-link purple" style="color: white" href="astronomy_page.php">Astronomy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link green" style="color: white" href="#">Biology</a>
+            <a class="nav-link green" style="color: white" href="biology-page.php">Biology</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link yellow" style="color: white" href="#">Chemistry</a>
+            <a class="nav-link yellow" style="color: white" href="chemistry_page.php">Chemistry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link blue" style="color: white" href="#">Math</a>
+            <a class="nav-link blue" style="color: white" href="math_page.php">Math</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link blue" style="color: white" href="#">Physics</a>
+            <a class="nav-link orange" style="color: white" href="physics_page.php">Physics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link red" style="color: white" href="#">Tecnology</a>
+            <a class="nav-link red" style="color: white" href="technology_page.php">Tecnology</a>
           </li>
       </ul>
       </div>
