@@ -113,7 +113,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
                         <div>
-                            <input type="number" name="ProdStock" min="1" step="any" required>
+                            <input type="number" name="ProdStock" min="1" required>
                             <span class="field-validation-valid "></span>
                         </div>
                     </div>
