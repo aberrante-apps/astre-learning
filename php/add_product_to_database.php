@@ -40,9 +40,13 @@
                     <?php
                     // Variables for product info
                     $productName = $_POST['ProdName'];
+                    // Prevents MySQL syntax errors from stray apostrophes in the product name
+                    $productName = str_ireplace("'", "\'", $productName);
                     $productCategory = $_POST['ProdCat'];
                     $productType = $_POST['ProdType'];
                     $productDescription = $_POST['ProdDesc'];
+                    // Prevents MySQL syntax errors from stray apostrophes in the product description
+                    $productDescription = str_ireplace("'", "\'", $productDescription);
                     $productImage = "";
                     $productPrice = $_POST['ProdPrice'];
                     $productStock = $_POST['ProdStock'];

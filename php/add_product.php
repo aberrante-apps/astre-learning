@@ -95,7 +95,7 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodImg">Image <span class="is-light"> *</span></label>
                         <div>
-                            <input type="file" id="ProdImg" name="ProdImg" required>
+                            <input type="file" id="ProdImg" name="ProdImg" accept="image/*" required>
                         </div>
                         <span class="field-validation-valid "></span>
                     </div>
