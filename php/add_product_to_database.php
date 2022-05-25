@@ -1,6 +1,8 @@
 <?php require 'connection.php'; ?>
 <?php include 'header.php'; ?>
 
+<!-- ADD ISSET HEADER FUNCTION HERE -->
+
  <!-- LEFT-SIDE ACCOUNT DIRECTORY -->
  <!-- *** This still needs to be shut up in a hamburger menu when screen is mobile *** -->
 <div class="grid-container">
@@ -39,17 +41,13 @@
                     <!-- PHP process for placing item into database and showing confirmation item is in database after.-->
                     <?php
                     // Variables for product info
-                    $productName = $_POST['ProdName'];
-                    // Prevents MySQL syntax errors from stray apostrophes in the product name
-                    $productName = str_ireplace("'", "\'", $productName);
-                    $productCategory = $_POST['ProdCat'];
-                    $productType = $_POST['ProdType'];
-                    $productDescription = $_POST['ProdDesc'];
-                    // Prevents MySQL syntax errors from stray apostrophes in the product description
-                    $productDescription = str_ireplace("'", "\'", $productDescription);
+                    $productName = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['ProdName'])));
+                    $productCategory = strip_tags($_POST['ProdCat']);
+                    $productType = strip_tags($_POST['ProdType']);
+                    $productDescription = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['ProdDesc'])));
                     $productImage = "";
-                    $productPrice = $_POST['ProdPrice'];
-                    $productStock = $_POST['ProdStock'];
+                    $productPrice = strip_tags($_POST['ProdPrice']);
+                    $productStock = strip_tags($_POST['ProdStock']);
 
                     // Set up for category and type codes
                     $categoryCode = 1;
@@ -164,7 +162,6 @@
                     echo "<p>The price of the product is $$productPrice.</p><br>";
                     echo "<p>There are $productStock units of the product in stock.</p>"
                     ?>
-
                 </div>
                 <div class="col-12 t-field-container">
                     <a class="btn btn-light btn-outline-dark" href="add_product.php" role="button">Add Another Product</a>
