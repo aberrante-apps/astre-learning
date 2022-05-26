@@ -1,9 +1,34 @@
+<?php
+require 'connection.php';
+session_start();
+
+if (isset($_SESSION['Account']))
+  {
+    $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+    $loginInfo = 'Logged In';
+    $accountLink = 'acctmenu_customer.php';
+    $logout = 'homepage.php';
+    if (isset($_SESSION['Account']['admin'])) 
+    {
+      $loginInfo = 'Logged In (Admin Active)';
+      $accountLink = 'acctmenu_admin.php';
+      $logout = 'homepage.php';
+    }
+  } else{
+    $loginInfo = 'Not Logged In';
+    $accountLink = 'login_register.php';
+  }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -12,7 +37,7 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/c70abeedb1.js" crossorigin="anonymous"></script>
-        
+    <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
 
     <title>Astre Learning</title>
   </head>
@@ -27,9 +52,10 @@
         <ul class="main-nav">
           
             <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
-            <!-- Add <span class="account_name"></span> to have Account name appear -->
-            <div class="push">
-            <li><a href=""></i>Account</a></li>
+            <li><span style="font-family:Dancing Script";><?php if (isset($userGreeting)) echo $userGreeting ?></span></li>
+            <div class="push-left">
+            <li><a href="<?php if (isset($accountLink)) echo $accountLink ?>">Account</a></li>
+            <!-- cart button function -->
             <span onclick="openNav()">
             <li>
                 <button type="button" class="btn shopping-cart-btn">
@@ -58,22 +84,22 @@
           <a class="nav-link" href="homepage.php">Shop All <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link purple" style="color: white" href="astronomy_page.php">Astronomy</a>
+            <a class="nav-link purple" style="color: white" href="page_astronomy.php">Astronomy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link green" style="color: white" href="biology-page.php">Biology</a>
+            <a class="nav-link green" style="color: white" href="page_biology.php">Biology</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link yellow" style="color: white" href="chemistry_page.php">Chemistry</a>
+            <a class="nav-link yellow" style="color: white" href="page_chemistry.php">Chemistry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link blue" style="color: white" href="math_page.php">Math</a>
+            <a class="nav-link blue" style="color: white" href="page_math.php">Math</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link orange" style="color: white" href="physics_page.php">Physics</a>
+            <a class="nav-link orange" style="color: white" href="page_physics.php">Physics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link red" style="color: white" href="technology_page.php">Tecnology</a>
+            <a class="nav-link red" style="color: white" href="page_technology.php">Tecnology</a>
           </li>
       </ul>
       </div>

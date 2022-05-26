@@ -1,63 +1,62 @@
 <?php
   require 'connection.php';
 
-  session_start();
-
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $loginemail = $_POST['email_address'];
-    $loginpassword = $_POST['password'];
-    global $dbc;
-
-
-
-    // Retrieve product ID of the login info
-    $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$loginpassword';";
-    $result = mysqli_query($dbc, $query);
-    if ($result) {
-      $row = $result -> fetch_array(MYSQLI_NUM);
-
-      $_SESSION['Account']['id'] = $row[0];
-      $_SESSION['Account']['first_name'] = $row[1];
-      $_SESSION['Account']['last_name'] = $row[2];
-      $_SESSION['Account']['email_address'] = $row[3];
-      $_SESSION['Account']['phone_number'] = $row[4];
-      $_SESSION['Account']['shipping_address'] = $row[6];
-      $_SESSION['Account']['admin'] = $row[7];
-
-      echo "<b>Currently Logged-In As:</b><br>" . $_SESSION['Account']['first_name'] . " ";
-      echo "" . $_SESSION['Account']['last_name'] . "<br>";
-      echo "" . $_SESSION['Account']['email_address'] . "<br>";
-
-      $admintoggle = $_SESSION['Account']['admin'];
-
-      if ($admintoggle == "1") {
-        echo "(Admin Status Active)";
-      }
-
-    } 
-
-
-
-
-      
-   // $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$loginpassword';";
-  //  $currentlogin = mysqli_query($dbc, $query);
-
-   // while ($row = mysql_fetch_assoc($currentlogin)) {
-   //   echo "Test";
-  //  }
-   // echo "$row['id']";
-
-
-
-    //$_SESSION['Account']['id'] = $currentlogin['id'];
-    //$_SESSION['Account']['first_name'] = $currentlogin['first_name'];
-    //$_SESSION['Account']['last_name'] = $currentlogin['last_name'];
-    //$_SESSION['Account']['email_address'] = $currentlogin['email_address'];
-    //$_SESSION['Account']['phone_number'] = $currentlogin['phone_number'];
-    //$_SESSION['Account']['shipping_address'] = $currentlogin['shipping_address'];
-
+  if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
+  {
+      header('location:acctmenu_customer.php');
+  } 
+  else if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 1) 
+  {
+      header('location:acctmenu_admin.php');
   }
+  else {
+    session_start();
+  }
+
+
+
+  if($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // if (empty($_POST['email_address'])) {
+    //   $emailError = 'Please add your email';
+    // }
+
+    // if (empty($_POST['password'])) {
+    //   $passwordError = 'Please enter your password';
+    // }
+
+    if (isset($_POST['email_address'])) {
+
+      global $dbc;
+      $loginemail = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['email_address'])));
+      $loginpassword = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['password'])));
+
+      // Query & Result
+      $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$loginpassword';";
+      $result = mysqli_query($dbc, $query);
+
+      if (@mysqli_num_rows($result) == 1) {
+
+        $row = $result -> fetch_array(MYSQLI_NUM);
+        $_SESSION['Account']['id'] = $row[0];
+        $_SESSION['Account']['first_name'] = $row[1];
+        $_SESSION['Account']['last_name'] = $row[2];
+        $_SESSION['Account']['email_address'] = $row[3];
+        $_SESSION['Account']['phone_number'] = $row[4];
+        $_SESSION['Account']['shipping_address'] = $row[6];
+        $_SESSION['Account']['admin'] = $row[7];
+
+
+        $admintoggle = $_SESSION['Account']['admin'];
+        header('location:homepage.php');
+      
+    } else {
+      $loginError = 'Wrong email address or password. Try again.';
+    }
+  } 
+}
+
+
 ?>
 
 
@@ -69,7 +68,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Css  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <!-- JQuERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index/style.css">
     <!-- Add icon library -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -87,13 +87,13 @@
   </head>
   <body>
 
-    <!---------------------------------------------------------------------------------
+<!---------------------------------------------------------------------------------
  *  - HEADER - Main Nav
 ---------------------------------------------------------------------------------------->
 <header>
   <div class="zone black">
          <ul class="main-nav">
-             <li><a href="" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
+             <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
          </ul>
   </div>
  </div>
@@ -126,24 +126,31 @@
     <!-- LOGIN FORM -------------------------------------------------------->
 
     <div class="form-inner">
-      <form action="#" class="login" method="post" enctype="multipart/form-data">
+      <form action="" method="POST" class="login" enctype="multipart/form-data">
         <div class="field">
-          <input type="text" name="email_address" placeholder="Email Address" required>
+          <input type="text" name="email_address" id="email" placeholder="Email Address" >
         </div>
+        <span class="error_form" id="email_error_message"></span>
+
         <div class="field">
-          <input type="password" name="password" placeholder="Password" required>
+          <input type="password" name="password" id="password" placeholder="Password"  >
         </div>
-        <div class="pass-link"><a href="#">Forgot Password?</a></div>
+        <span class="error_form" id="password_error_message"></span>
+
+        <!-- <div class="pass-link"><a><span>Forgot Password?<span></a></div> -->
         <div class="field">
           <input type="submit" value="Login">
         </div>
+        <span style="color:red;"><?php if (isset($loginError)) echo $loginError ?></span>
         <!-- Link -->
         <div class="register-link">Not a member? <a href="#">Register Now</a></div>
       </form>
 
+       
+
       <!-- REGISTER FORM ------------------------------------------------------>
 
-      <form action="#" class="register">
+      <form action="" method="POST" action class="register">
         <div class="field">
           <input type="text" placeholder="First Name" required>
         </div>
@@ -173,35 +180,7 @@
 
 
 
-
-<!---------------------------------------------------------------------------------
- EVERYTHING BELOW IS IN THE:
- footer.php file
- 
- When you create your login_register.php file
- at the bottom you will code:
-
  <?php
  include 'footer.php'
  ?>
- ----------------------------------------------------------------------------------->
-
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Astre Learning 2022</p></div>
-</footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-
-
-
-<!-- Optional JavaScript -->
-  <script src="index/index.js"></script>
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+ 
