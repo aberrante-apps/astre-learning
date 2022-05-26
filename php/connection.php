@@ -1,10 +1,16 @@
 <?php
 
 // Variables
+// $server = 'deepblue.cs.camosun.bc.ca';
+// $user = 'Group03_dev';
+// $pswd = '246800D';
+// $db='ICS199Group03_dev';
+
 $server = 'deepblue.cs.camosun.bc.ca';
-$user = 'Group03_dev';
-$pswd = '246800D';
-$db='ICS199Group03_dev';
+$user = 'Group03_prod';
+$pswd = '246800P';
+$db='ICS199Group03_prod';
+
 
 // Create Connection
 $dbc = mysqli_connect($server,$user,$pswd,$db);
@@ -15,9 +21,9 @@ if (!$dbc) {
 }
 // Note from Matthew: When we get to the final production stages, we will need to get rid of this else statement.
 // Otherwise, it will show up on screen, which will be weird for the user.
- else {
-     print "Connecting to database " . $db . "<BR><BR>";
- }
+//  else {
+//      print "Connecting to database " . $db . "<BR><BR>";
+//  }
 
 ?>
 

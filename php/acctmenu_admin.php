@@ -14,14 +14,14 @@
                 Account Menu
             </h2>
             <ul class="col-12 col-4-md col-3-lg">
+                <li>
+                    <a href="">Order History</a>
+                </li>
                 <li class="is-active">
                     <a href="add_product.php">Add a New Product</a>
                 </li>
                 <li>
-                    <a href="">Order History</a>
-                </li>
-                <li>
-                    <a href="">Logout</a>
+                    <a href="<?php if (isset($logout)) session_destroy(); echo $logout ?>">Logout</a>
                 </li>
 
             </ul>
@@ -32,12 +32,12 @@
     <div class="col-12 col-4-md col-3-lg">
         <div class="">
             <p>
-                <strong>My Account</strong>
+                <strong>Admin Account</strong>
             </p>
             <div class="c-account-line-title"></div>
         </div>
         <h2>Add a New Product</h2>
-        <form name="addProduct" action="add_product_to_database.php" method="post" enctype="multipart/form-data">
+        <form name="addProduct" action="add_product_to_database.php" method="POST" enctype="multipart/form-data">
             <div class="col-12 vert-margin-lg">
                 <div class="t-white-block row">
 

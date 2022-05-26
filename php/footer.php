@@ -2,7 +2,14 @@
  *  FOOTER - basic
 ----------------------------------------------------------------------------------->
 <footer class="py-5 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Astre Learning 2022</p></div>
+    <div class="container">
+        <div class="col m-0 text-muted">
+          <p><?php if (isset($loginInfo)) echo $loginInfo ?></p>
+        </div>
+        <div class="col m-0 justify-content-center text-white">
+          <p>Copyright &copy; Astre Learning 2022</p>
+        </div>
+    </div>
 </footer>
 
 
