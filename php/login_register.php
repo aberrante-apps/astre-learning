@@ -30,9 +30,10 @@
       global $dbc;
       $loginemail = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['email_address'])));
       $loginpassword = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['password'])));
+	$passwordhash = sha1($loginpassword);
 
       // Query & Result
-      $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$loginpassword';";
+      $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$passwordhash';";
       $result = mysqli_query($dbc, $query);
 
       if (@mysqli_num_rows($result) == 1) {
