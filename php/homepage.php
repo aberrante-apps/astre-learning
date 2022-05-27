@@ -1,9 +1,10 @@
 <?php
-
+include ('connection.php');
+session_start();
 # Home page for Astre Learning
 
 include ('header.php');
-include ('connection.php');
+
 ?>
 
 <!-------------------------------------------------------------------------

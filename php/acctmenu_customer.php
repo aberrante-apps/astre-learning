@@ -1,5 +1,21 @@
-<?php require 'connection.php'; ?>
-<?php include 'header.php'; ?>
+<?php 
+include 'connection.php'; 
+session_start();
+ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 1)
+  {
+      header('location:acctmenu_admin.php');
+  } 
+  else if (!isset($_SESSION['Account'])) 
+  {
+      header('location:login_register.php');
+  }
+  else {
+    session_start();
+  }
+
+include 'header.php';
+ ?>
+
 
 <!-----------------------------------------------------------------
  *  ADD NEW PRODUCT TO CATALOGUE - Form
@@ -18,7 +34,8 @@
                     <a href="">Order History</a>
                 </li>
                 <li>
-                    <a href="">Logout</a>
+                    <a href="logout.php">Logout</a>
+                    
                 </li>
 
             </ul>
