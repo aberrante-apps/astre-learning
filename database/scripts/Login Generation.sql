@@ -1,52 +1,52 @@
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Alex', 'Nairn', 'Testing', '720 Heaslip Place', 'alex.nairn@outlook.com', '7787003700', true);
+('Alex', 'Nairn', 'alex.nairn@outlook.com', '7787003700', SHA1('Testing'), '720 Heaslip Place', true);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Matthew', 'Zerrath', 'Testing', '1234 Fake Street', 'example@email.com', '7781001000', true);
+('Matthew', 'Zerrath', 'matthewzerrath@hotmail.com', '2506861203',  SHA1('Testing'), '1234 Fake Street', true);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Cianna', 'Dawn', 'Testing', '1234 Fake Street', 'example@email.com', '7781001000', true);
+('Cianna', 'Dawn', 'missciannadawn@gmail.com', '2504201033',  SHA1('Testing'), '1234 Fake Street', true);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Dierdre', 'Astre', 'Astre22', '1234 Fake Street', 'example@email.com', '7781001000', true);
+('Dierdre', 'Astre', 'dierdre@astremail.com', '2506861000',  SHA1('Testing'), '1234 Fake Street', true);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Alistair', 'Astre', 'Astre22', '1234 Fake Street', 'example@email.com', '7781001000', true);
+('Alistair', 'Astre', 'alistair@astremail.com', '2506861001',  SHA1('Testing'), '1234 Fake Street', true);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Winston', 'Bellingham', 'DefaultPass', '1234 Fake Street', 'example@email.com', '7781001000', false);
+('Winston', 'Bellingham', 'winston.bellingham@gmail.com', '7781001000',  SHA1('Testing'), '1234 Fake Street', false);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Milton', 'McCustomer', 'DefaultPass', '1234 Fake Street', 'example@email.com', '7781001000', false);
+('Milton', 'McCustomer', 'milton.mccustomer@gmail.com', '7781001001',  SHA1('Testing'), '1234 Fake Street', false);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Mandy', 'Warhol', 'DefaultPass', '1234 Fake Street', 'example@email.com', '7781001000', false);
+('Mandy', 'Warhol', 'mandy.warhol@outlook.com', '7781001002',  SHA1('Testing'), '1234 Fake Street', false);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Agnes', 'Beveragino', 'DefaultPass', '1234 Fake Street', 'example@email.com', '7781001000', false);
+('Agnes', 'Beveragino', 'agnes.beveragino@outlook.com', '7781001003',  SHA1('Testing'), '1234 Fake Street', false);
 
 INSERT INTO Logins 
-(first_name, last_name, password, shipping_address, email_address, phone_number, admin_toggle)
+(first_name, last_name, email_address, phone_number, password, shipping_address, admin)
 VALUES
-('Vincent', 'Adultman', 'DefaultPass', '1234 Fake Street', 'example@email.com', '7781001000', false);
+('Vincent', 'Adultman', 'vincent.adultman@icloud.com', '7781001004',  SHA1('Testing'), '1234 Fake Street', false);
 
 
 
