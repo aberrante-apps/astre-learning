@@ -1,7 +1,7 @@
-<?php
+<?php include ('connection.php');
 // This is a webpage for Math Products 
 include ('header.php');
-include ('connection.php');
+
 
 ?>
 

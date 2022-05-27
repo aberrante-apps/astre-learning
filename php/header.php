@@ -1,5 +1,5 @@
 <?php
-require 'connection.php';
+include 'connection.php';
 session_start();
 
 if (isset($_SESSION['Account']))
@@ -7,13 +7,12 @@ if (isset($_SESSION['Account']))
     $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
     $loginInfo = 'Logged In';
     $accountLink = 'acctmenu_customer.php';
-    $logout = 'homepage.php';
 
-    if (isset($_SESSION['Account']['admin'])) 
+    if (isset($_SESSION['Account']['admin']) && ($_SESSION['Account']['admin']) == 1) 
     {
+      $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
       $loginInfo = 'Logged In (Admin Active)';
-      $accountLink = 'acctmenu_admin.php';
-      $logout = 'homepage.php';
+      $accountLink = 'acctmenu_admin.php'; 
     }
   } else{
     $loginInfo = 'Not Logged In';

@@ -1,5 +1,20 @@
-<?php require 'connection.php'; ?>
-<?php include 'header.php'; ?>
+<?php 
+include 'connection.php';
+session_start();
+ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
+  {
+      header('location:acctmenu_customer.php');
+  } 
+  else if (!isset($_SESSION['Account'])) 
+  {
+      header('location:login_register.php');
+  }
+  else {
+    session_start();
+  }
+
+include 'header.php';
+ ?>
 
 <!-----------------------------------------------------------------
  *  ADD NEW PRODUCT TO CATALOGUE - Form
@@ -165,7 +180,9 @@
                     <a href="add_product.php">Add a New Product</a>
                 </li>
                 <li>
-                    <a href="<?php if (isset($logout)) session_destroy(); echo $logout ?>">Logout</a>
+                    <a href="logout.php">Logout</a>
+                    
+                    
                 </li>
 
             </ul>
@@ -189,9 +206,10 @@
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodName">Product Name <span class="is-light">*</span></label>
                         <div>
-                            <input class="text-box col-12 text-box single-line" id="ProdName" name="ProdName" type="text" value="" required>
-                            <span class="field-validation-valid"></span>
+                            <input class="text-box col-12 text-box single-line" id="ProdName" name="ProdName" type="text" value="" >
                         </div>
+                        <span class="error_form" id="prodName_error_message"></span>
+
                     </div>
 
                     <!-- Category -->
@@ -207,7 +225,7 @@
                                 <option value="Physics">Physics</option>
                                 <option value="Technology">Technology</option>
                             </select>
-                            <span class="field-validation-valid"></span>
+                            <span class="error_form" id="prodCat_error_message"></span>
                         </div>
                     </div>
 
@@ -222,7 +240,7 @@
                                 <!-- <option value="Software">Software</option>
                                 <option value="Software">Toys</option> -->
                             </select>
-                            <span class="field-validation-valid "></span>
+                            <span class="error_form" id="prodType_error_message"></span>
                         </div>
                     </div>
 
@@ -231,7 +249,7 @@
                         <label class="float-left is-darkteal" for="prodDesc">Product Description <span class="is-light"> *</span></label>
                         <div>
                             <textarea class="text-box col-12 text-box single-line" id="ProdDesc" name="ProdDesc" type="text-area" value="" required></textarea>
-                            <span class="field-validation-valid "></span>
+                            <span class="error_form" id="prodDesc_error_message"></span>
                         </div>
                     </div>
 
@@ -241,7 +259,7 @@
                         <div>
                             <input type="file" id="ProdImg" name="ProdImg" accept="image/*" required>
                         </div>
-                        <span class="field-validation-valid "></span>
+                        <span class="error_form" id="prodImg_error_message"></span>
                     </div>
 
                     <!-- Price -->
@@ -249,7 +267,7 @@
                         <label class="float-left is-darkteal" for="prodPrice">Price <span class="is-light"> *</span></label>
                         <div>
                             <input type="text" pattern="^[0-9]*.[0-9][0-9]" name="ProdPrice" min="1" step="any" required>
-                            <span class="field-validation-valid "></span>
+                            <span class="error_form" id="prodPrice_error_message"></span>
                         </div>
                     </div>
 
@@ -258,7 +276,7 @@
                         <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
                         <div>
                             <input type="number" name="ProdStock" min="1" required>
-                            <span class="field-validation-valid "></span>
+                            <span class="error_form" id="prodStock_error_message"></span>
                         </div>
                     </div>
 
