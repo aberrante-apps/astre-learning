@@ -38,6 +38,8 @@ if (isset($_SESSION['Account']))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/c70abeedb1.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
+    <!-- Shopping Cart JavaScript File -->
+    <script src="index/shoppingcart.js"></script>
 
     <title>Astre Learning</title>
   </head>
@@ -98,7 +100,7 @@ if (isset($_SESSION['Account']))
             <a class="nav-link orange" style="color: white" href="page_physics.php">Physics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link red" style="color: white" href="page_technology.php">Tecnology</a>
+            <a class="nav-link red" style="color: white" href="page_technology.php">Technology</a>
           </li>
       </ul>
       </div>
@@ -127,7 +129,7 @@ if (isset($_SESSION['Account']))
                     <th class="col delete" scope="col"></th>
                 </tr>
             </thead>
-            <tbody class="cart-items">
+            <tbody class="cart-items" id="cart-items">
               <!-- Products added here -->
             </tbody>
             <tfoot class="cart-footer"> 

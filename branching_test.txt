@@ -1,3 +1,0 @@
-This text file is a test to understand how branching works in git.
-
-If all goes well, there should be no issues with merging the development branch to the remote main branch.
