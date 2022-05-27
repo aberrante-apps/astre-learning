@@ -8,6 +8,7 @@ if (isset($_SESSION['Account']))
     $loginInfo = 'Logged In';
     $accountLink = 'acctmenu_customer.php';
     $logout = 'homepage.php';
+
     if (isset($_SESSION['Account']['admin'])) 
     {
       $loginInfo = 'Logged In (Admin Active)';
@@ -50,7 +51,6 @@ if (isset($_SESSION['Account']))
  <div class="zone teal">
     
         <ul class="main-nav">
-          
             <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
             <li><span style="font-family:Dancing Script";><?php if (isset($userGreeting)) echo $userGreeting ?></span></li>
             <div class="push-left">
@@ -73,7 +73,7 @@ if (isset($_SESSION['Account']))
 ----------------------------------------------------------------------------------->
 
  <nav class="navbar navbar-2 navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+    <!-- <div class="container"> -->
         <div class="row">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -104,6 +104,42 @@ if (isset($_SESSION['Account']))
       </ul>
       </div>
     </div>
-</div>
+<!-- </div> -->
   </nav>
 </header>
+
+<!----------------------------------------------------------------------------------- 
+    SHOPPING CART - Side Nav 
+----------------------------------------------------------------------------------->
+<div id="mySidenav" class="sidenav">
+      <div id="shopping-cart" class="shoppingcart">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+        <h2>Shopping Cart</h2>
+        <div class="cart table-wrapper"> 
+
+          <table id="myTable" class="cart-table">
+            <div class="cart-header">
+            <thead class="cart-header">
+                <tr>
+                    
+                    <th class="col item" scope="col">Item</th>
+                    <th class="col price" scope="col">Price</th>
+                    <th class="col qty" scope="col">Qty</th>
+                    <th class="col delete" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="cart-items">
+              <!-- Products added here -->
+            </tbody>
+            <tfoot class="cart-footer"> 
+              <tr>
+                <th class="col cart-subtotal" scope="col"></th>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="shoppingCart-footer">
+          <button type="button" class="btn checkout-btn" onclick="OpenCheckout()">Checkout</button>
+        </div>
+        </div>
+      </div>
+    </div>
