@@ -1,0 +1,39 @@
+Cianna: Merge branch 'cd-week4-demo-ready-update' into 'main'
+Cianna: large upload of demo ready files
+Matthew Z: Merge branch 'matthew-r02-finish-up' into 'main'
+Matthew Zerrath: Added strip_tags and mysqli_real_escape_string to all the form information. As such, all product additions to the database for now on should appear correctly.
+Alex Nairn: Merge branch 'Alex-Development-Branch' into 'main'
+Alex: Added login_register.php file to /php folder.
+Cianna: Merge branch 'cd-update-css' into 'main'
+Cianna: CSS Update. Mostly for product browsing
+Cianna: Merge branch 'cd-update-header-php' into 'main'
+Cianna: Updated header.php file. hrefs for categories, Astre Learning, and Shop All are now linked
+Cianna: Merge branch 'cd-R03-add-all-category-pages' into 'main'
+Cianna: Added pages for each category, and I linked pages to <ahrefs> in the header
+Matthew Z: Merge branch 'matthew-product-add-part-four' into 'main'
+Matthew Zerrath: Fixed a problem with the single apostrophe causing MySQL errors, as well as added an attribute to the file input that accepts only images. More images added for reference for the products.
+Cianna: Merge branch 'cd-add-homepage' into 'main'
+Cianna: Updated homepage. It now retrieves and displays all products.
+Matthew Z: Merge branch 'matthew-product-add-part-three' into 'main'
+Matthew Zerrath: Finally figured out how to add products to the database through PHP. All products from now on will be actual products for the Product database, and all images will go into the product_images folder.
+Matthew Zerrath: Tried placing the connection php file at the top.
+Matthew Zerrath: Revert "Revert "Base work for database connectivity. So far, page isn't showing up for some reason.""
+Matthew Zerrath: Revert "Base work for database connectivity. So far, page isn't showing up for some reason."
+Matthew Zerrath: Base work for database connectivity. So far, page isn't showing up for some reason.
+Matthew Z: Merge branch 'matthew-product-add-part-two' into 'main'
+Matthew Zerrath: Finally figured out how to get image uploading to work on Deepblue. Next up: saving all the product info on the MySQL database.
+Matthew Zerrath: Did everything except the picture uploads and the MySQL connections. Will try to get information from Doug about why the picture upload is not working.
+Matthew Zerrath: Made a few tweeks for the aesthetics for the forms and some of the buttons.
+Cianna: Merge branch 'cd-update-connectionphp' into 'main'
+Cianna: updated connection.php. CHanged  to .
+Matthew Z: Merge branch 'matthew-product-add' into 'main'
+Matthew Zerrath: Sorry, I forgot that you need to put in files into a folder in order to add the folder to the repository.
+Matthew Zerrath: Initial work on the 'Add Products' page.
+Cianna: Merge branch 'cianna-add-connection-php' into 'main'
+Cianna: this connection file successfully connects to the database and can be included at the top of each webpage php file.
+Cianna: Merge branch 'cianna-add-index-folder' into 'main'
+Cianna: Merge branch 'cianna-create-base-homepage' into 'main'
+Cianna: I created an empty homepage base that we can connect this weeks requirments to.
+Cianna: added css stylesheet and javascript file in a index folder
+Matthew Z: Merge branch 'cianna-add-footer-php' into 'main'
+Cianna: Added a footer and header file to the php folder.
