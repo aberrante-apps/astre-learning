@@ -331,8 +331,10 @@ Product Display
   }
   
   input[type=number] {
-    width: 40px;
-    text-align: right;
+    width: 75px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
   }
   
   td div {

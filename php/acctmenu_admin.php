@@ -204,19 +204,19 @@ include 'header.php';
 
                     <!-- Product Name -->
                     <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodName">Product Name <span class="is-light">*</span></label>
+                    <label class="float-left is-darkteal" for="prodName">Product Name <span class="is-light"> * </span>
+                    </label>
                         <div>
-                            <input class="text-box col-12 text-box single-line" id="ProdName" name="ProdName" type="text" value="" >
+                            <input class="text-box col-12 text-box single-line" id="prodName" name="ProdName" type="text" required>
                         </div>
                         <span class="error_form" id="prodName_error_message"></span>
-
                     </div>
 
                     <!-- Category -->
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodCat">Product Category <span class="is-light"> *</span></label>
                         <div>
-                            <select class="text-box col-12 text-box single-line" id="ProdCat" name="ProdCat" required>
+                            <select class="text-box col-12 text-box single-line" id="prodCat" name="ProdCat" required>
                                 <option>Pick a Category</option>
                                 <option value="Astronomy">Astronomy</option>
                                 <option value="Biology">Biology</option>
@@ -225,22 +225,23 @@ include 'header.php';
                                 <option value="Physics">Physics</option>
                                 <option value="Technology">Technology</option>
                             </select>
-                            <span class="error_form" id="prodCat_error_message"></span>
+                            
                         </div>
+                        <span class="error_form" id="prodCat_error_message"></span>
                     </div>
 
                     <!-- Product Type -->
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodType">Product Type <span class="is-light"> *</span></label>
+                        <span class="error_form" id="prodType_error_message"></span>
                         <div>
-                            <select class="text-box col-12 text-box single-line" id="ProdType" name="ProdType" required>
+                            <select class="text-box col-12 text-box single-line" id="prodType" name="ProdType" required>
                                 <option>Pick a Type</option>
                                 <option value="Book">Book</option>
                                 <option value="Kit">Kit</option>
                                 <!-- <option value="Software">Software</option>
                                 <option value="Software">Toys</option> -->
                             </select>
-                            <span class="error_form" id="prodType_error_message"></span>
                         </div>
                     </div>
 
@@ -248,16 +249,17 @@ include 'header.php';
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodDesc">Product Description <span class="is-light"> *</span></label>
                         <div>
-                            <textarea class="text-box col-12 text-box single-line" id="ProdDesc" name="ProdDesc" type="text-area" value="" required></textarea>
-                            <span class="error_form" id="prodDesc_error_message"></span>
+                            <textarea class="text-box col-12 text-box single-line" id="prodDesc" name="ProdDesc" type="text-area" value="" required></textarea>
+                            
                         </div>
+                        <span class="error_form" id="prodDesc_error_message"></span>
                     </div>
 
                     <!-- Image -->
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodImg">Image <span class="is-light"> *</span></label>
                         <div>
-                            <input type="file" id="ProdImg" name="ProdImg" accept="image/*" required>
+                            <input type="file" id="prodImg" name="ProdImg" accept="image/*" required>
                         </div>
                         <span class="error_form" id="prodImg_error_message"></span>
                     </div>
@@ -265,18 +267,18 @@ include 'header.php';
                     <!-- Price -->
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodPrice">Price <span class="is-light"> *</span></label>
+                        <span class="error_form" id="prodPrice_error_message"></span>
                         <div>
-                            <input type="text" pattern="^[0-9]*.[0-9][0-9]" name="ProdPrice" min="1" step="any" required>
-                            <span class="error_form" id="prodPrice_error_message"></span>
+                            <input type="number" pattern="^[0-9]*.[0-9][0-9]" id="prodPrice" name="ProdPrice" min="1" step="any" required>
                         </div>
                     </div>
 
                     <!-- Stock Amount -->
                     <div class="col-12 t-field-container">
                         <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
+                        <span class="error_form" id="prodStock_error_message"></span>
                         <div>
-                            <input type="number" name="ProdStock" min="1" required>
-                            <span class="error_form" id="prodStock_error_message"></span>
+                            <input type="number" name="prodStock" id="prodStock" min="1" required>
                         </div>
                     </div>
 

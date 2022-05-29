@@ -14,32 +14,28 @@ const loginLink = document.querySelector(".login-link a");
 const registerLink = document.querySelector(".register-link a"); 
 /* Text */
 const loginTitle = document.querySelector(".title-text .login");
-const registerTitle = document.querySelector(".title-text .register")
+const registerTitle = document.querySelector(".title-text .register");
 
 
-/******* LABELS *******/
-
-registerBtn.onclick = (()=>{
+// /******* LABELS *******/
+$(registerBtn).click(function(){
     loginForm.style.marginLeft = "-50%";
     loginTitle.style.marginLeft = "-50%";
 }); // display register form when register label is clicked
 
-loginBtn.onclick = (()=>{
+$(loginBtn).click(function(){
     loginForm.style.marginLeft = "0%";
-    loginTitle.style.marginLeft = "0%";
+     loginTitle.style.marginLeft = "0%";
 }); // display login form when login label is clicked
 
 
-/******** LINKS *********/
-
-registerLink.onclick = (()=>{
+// /******** LINKS *********/
+$(registerLink).click (function(){
     registerBtn.click();
-    
 });
 
-loginLink.onclick = (()=>{
+$(loginLink).click(function(){
     loginBtn.click();
-    
 });
 
 /***************************************************************
@@ -103,6 +99,9 @@ function openNav(){
 function closeNav() {
     $(".sidenav").css("display", "none");    
 }
+/***************************************************************
+* Product Form Verification - 
+****************************************************************/
 
 $(function() {
     $("#prodName_error_message").hide();
@@ -120,132 +119,133 @@ $(function() {
     var error_prodImg = false;
     var error_prodPrice = false;
     var error_prodStock = false;
-    
 
-    $("#ProdName").focusout(function(){
+    $("#prodName").focusout(function(){
         check_prodName();
     });
 
-    $("#ProdCat").focusout(function(){
-        check_prodCat();
-    });
-
-    $("#ProdType").focusout(function(){
-        check_prodType();
-    });
-
-    $("#ProdDesc").focusout(function(){
-        check_prodDesc();
-    });
-
-    $("#ProdImg").focusout(function(){
-        check_prodImg();
-    });
-
-    $("#ProdPrice").focusout(function(){
-        check_prodPrice();
-    });
-
-    $("#ProdStock").focusout(function(){
-        check_prodStock();
-    });
-
+    $("#prodCat").focusout(function(){
+            check_prodCat();
+        });
+    
+        $("#prodType").focusout(function(){
+            check_prodType();
+        });
+    
+        $("#prodDesc").focusout(function(){
+            check_prodDesc();
+        });
+    
+        $("#prodImg").focusout(function(){
+            check_prodImg();
+        });
+    
+        $("#prodPrice").focusout(function(){
+            check_prodPrice();
+        });
+    
+        $("#prodStock").focusout(function(){
+            check_prodStock();
+        });
+    
     function check_prodName() {
-        var prodName = $("#ProdName").val();
+        var prodName = $("#prodName").val();
         if (prodName !== "") {
             $("#prodName_error_message").hide();
-            $("#ProdName").css("border-bottom","2px solid #34F458");
+            $("#prodName").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodName_error_message").html("Please choose a name");
+            $("#prodName_error_message").html("Please input the product's name.");
             $("#prodName_error_message").show();
-            $("#ProdName").css("border-bottom","2px solid #F90A0A");
+            $("#prodName").css("border-bottom","2px solid #F90A0A");
                error_prodName = true;
         }
     }
 
     function check_prodCat() {
-        var prodCat = $("#ProdCat").val();
-        if (prodCat !== "") {
+        var prodCat = $("#prodCat").val();
+        if (prodCat !== "Pick a Category") {
             $("#prodCat_error_message").hide();
-            $("#ProdCat").css("border-bottom","2px solid #34F458");
+            $("#prodCat").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodCat_error_message").html("Please choose the category");
+            $("#prodCat_error_message").html("Please choose the product's category.");
             $("#prodCat_error_message").show();
-            $("#ProdCat").css("border-bottom","2px solid #F90A0A");
+            $("#prodCat").css("border-bottom","2px solid #F90A0A");
             error_prodCat = true;
         }
     }
 
     function check_prodType() {
-        var prodType = $("#ProdType").val();
-        if (prodType !== "") {
+        var prodType = $("#prodType").val();
+        if (prodType !== "Pick a Type") {
             $("#prodType_error_message").hide();
-            $("#ProdType").css("border-bottom","2px solid #34F458");
+            $("#prodType").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodType_error_message").html("Please choose the type");
+            $("#prodType_error_message").html("Please choose the product's type.");
             $("#prodType_error_message").show();
-            $("#ProdType").css("border-bottom","2px solid #F90A0A");
+            $("#prodType").css("border-bottom","2px solid #F90A0A");
             error_prodType = true;
         }
     }
 
     function check_prodDesc() {
-        var prodDesc = $("#ProdDesc").val();
+        var prodDesc = $("#prodDesc").val();
         if (prodDesc !== "") {
             $("#prodDesc_error_message").hide();
-            $("#ProdDesc").css("border-bottom","2px solid #34F458");
+            $("#prodDesc").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodDesc_error_message").html("Please desribe the product");
+            $("#prodDesc_error_message").html("Please describe the product.");
             $("#prodDesc_error_message").show();
-            $("#ProdDesc").css("border-bottom","2px solid #F90A0A");
+            $("#prodDesc").css("border-bottom","2px solid #F90A0A");
             error_prodDesc = true;
         }
     }
 
     function check_prodImg() {
-        var prodImg = $("#ProdImg").val();
+        var prodImg = $("#prodImg").val();
         if (prodImg !== "") {
             $("#prodImg_error_message").hide();
-            $("#ProdImg").css("border-bottom","2px solid #34F458");
+            $("#prodImg").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodImg_error_message").html("Please upload an image");
+            $("#prodImg_error_message").html("Please upload an image with a file name that has not been used before.");
             $("#prodImg_error_message").show();
-            $("#ProdImg").css("border-bottom","2px solid #F90A0A");
+            $("#prodImg").css("border-bottom","2px solid #F90A0A");
             error_prodImg = true;
         }
     }
 
     function check_prodPrice() {
-        var prodPrice = $("#ProdPrice").val();
-        if (prodPrice !== "") {
+        var prodPrice = $("#prodPrice").val();
+        const priceRGX = /^(\$|)([1-9]\d{0,2}(\,\d{3})*|([1-9]\d*))(\.\d{2})?$/;
+        if (priceRGX.test(prodPrice)) {
             $("#prodPrice_error_message").hide();
-            $("#ProdPrice").css("border-bottom","2px solid #34F458");
+            $("#prodPrice").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodPrice_error_message").html("Please choose a price for the Product");
+            $("#prodPrice_error_message").html("Please input a valid price for the product.");
             $("#prodPrice_error_message").show();
-            $("#ProdPrice").css("border-bottom","2px solid #F90A0A");
+            $("#prodPrice").css("border-bottom","2px solid #F90A0A");
             error_prodPrice = true;
         }
     }
 
     function check_prodStock() {
-        var prodStock = $("#ProdStock").val();
-        if (prodStock !== "") {
+        var prodStock = $("#prodStock").val();
+        if (prodStock !== "" || prodStock > 0 ) {
             $("#prodStock_error_message").hide();
-            $("#ProdStock").css("border-bottom","2px solid #34F458");
+            $("#prodStock").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodStock_error_message").html("Please choose a price for the Product");
+            $("#prodStock_error_message").html("Please input how many of this product are in stock.");
             $("#prodStock_error_message").show();
-            $("#ProdStock").css("border-bottom","2px solid #F90A0A");
+            $("#prodStock").css("border-bottom","2px solid #F90A0A");
             error_prodStock = true;
         }
     }
+   
 
 })
