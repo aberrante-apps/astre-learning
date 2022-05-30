@@ -283,8 +283,11 @@ include 'header.php';
                     </div>
 
                     <input type="hidden" name="MAX_FILE_SIZE" value="100000"><BR><BR>
-                    <input type="submit" class="btn btn-light btn-outline-dark" name="productSubmit"value="SUBMIT" role="button">
+                    <button type="submit" class="btn validate-productform-btn btn-light btn-outline-dark" name="productSubmit"value="SUBMIT">Submit</button>
+
+                    
                 </div>
+                <span class="error_form" id="prodValidateForm_error_message" style="color:red; font-size:20px;"></span>
             </div>
         </form>
     </div>
