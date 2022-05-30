@@ -177,19 +177,21 @@ Product Display
 ************************************************/
  .sidenav {
     height: 100%;
-    width: 500px;
+    width: 750px;
     position: fixed;
     z-index: 1;
     top: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 20px 10px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 50px 50px 30px rgb(0 0 0 / 50%);
     overflow-x: hidden; 
     transition: 0.5s;
-    padding-top: 90px;
+    padding-top: 30px;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 85px;
+    /* margin top bring the shopping cart below the header, but it hides the checkout button
+    if the checkout contents get too long */
+    /* margin-top: 85px; */
     display: none; 
   }
   
@@ -204,7 +206,7 @@ Product Display
   
   .sidenav .closebtn {
     position: absolute;
-    top: 50px;
+    /* top: 50px; */
     right: 10px;
     font-size: 36px;
     margin-left: 50px;
@@ -230,9 +232,13 @@ Product Display
         width: 100%;
     }
    
-    td {
+    .item-info td {
       flex-wrap: wrap;
       word-wrap: break-word;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    text-align: center;
+
     }
     table>thead>tr>th, table>thead>tr>td {
       vertical-align: bottom;
@@ -250,11 +256,6 @@ Product Display
   
   tr {
     border-bottom: 1px solid #b8bebb;
-  }
-  
-  td {
-    padding: 10px;
-    text-align: left;
   }
   
   .cart.table-wrapper {
@@ -276,6 +277,15 @@ Product Display
     width: auto;
   }
 
+  th.col.qty {
+      text-align: center;
+  }
+
+  .cart.table-wrapper h5 {
+      padding: 20px;
+      border-bottom: 2px solid darkgrey;
+      border-top: 2px solid darkgrey;
+  }
   /*********************************************
  ** CHECKOUT modals
 ************************************************/
