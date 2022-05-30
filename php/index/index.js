@@ -39,7 +39,7 @@ $(loginLink).click(function(){
 });
 
 /***************************************************************
-* LOGIN / REGISTER - verificatio *******************************/
+* LOGIN VALIDATION *******************************/
 
 $(function(){
     $("#email_error_message").hide();
@@ -89,6 +89,118 @@ $(function(){
 })
 
 /***************************************************************
+* REGISTER VALIDATION *******************************/
+
+$("#firstname_error_message").hide();
+$("#lastname_error_message").hide();
+$("#registerEmail_error_message").hide();
+$("#registerPassword_error_message").hide();
+$("#samepass_error_message").hide();
+
+var error_firstname = false;
+var error_lastname = false;
+var error_registerEmail = false;
+var error_registerPassword = false;
+var error_samepass = false;
+
+$("#firstname").focusout(function(){
+    check_firstname();
+});
+
+$("#lastname").focusout(function(){
+    check_lastname();
+});
+
+$("#register_email").focusout(function(){
+    check_registerEmail();
+});
+
+$("#register_password").focusout(function(){
+    check_registerPassword();
+});
+
+$("#samepass").focusout(function(){
+    check_samepass();
+});
+
+function check_firstname() {
+    var firstname = $("#firstname").val();
+
+    if (firstname !== "") {
+        $("#firstname_error_message").hide();
+        $("#firstname").css("border-bottom","2px solid #34F458");
+
+    } else {
+        $("#firstname_error_message").html("Please enter your first name");
+        $("#firstname_error_message").show();
+        $("#firstname").css("border-bottom","2px solid #F90A0A");
+           error_firstname = true;
+    }
+}
+
+function check_lastname() {
+    var lastname = $("#lastname").val();
+
+    if (lastname !== "") {
+        $("#lastname_error_message").hide();
+        $("#lastname").css("border-bottom","2px solid #34F458");
+
+    } else {
+        $("#lastname_error_message").html("Please enter your last name");
+        $("#lastname_error_message").show();
+        $("#lastname").css("border-bottom","2px solid #F90A0A");
+           error_lastname = true;
+    }
+}
+
+function check_registerEmail() {
+    var registerEmail = $("#register_email").val();
+    const registerEmailRGX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (registerEmailRGX.test(registerEmail) && registerEmail !== "") {
+        $("#registerEmail_error_message").hide();
+        $("#register_email").css("border-bottom","2px solid #34F458");
+
+    } else {
+        $("#registerEmail_error_message").html("Please enter a valid email address");
+        $("#registerEmail_error_message").show();
+        $("#register_email").css("border-bottom","2px solid #F90A0A");
+           error_registerEmail = true;
+    }
+}
+
+function check_registerPassword() {
+    var registerPassword = $("#register_password").val();
+
+    if (registerPassword !== "") {
+        $("#registerPassword_error_message").hide();
+        $("#register_password").css("border-bottom","2px solid #34F458");
+
+    } else {
+        $("#registerPassword_error_message").html("Please enter your password");
+        $("#registerPassword_error_message").show();
+        $("#register_password").css("border-bottom","2px solid #F90A0A");
+           error_registerPassword = true;
+    }
+}
+
+function check_samepass() {
+    var samepass = $("#samepass").val();
+    var passcheck = $("#register_password").val();
+    if (samepass === passcheck && samepass !== "") {
+        $("#samepass_error_message").hide();
+        $("#samepass").css("border-bottom","2px solid #34F458");
+
+    } else {
+        $("#samepass_error_message").html("Passwords must match");
+        $("#samepass_error_message").show();
+        $("#samepass").css("border-bottom","2px solid #F90A0A");
+           error_samepass = true;
+    }
+}
+
+
+
+/***************************************************************
 * SHOPPING CART - Open and close side nav when Cart is clicked
 ****************************************************************/
 // open
@@ -99,6 +211,8 @@ function openNav(){
 function closeNav() {
     $(".sidenav").css("display", "none");    
 }
+
+
 /***************************************************************
 * Product Form Verification - 
 ****************************************************************/
@@ -247,5 +361,31 @@ $(function() {
         }
     }
    
+$(".validate-productform-btn").click(function(){
+    error_prodName = false;
+    error_prodCat = false;
+    error_prodType = false;
+    error_prodDesc = false;
+    error_prodImg = false;
+    error_prodPrice = false;
+    error_prodStock = false;
 
+    check_prodName();
+    check_prodCat();
+    check_prodType();
+    check_prodDesc();
+    check_prodImg();
+    check_prodPrice();
+    check_prodStock();
+
+    if (error_prodName === false && error_prodCat === false && error_prodType === false && error_prodType === false && error_prodDesc === false && error_prodImg === false && error_prodPrice === false && error_prodStock === false) 
+    {
+        $("#prodValidateForm_error_message").hide();
+        return true;
+    } else {
+        $("#prodValidateForm_error_message").html("Please fill out all fields of the form correctly");
+        $("#prodValidateForm_error_message").show();
+        return false;
+    }
+});
 })
