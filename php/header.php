@@ -2,24 +2,121 @@
 include 'connection.php';
 session_start();
 
+// HEADER FUNCTIONALITY
+
+// <!--------------------------------------------------------------------------------
+//  *  SESSION TRACKING - for not logged in, logged in as customer, and logged in as Admin
+// ----------------------------------------------------------------------------------->
+
+// if there is an account session: 
 if (isset($_SESSION['Account']))
   {
+        // display greeting of user's name in header
     $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+        // display 'logged in' in footer
     $loginInfo = 'Logged In';
+        // account icon will take user to Customer account menu
     $accountLink = 'acctmenu_customer.php';
 
+    // if the there is an account session and the user is logged in as an admin
     if (isset($_SESSION['Account']['admin']) && ($_SESSION['Account']['admin']) == 1) 
     {
+          // display greeting of user's name in header
       $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+          // display 'logged in as an admin' in footer
       $loginInfo = 'Logged In (Admin Active)';
+          // account icon will take user to Admin account menu
       $accountLink = 'acctmenu_admin.php'; 
     }
   } else{
     $loginInfo = 'Not Logged In';
+    // account icon will take user to login/register page
     $accountLink = 'login_register.php';
   }
-?>
 
+//   <!--------------------------------------------------------------------------------
+//  * ADD TO CART FUNCTIONALITY
+// ----------------------------------------------------------------------------------->
+
+// if 'add-to-cart' has been clicked:
+if(isset($_POST['add_to_cart'])) 
+{
+    // if a cart session already exists:
+    if(isset($_SESSION['cart'])) 
+    {    
+        $item_array_id = array_column($_SESSION['cart'], "item_id");
+
+        // if the product is not already in the array
+        if(!in_array($_GET['id'], $item_array_id)) 
+        {
+            // add to count
+            $count = count($_SESSION['cart']);
+            // store item info into an array
+            $item_array = array(
+                'item_id' => $_GET["id"],
+                'item_name' => $_POST["hidden_name"],
+                'item_price' => $_POST["hidden_price"],
+                'item_quantity' => $_POST["quantity"]
+            );
+            $_SESSION['cart'][$count] = $item_array;
+            
+        } else {
+            // 
+            // - Add 1 to the quantity
+            // echo "<script>alert('Product is already added in the cart..')</script>";
+
+            // refresh page
+            echo "<script>window.location='display-products.php'</script>";
+        }
+    } else {
+        // collect product info
+        $item_array = array(
+            'item_id' => $_GET["id"],
+            'item_name' => $_POST["hidden_name"],
+            'item_price' => $_POST["hidden_price"],
+            'item_quantity' => $_POST["quantity"]
+        );
+        // & Create a new session['cart'] variable, that stores product
+        $_SESSION['cart'][0] = $item_array;
+    }
+}
+//-------------------------------------------------------------------------------
+// DELETE  - INDIVIDUAL ITEM FROM CART
+//
+if(isset($_GET["action"]))
+{
+ if($_GET["action"] == "delete")
+ {
+    foreach($_SESSION["cart"] as $keys => $values)
+    {
+      if($values["item_id"] == $_GET["id"])
+      {
+        unset($_SESSION["cart"][$keys]);
+        //  echo '<script>alert("Item Removed")</script>';
+        echo '<script>window.location="display-products.php"</script>';
+      }
+    }
+ }
+}
+
+// ----------------------------------------------------------------------------
+// EMPTY CART
+//
+if(isset($_GET['action']))
+{
+    if ($_GET["action"] == "emptycart")
+    {
+        foreach($_SESSION["cart"] as $keys => $values)
+        {
+            unset($_SESSION["cart"][$keys]);
+            echo '<script>window.location="display-products.php"</script>';
+        }
+    }
+}
+?>
+ <!--------------------------------------------------------------------------------
+---- HEADER HTML  
+----------------------------------------------------------------------------------->
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,8 +135,8 @@ if (isset($_SESSION['Account']))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/c70abeedb1.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
-    <!-- Shopping Cart JavaScript File -->
-    <script src="index/shoppingcart.js"></script>
+    <!-- Shopping Cart JavaScript File
+    <script src="index/shoppingcart.js"></script> -->
 
     <title>Astre Learning</title>
   </head>
@@ -60,7 +157,17 @@ if (isset($_SESSION['Account']))
             <span onclick="openNav()">
             <li>
                 <button type="button" class="btn shopping-cart-btn">
-                    <i class="fa fa-shopping-cart" style="font-size:20px"></i>
+                    <i class="fa fa-shopping-cart" style="font-size:20px"> 
+                    <?php
+                    // CART COUNT
+                    if(isset($_SESSION['cart']))
+                    {
+                      $count = count($_SESSION['cart']);
+                      echo "<span id='cart_count'>$count</span></i>";
+                    } else{
+                      echo "<span id='cart_count'>0</span></i>";
+                    }
+                    ?>
                 </button>
             </li>
         </span>
@@ -112,35 +219,82 @@ if (isset($_SESSION['Account']))
 <!----------------------------------------------------------------------------------- 
     SHOPPING CART - Side Nav 
 ----------------------------------------------------------------------------------->
-<div id="mySidenav" class="sidenav">
-      <div id="shopping-cart" class="shoppingcart">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
-        <h2>Shopping Cart</h2>
-        <div class="cart table-wrapper"> 
 
-          <table id="myTable" class="cart-table">
-            <div class="cart-header">
-            <thead class="cart-header">
+<div id="mySidenav" class="sidenav">
+  <div id="shopping-cart" class="shoppingcart">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+    <h2>Shopping Cart</h2>
+    
+    <!-- CART TABLE START -->
+      <div class="cart table-wrapper"> 
+
+      <?php
+        if(isset($_SESSION['cart']) && !empty($_SESSION['cart']))
+        {
+      ?>
+        <table id="myTable" class="cart-table">
+          <div class="cart-header">
+
+            <!-- CART HEADER -->
+              <thead class="cart-header">
                 <tr>
-                    
-                    <th class="col item" scope="col">Item</th>
-                    <th class="col price" scope="col">Price</th>
-                    <th class="col qty" scope="col">Qty</th>
-                    <th class="col delete" scope="col"></th>
+                  <th class="col item" scope="col">Item</th>
+                  <th class="col price" scope="col">Price</th>
+                  <th class="col qty" scope="col">Qty</th>
+                  <th class="col delete" scope="col"></th>
                 </tr>
-            </thead>
-            <tbody class="cart-items" id="cart-items">
-              <!-- Products added here -->
-            </tbody>
-            <tfoot class="cart-footer"> 
-              <tr>
-                <th class="col cart-subtotal" scope="col"></th>
-              </tr>
+              </thead>
+        
+      <?php
+          foreach($_SESSION['cart'] as $keys => $values)
+          {
+      ?>
+              <!-- CART BODY -->
+              <tbody class="cart-items" id="cart-items">
+                <tr class=item-info>
+                  <td><?php echo $values['item_name']; ?></td>
+                  <!-- <td>$echo $values['item_price'];</td> -->
+                  <td>$<?php echo number_format($values['item_quantity'] * $values['item_price'], 2);?></td>
+                  <!-- Quantity -->
+                  <td>
+                    <button type="button" class="btn bg-light border rounded-circle"><i class="fas fa-minus"></i></button>
+                    <input type="text" value="<?php echo $values['item_quantity'] ?>" class="form-control w-25 d-inline">
+                    <button type="button" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></button>
+                  </td>
+                  <td><a href="display-products.php?action=delete&id=<?php echo $values['item_id']; ?>"><span class="bi bi-trash" style="color:red;"></span></a></td>
+                </tr>
+        <?php 
+                  $total = $total + ($values['item_quantity'] * $values['item_price']); 
+        ?> 
+              </tbody>
+
+        <?php 
+          } 
+        ?>
+              <!-- CART FOOTER -->
+              <tfoot class="cart-footer"> 
+              <th>
+                <tr class="col cart-subtotal" scope="col">
+                <td><strong>Subtotal: $<?php echo number_format($total, 2); ?></strong></td>
+                  
+                  <!-- <button type="submit" name="emptycart" class="emptycart" value="Empty Cart">Empty Cart</button> -->
+                  <td><a href="display-products.php?action=emptycart&id=<?php echo $values['item_id']; ?>">Empty</a></td>
+                </tr>
+              </th>
             </tfoot>
           </table>
           <div class="shoppingCart-footer">
           <button type="button" class="btn checkout-btn" onclick="OpenCheckout()">Checkout</button>
         </div>
+        <?php
+               
+        } else
+          {
+            $total = 0;
+            echo '<tr><td><h5>Your cart is empty</td></tr></h5>';
+          }
+      ?>
+        
         </div>
       </div>
     </div>
