@@ -146,16 +146,17 @@ if(isset($_GET['action']))
  *  - HEADER - Main Nav
 ----------------------------------------------------------------------------------->
 <header>
- <div class="zone teal">
-    
-        <ul class="main-nav">
+  <div class="brandpurple">
+    <div class="container">
+      <div class="row">
+        <ul class="col main-nav">
             <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
-            <li><span style="font-family:Dancing Script";><?php if (isset($userGreeting)) echo $userGreeting ?></span></li>
+            <li><span style="font-family:Dancing Script; color:white;"><?php if (isset($userGreeting)) echo $userGreeting ?></span></li>
             <div class="push-left">
-            <li><a href="<?php if (isset($accountLink)) echo $accountLink ?>">Account</a></li>
-            <!-- cart button function -->
-            <span onclick="openNav()">
-            <li>
+              <li><a href="<?php if (isset($accountLink)) echo $accountLink ?>">Account</a></li>
+              <!-- cart button function -->
+              <span onclick="openNav()">
+              <li>
                 <button type="button" class="btn shopping-cart-btn">
                     <i class="fa fa-shopping-cart" style="font-size:20px"> 
                     <?php
@@ -169,12 +170,13 @@ if(isset($_GET['action']))
                     }
                     ?>
                 </button>
-            </li>
-        </span>
-            </div>
+              </li>
+              </span>
+          </div>
         </ul>
- </div>
-</div>
+      </div>
+    </div>
+  </div>
 
 <!----------------------------------------------------------------------------------- 
     HEADER - toggle-navbar-2  
@@ -192,22 +194,22 @@ if(isset($_GET['action']))
           <a class="nav-link" href="homepage.php">Shop All <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link purple" style="color: white" href="page_astronomy.php">Astronomy</a>
+            <a class="nav-link" href="page_astronomy.php">Astronomy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link green" style="color: white" href="page_biology.php">Biology</a>
+            <a class="nav-link" href="page_biology.php">Biology</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link yellow" style="color: white" href="page_chemistry.php">Chemistry</a>
+            <a class="nav-link" href="page_chemistry.php">Chemistry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link blue" style="color: white" href="page_math.php">Math</a>
+            <a class="nav-link" href="page_math.php">Math</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link orange" style="color: white" href="page_physics.php">Physics</a>
+            <a class="nav-link" href="page_physics.php">Physics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link red" style="color: white" href="page_technology.php">Technology</a>
+            <a class="nav-link" href="page_technology.php">Technology</a>
           </li>
       </ul>
       </div>
@@ -258,7 +260,7 @@ if(isset($_GET['action']))
                   <!-- Quantity -->
                   <td>
                     <button type="button" class="btn bg-light border rounded-circle"><i class="fas fa-minus"></i></button>
-                    <input type="text" value="<?php echo $values['item_quantity'] ?>" class="form-control w-25 d-inline">
+                    <input type="text" value="<?php echo $values['item_quantity'] ?>" min="1" max="20" class="form-control w-25 d-inline">
                     <button type="button" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></button>
                   </td>
                   <td><a href="display-products.php?action=delete&id=<?php echo $values['item_id']; ?>"><span class="bi bi-trash" style="color:red;"></span></a></td>

@@ -85,8 +85,9 @@ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
     <title>Login / Register</title>
     <style>
       html,body{
-        background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184));
+        /* background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184)); */
         /* background: -webkit-linear-gradient(left, #5372F0, #8484f0); */
+        background: #566bc4;
         
       }
     </style>
@@ -97,12 +98,15 @@ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
  *  - HEADER - Main Nav
 ---------------------------------------------------------------------------------------->
 <header>
-  <div class="zone black">
-         <ul class="main-nav">
+  <div class="black">
+  <div class="container">
+    <div class="row">
+         <ul class="col main-nav">
              <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
          </ul>
   </div>
  </div>
+  </div>
 </header>
 
 
@@ -154,32 +158,44 @@ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
 
        
 
-      <!-- REGISTER FORM ------------------------------------------------------>
+     <!-- REGISTER FORM ------------------------------------------------------>
 
-      <form action="" method="POST" action class="register">
-        <div class="field">
-          <input type="text" placeholder="First Name" required>
-        </div>
-        <div class="field">
-          <input type="text" placeholder="Last Name" required>
-        </div>
-        <div class="field">
-          <input type="text" placeholder="Email Address" required>
-        </div>
-        <div class="field">
-          <input type="password" placeholder="Password" required>
-        </div>
-        <div class="field">
-          <input type="password" placeholder="Confirm Password" required>
-        </div>
-        <div class="field">
-          <input type="submit" value="Register">
-        </div>
-        <!-- Link -->
-        <div class="login-link">Already a member? <a href="#">Login</a></div>
-      </form>
-    </div>
-  </div>
+     <form action="" method="POST" action class="register">
+
+<div class="field">
+  <input type="text" name="first_name" id="firstname" placeholder="First Name" required>
+</div>
+<span class="error_form" id="firstname_error_message"></span>
+
+<div class="field">
+  <input type="text" name="last_name" id="lastname" placeholder="Last Name" required>
+</div>
+<span class="error_form" id="lastname_error_message"></span>
+
+<div class="field">
+  <input type="text" name="email_address" id="register_email" placeholder="Email Address" required>
+</div>
+<span class="error_form" id="registerEmail_error_message"></span>
+
+<div class="field">
+  <input type="password" id="register_password" placeholder="Password" required>
+</div>
+<span class="error_form" id="registerPassword_error_message"></span>
+
+<div class="field">
+  <input type="password" name="password" id="samepass" placeholder="Confirm Password" required>
+</div>
+<span class="error_form" id="samepass_error_message"></span>
+
+<div class="field">
+  <input type="submit" name="register" value="Register">
+</div>
+
+<!-- Link -->
+<div class="login-link">Already a member? <a href="#">Login</a></div>
+</form>
+</div>
+</div>
 </div>
 </div>
 
@@ -198,9 +214,6 @@ if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
 
 <!-- Optional JavaScript -->
     <script src="index/index.js"></script>
