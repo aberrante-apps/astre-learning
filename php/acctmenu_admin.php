@@ -21,6 +21,77 @@ include 'header.php';
  ----------------------------------------------------------------->
 
             <?php
+                // Function for adding product to database
+                function AddProductToDatabase($productName, $categoryCode, $typeCode, $productDescription, $productImage, $productPrice, $productStock, $query1, $query2, $dbc) {
+                    if ($categoryCode === "Product Category Error" && $typeCode === "Product Type Error") {
+                        echo "<p>You selected neither a product category nor product type. Please select a category and a type.</p>";
+                    }
+                    // Handles errors if the category is not selected upon submission
+                    else if ($categoryCode === "Product Category Error")
+                    {
+                        echo "<p>You did not select a product category. Please select a category.</p>";
+                    // Handles errors if the type is not selected upon submission
+                    } else if ($typeCode === "Product Type Error") {
+                        echo "<p>You did not select a product type. Please select a type.</p>";
+                    }
+                    // If the product being added already has the input name and image, display error.
+                    else if ((mysqli_num_rows(mysqli_query($dbc, $query1)) >= 1) && (mysqli_num_rows(mysqli_query($dbc, $query2)) >= 1)) {
+                        echo "<p>It seems this product already exists in the database. Please enter in a different product.</p>";
+                    }
+                    // If there is a product by the same name in the database, display error
+                    else if (mysqli_num_rows(mysqli_query($dbc, $query1)) >= 1) {
+                        echo "<p>An item in the database already exists with this name. Please use a different name.</p>";
+                    } 
+                    // If there is a product with the same image in the database, display error
+                    else if (mysqli_num_rows(mysqli_query($dbc, $query2)) >= 1) {
+                        echo "<p> An item in the database already uses this image. Please use a different image.</p>"; 
+                    }
+                    // If both the name and image have never been used before, it's a new product that can be added in
+                    else {
+                        // MySQL INSERT statement into Product Database
+                        $productSQLTable = "INSERT INTO Products (name, description, picture, price, stock) VALUES ('$productName', '$productDescription', '$productImage', $productPrice, $productStock);";
+                        $result1 = mysqli_query($dbc, $productSQLTable);
+                        if ($result1) {
+                            echo "<p>Main Product Table successfully inserted.</p>";
+                        } else {
+                            print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
+                        }
+
+                        // Retrieve product ID of the newly inserted product
+                        $productIDQuery = "SELECT id from Products WHERE name = '$productName';";
+                        $productID = 0;
+                        $result2 = mysqli_query($dbc, $productIDQuery);
+                        if ($result2) {
+                            $row = $result2 -> fetch_array(MYSQLI_NUM);
+                            $productID = $row[0];
+                        } else {
+                            print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
+                            print mysqli_error($dbc);
+                        }
+
+                        // INSERT product category info into the Product Category table
+                        $categorySQLTable = "INSERT INTO ProductCategories (product_id, category_id) VALUES ($productID, $categoryCode);";
+                        $result3 = mysqli_query($dbc, $categorySQLTable);
+                        if ($result3) {
+                            echo "<p>Product Category Table successfully inserted.</p>";
+                        } else {
+                            print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
+                        }
+
+                        // Insert product type info into the Product Type table
+                        $typeSQLTable = "INSERT INTO ProductTypes (product_id, type_id) VALUES ($productID, $typeCode);";
+                        $result4 = mysqli_query($dbc, $typeSQLTable);
+                        if ($result4) {
+                            echo "<p>Product Type Table successfully inserted.</p>";
+                        } else {
+                            print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
+                        }
+                    }
+                }
+
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     // Variables for product info
                     $productName = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['ProdName'])));
@@ -30,6 +101,8 @@ include 'header.php';
                     $productImage = "";
                     $productPrice = strip_tags($_POST['ProdPrice']);
                     $productStock = strip_tags($_POST['ProdStock']);
+
+                    $Valid_Input = TRUE;
 
                     // Set up for category and type codes
                     $categoryCode = 1;
@@ -105,61 +178,10 @@ include 'header.php';
                         }
                     }
 
-                    // If the product being added already has the input name and image, display error.
-                    if ((mysqli_num_rows(mysqli_query($dbc, $query1)) >= 1) && (mysqli_num_rows(mysqli_query($dbc, $query2)) >= 1)) {
-                        echo "<p>It seems this product already exists in the database. Please enter in a different product. </p>";
-                    }
-                    // If there is a product by the same name in the database, display error
-                    else if (mysqli_num_rows(mysqli_query($dbc, $query1)) >= 1) {
-                        echo "<p>An item in the database already exists with this name. Please use a different name.</p>";
-                    } 
-                    // If there is a product with the same image in the database, display error
-                    else if (mysqli_num_rows(mysqli_query($dbc, $query2)) >= 1) {
-                        echo "<p> An item in the database already uses this image. Please use a different image.</p>"; 
-                    }
-                    // If both the name and image have never been used before, it's a new product that can be added in
-                    else {
-                        // MySQL INSERT statement into Product Database
-                        $productSQLTable = "INSERT INTO Products (name, description, picture, price, stock) VALUES ('$productName', '$productDescription', '$productImage', $productPrice, $productStock);";
-                        $result1 = mysqli_query($dbc, $productSQLTable);
-                        if ($result1) {
-                            echo "<p>Main Product Table successfully inserted.</p>";
-                        } else {
-                            print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
-                            print mysqli_error($dbc);
-                        }
-
-                        // Retrieve product ID of the newly inserted product
-                        $productIDQuery = "SELECT id from Products WHERE name = '$productName';";
-                        $productID = 0;
-                        $result2 = mysqli_query($dbc, $productIDQuery);
-                        if ($result2) {
-                            $row = $result2 -> fetch_array(MYSQLI_NUM);
-                            $productID = $row[0];
-                        } else {
-                            print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
-                            print mysqli_error($dbc);
-                        }
-
-                        // INSERT product category info into the Product Category table
-                        $categorySQLTable = "INSERT INTO ProductCategories (product_id, category_id) VALUES ($productID, $categoryCode);";
-                        $result3 = mysqli_query($dbc, $categorySQLTable);
-                        if ($result3) {
-                            echo "<p>Product Category Table successfully inserted.</p>";
-                        } else {
-                            print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
-                            print mysqli_error($dbc);
-                        }
-
-                        // Insert product type info into the Product Type table
-                        $typeSQLTable = "INSERT INTO ProductTypes (product_id, type_id) VALUES ($productID, $typeCode);";
-                        $result4 = mysqli_query($dbc, $typeSQLTable);
-                        if ($result4) {
-                            echo "<p>Product Type Table successfully inserted.</p>";
-                        } else {
-                            print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
-                            print mysqli_error($dbc);
-                        }
+                    if ($Valid_Input) {
+                        AddProductToDatabase($productName, $categoryCode, $typeCode, $productDescription, $productImage, $productPrice, $productStock, $query1, $query2, $dbc);
+                    } else {
+                        echo "<p>Image handling error. Please check if the image is already in the Deepblue folder and that folder permissions are properly set.</p>";
                     }
                 }
             ?>
@@ -177,7 +199,7 @@ include 'header.php';
                     <a href="">Order History</a>
                 </li>
                 <li class="is-active">
-                    <a href="add_product.php">Add a New Product</a>
+                    <a href="acctmenu_admin.php">Add a New Product</a>
                 </li>
                 <li>
                     <a href="logout.php">Logout</a>
@@ -217,7 +239,7 @@ include 'header.php';
                         <label class="float-left is-darkteal" for="prodCat">Product Category <span class="is-light"> *</span></label>
                         <div>
                             <select class="text-box col-12 text-box single-line" id="prodCat" name="ProdCat" required>
-                                <option>Pick a Category</option>
+                                <option value="Pick a Category">Pick a Category</option>
                                 <option value="Astronomy">Astronomy</option>
                                 <option value="Biology">Biology</option>
                                 <option value="Chemistry">Chemisty</option>
@@ -236,7 +258,7 @@ include 'header.php';
                         <span class="error_form" id="prodType_error_message"></span>
                         <div>
                             <select class="text-box col-12 text-box single-line" id="prodType" name="ProdType" required>
-                                <option>Pick a Type</option>
+                                <option value="Pick a Type">Pick a Type</option>
                                 <option value="Book">Book</option>
                                 <option value="Kit">Kit</option>
                                 <!-- <option value="Software">Software</option>
@@ -278,7 +300,7 @@ include 'header.php';
                         <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
                         <span class="error_form" id="prodStock_error_message"></span>
                         <div>
-                            <input type="number" name="prodStock" id="prodStock" min="1" required>
+                            <input type="number" name="ProdStock" id="prodStock" min="1" required>
                         </div>
                     </div>
 
