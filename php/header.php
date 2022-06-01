@@ -138,6 +138,7 @@ if(isset($_POST["addButton"])) {
       // Then increase the item quantity in the cart if it doesn't exceed the amount in stock
       if ($_SESSION['cart'][$i]['item_quantity'] < $productStock) {
         $_SESSION['cart'][$i]['item_quantity']++;
+        echo '<script>window.location="display-products.php"</script>';
       }
     }
   }
@@ -147,15 +148,13 @@ if(isset($_POST["addButton"])) {
 // SUBTRACT ITEM QUANTITY
 //
 if(isset($_POST["subtractButton"])) {
-  foreach($_SESSION["cart"] as $keys => $values)
-  {
-    // Loop through each item to find the matching id
-    for($i = 0; $i < count($_SESSION['cart']); $i++) {
-      // If the matching item id is found AND there is more than one unit in the cart
-      if($_SESSION['cart'][$i]["item_id"] == $_GET["id"] && $_SESSION['cart'][$i]['item_quantity'] > 1) {
-        // Remove one unit of the product from the cart
-        $_SESSION['cart'][$i]['item_quantity']--;
-      }
+  // Loop through each item to find the matching id
+  for($i = 0; $i < count($_SESSION['cart']); $i++) {
+    // If the matching item id is found and there is more than one unit in the cart
+    if($_SESSION['cart'][$i]["item_id"] == $_GET["id"] && $_SESSION['cart'][$i]['item_quantity'] > 1) {
+      // Remove one unit of the product from the cart
+      $_SESSION['cart'][$i]['item_quantity']--;
+      echo '<script>window.location="display-products.php"</script>';
     }
   }
 }
@@ -310,7 +309,7 @@ if(isset($_POST["subtractButton"])) {
                     <form method="POST" action="display-products.php?action=subtractFromQuantity&id=<?php echo $values['item_id']; ?>" >
                       <button type="submit" name="subtractButton" class="btn bg-light border rounded-circle"><i class="fas fa-minus"></i></button>
                     </form>
-                    <input type="text" value="<?php echo $values['item_quantity'];?>" class="form-control w-25 d-inline" disabled>
+                    <?php echo $values['item_quantity'];?>
                     <form method="POST" action="display-products.php?action=addToQuantity&id=<?php echo $values['item_id']; ?>">
                       <button type="submit" name="addButton" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></button>
                     </form>
