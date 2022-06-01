@@ -228,7 +228,7 @@ if(isset($_POST["subtractButton"])) {
     HEADER - toggle-navbar-2  
 ----------------------------------------------------------------------------------->
 
-  <nav class="navbar navbar-2 navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-2 navbar-expand-lg navbar-light bg-light">
     <!-- <div class="container"> -->
         <div class="row">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,22 +240,22 @@ if(isset($_POST["subtractButton"])) {
           <a class="nav-link" href="homepage.php">Shop All <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="page_astronomy.php">Astronomy</a>
+            <a class="nav-link" id="hover hover-purple" href="page_astronomy.php">Astronomy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="page_biology.php">Biology</a>
+            <a class="nav-link" id="hover hover-green" href="page_biology.php">Biology</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="page_chemistry.php">Chemistry</a>
+            <a class="nav-link" id="hover hover-yellow" href="page_chemistry.php">Chemistry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="page_math.php">Math</a>
+            <a class="nav-link" id="hover hover-blue" href="page_math.php">Math</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="page_physics.php">Physics</a>
+            <a class="nav-link" id="hover hover-orange" href="page_physics.php">Physics</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="page_technology.php">Technology</a>
+          <li class="nav-item" >
+            <a class="nav-link" id="hover hover-red"  href="page_technology.php">Technology</a>
           </li>
       </ul>
       </div>
@@ -290,6 +290,7 @@ if(isset($_POST["subtractButton"])) {
                   <th class="col item" scope="col">Item</th>
                   <th class="col price" scope="col">Price</th>
                   <th class="col qty" scope="col">Qty</th>
+                  <th class="col total" scope="col">Total</th>
                   <th class="col delete" scope="col"></th>
                 </tr>
               </thead>
@@ -302,8 +303,7 @@ if(isset($_POST["subtractButton"])) {
               <tbody class="cart-items" id="cart-items">
                 <tr class=item-info>
                   <td><?php echo $values['item_name']; ?></td>
-                  <!-- <td>$echo $values['item_price'];</td> -->
-                  <td>$<?php echo number_format($values['item_quantity'] * $values['item_price'], 2);?></td>
+                  <td>$<?php echo $values['item_price'];?></td>
                   <!-- Quantity -->
                   <td>
                     <form method="POST" action="display-products.php?action=subtractFromQuantity&id=<?php echo $values['item_id']; ?>" >
@@ -314,6 +314,7 @@ if(isset($_POST["subtractButton"])) {
                       <button type="submit" name="addButton" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></button>
                     </form>
                   </td>
+                  <td>$<?php echo number_format($values['item_quantity'] * $values['item_price'], 2);?></td>
                   <td><a href="display-products.php?action=delete&id=<?php echo $values['item_id']; ?>"><span class="bi bi-trash" style="color:red;"></span></a></td>
                 </tr>
         <?php 

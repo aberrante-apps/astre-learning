@@ -35,12 +35,13 @@ echo "<div class='col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch' id='car
 echo    "<div class='card text-center' id='" . $row['id'] . "' style='width: 18rem;'>";
 echo        "<img class ='img card-img-top' src='" . $row['picture'] . "' alt='https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png'>";
 echo         "<div class='card-body'>";
-echo            "<h5 class='card-title' id='card-title'>" . $row['name'] . "</h5>";
+echo            "<h5 class='card-price'>" . $row['price'] . "</h5>";
+echo            "<h6 class='card-title' id='card-title'>" . $row['name'] . "</h6>";
 // echo            "<p class='card-text'>" . $row['description'] . "</p>";
-echo            "<p class='card-price'>" . $row['price'] . "</p>";
+
 echo        "</div>";
 echo                "<button class='btn add-to-cart' data-id='" . $row['id'] . 
-                    "' onclick='AddToCart(" . $row['id'] .  ")'>Add To Cart</button> </p>";
+                    "' onclick='AddToCart(" . $row['id'] .  ")'>Add To Cart</button>";
 echo    "</div>";
 echo "</div>";
 }
