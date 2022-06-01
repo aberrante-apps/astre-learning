@@ -117,32 +117,28 @@ if(isset($_GET['action']))
 //-------------------------------------------------------------------------------
 // ADD ITEM QUANTITY
 //
-if(isset($_GET["action"]))
-{
- if($_GET["action"] == "addToQuantity")
-  {
-    // Loop through each item to find the matching id
-    for($i = 0; $i < count($_SESSION['cart']); $i++) {
-      // If the matching item id is found
-      if($_SESSION['cart'][$i]["item_id"] == $_GET["id"])
-      {
-        // First, check to see how much of the product is currently in stock
-        $productStockQuery = "SELECT stock FROM Products WHERE id = " . $_SESSION['cart'][$i]["item_id"] . ";";
-        $productStock = 0;
-        $result = mysqli_query($dbc, $productStockQuery);
-        if ($result) {
-          $row = $result -> fetch_array(MYSQLI_NUM);
-          $productStock = $row[0];
-        } else {
-          print "<h3>SQL ERROR: " . $productStockQuery . "<br></h3>";
-          print mysqli_error($dbc);
-        }
+if(isset($_POST["addButton"])) {
+  // Loop through each item to find the matching id
+  for($i = 0; $i < count($_SESSION['cart']); $i++) {
+    // If the matching item id is found
+    if($_SESSION['cart'][$i]["item_id"] == $_GET["id"])
+    {
+      // First, check to see how much of the product is currently in stock
+      $productStockQuery = "SELECT stock FROM Products WHERE id = " . $_SESSION['cart'][$i]["item_id"] . ";";
+      $productStock = 0;
+      $result = mysqli_query($dbc, $productStockQuery);
+      if ($result) {
+        $row = $result -> fetch_array(MYSQLI_NUM);
+        $productStock = $row[0];
+      } else {
+        print "<h3>SQL ERROR: " . $productStockQuery . "<br></h3>";
+        print mysqli_error($dbc);
+      }
 
-        // Then increase the item quantity in the cart if it doesn't exceed the amount in stock
-        if ($_SESSION['cart'][$i]['item_quantity'] < $productStock) {
-          print $productStock;
-          $_SESSION['cart'][$i]['item_quantity']++;
-        }
+      // Then increase the item quantity in the cart if it doesn't exceed the amount in stock
+      if ($_SESSION['cart'][$i]['item_quantity'] < $productStock) {
+        $_SESSION['cart'][$i]['item_quantity']++;
+        echo '<script>window.location="display-products.php"</script>';
       }
     }
   }
@@ -151,21 +147,14 @@ if(isset($_GET["action"]))
 //-------------------------------------------------------------------------------
 // SUBTRACT ITEM QUANTITY
 //
-if(isset($_GET["action"]))
-{
- if($_GET["action"] == "subtractFromQuantity")
-  {
-    foreach($_SESSION["cart"] as $keys => $values)
-    {
-      // Loop through each item to find the matching id
-      for($i = 0; $i < count($_SESSION['cart']); $i++) {
-        // If the matching item id is found AND there is more than one unit in the cart
-        if($_SESSION['cart'][$i]["item_id"] == $_GET["id"] && $_SESSION['cart'][$i]['item_quantity'] > 1)
-        {
-          // Remove one unit of the product from the cart
-          $_SESSION['cart'][$i]['item_quantity']--;
-        }
-      }
+if(isset($_POST["subtractButton"])) {
+  // Loop through each item to find the matching id
+  for($i = 0; $i < count($_SESSION['cart']); $i++) {
+    // If the matching item id is found and there is more than one unit in the cart
+    if($_SESSION['cart'][$i]["item_id"] == $_GET["id"] && $_SESSION['cart'][$i]['item_quantity'] > 1) {
+      // Remove one unit of the product from the cart
+      $_SESSION['cart'][$i]['item_quantity']--;
+      echo '<script>window.location="display-products.php"</script>';
     }
   }
 }
@@ -317,9 +306,13 @@ if(isset($_GET["action"]))
                   <td>$<?php echo number_format($values['item_quantity'] * $values['item_price'], 2);?></td>
                   <!-- Quantity -->
                   <td>
-                    <a href="display-products.php?action=subtractFromQuantity&id=<?php echo $values['item_id']; ?>" type="button" class="btn bg-light border rounded-circle"><i class="fas fa-minus"></i></a>
-                    <input type="text" value="<?php echo $values['item_quantity'];?>" class="form-control w-25 d-inline" disabled>
-                    <a href="display-products.php?action=addToQuantity&id=<?php echo $values['item_id']; ?>" type="button" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></a>
+                    <form method="POST" action="display-products.php?action=subtractFromQuantity&id=<?php echo $values['item_id']; ?>" >
+                      <button type="submit" name="subtractButton" class="btn bg-light border rounded-circle"><i class="fas fa-minus"></i></button>
+                    </form>
+                    <?php echo $values['item_quantity'];?>
+                    <form method="POST" action="display-products.php?action=addToQuantity&id=<?php echo $values['item_id']; ?>">
+                      <button type="submit" name="addButton" class="btn bg-light border rounded-circle"><i class="fas fa-plus"></i></button>
+                    </form>
                   </td>
                   <td><a href="display-products.php?action=delete&id=<?php echo $values['item_id']; ?>"><span class="bi bi-trash" style="color:red;"></span></a></td>
                 </tr>
