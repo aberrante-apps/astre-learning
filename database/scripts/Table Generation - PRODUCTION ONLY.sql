@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_prod`.`Logins` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email_address` VARCHAR(45) NOT NULL,
-  `phone_number` VARCHAR(45) NOT NULL,
+  `phone_number` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
-  `shipping_address` VARCHAR(255) NOT NULL,
+  `shipping_address` VARCHAR(255) NULL,
   `admin` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_address_UNIQUE` (`email_address` ASC) )
