@@ -1,23 +1,19 @@
 <!--------------------------------------------------------------------------------
  *  FOOTER - basic
 ----------------------------------------------------------------------------------->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <div class="col m-0 text-muted">
-          <p><?php if (isset($loginInfo)) echo $loginInfo ?></p>
-        </div>
-        <div class="col m-0 justify-content-center text-white">
-          <p>Copyright &copy; Astre Learning 2022</p>
-        </div>
-    </div>
+<footer class="container-fluid bg-dark">
+  <div class="footer-info">
+          <div class=" col footer-copyright text-center py-3">
+           <p class="text-muted"> &copy; 2022 Copyright:  <a href="homepage.php" > Astre Learning</a></p>
+           <p class="footer-login text-muted "> <?php if (isset($loginInfo)) echo $loginInfo ?></p>
+          </div>
+            
+</div>
 </footer>
 
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
 
 <!-- Optional JavaScript -->
     <script src="index/index.js"></script>
