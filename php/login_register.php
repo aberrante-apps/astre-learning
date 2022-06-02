@@ -63,11 +63,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
           header('location:homepage.php');
         
         } else {
-          $registrationError = 'Registration unsuccessful. Please try again.';
+          header('location:login_register.php');
+          echo '<script>alert("There was an error with the system, registration was unsuccessful.")</script>';
         }
         
       } else {
-        $registrationError = 'Email address is already registered.';
+        $emailErr = "Email is already registered with an account.";
+        echo '<script>alert("This email is already registered with an account.")</script>';
+
       }
     } 
   }   
@@ -136,19 +139,23 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       }
     </style>
   </head>
-  <body>
+  <body class="brandpurple">
 
 <!---------------------------------------------------------------------------------
  *  - HEADER - Main Nav
 ---------------------------------------------------------------------------------------->
 <header>
-  <div class="zone black">
-         <ul class="main-nav">
+  <div class="black">
+  <div class="container">
+    <div class="row">
+         <ul class="col main-nav">
              <li><a href="homepage.php" class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
          </ul>
   </div>
  </div>
+  </div>
 </header>
+
 
 
 <!---------------------------------------------------------------------------------
@@ -201,60 +208,48 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
       <!-- REGISTER FORM ------------------------------------------------------>
 
-      <form action="" method="POST" action class="register">
-        <div class="field">
-          <input type="text" name = "first_name" placeholder="First Name" required>
-        </div>
-        <div class="field">
-          <input type="text" name = "last_name" placeholder="Last Name" required>
-        </div>
-        <div class="field">
-          <input type="text" name = "email_address" placeholder="Email Address" required>
-        </div>
-        <div class="field">
-          <input type="password" placeholder="Password" required>
-        </div>
-        <div class="field">
-          <input type="password" name="password" placeholder="Confirm Password" required>
-        </div>
-        <div class="field">
-          <input type="submit" name="register" value="Register">
-        </div>
-        <span style="color:red;"><?php if (isset($registrationError)) echo $registrationError ?></span>
-        <!-- Link -->
-        <div class="login-link">Already a member? <a href="#">Login</a></div>
-      </form>
-    </div>
-  </div>
+      <form action="<?php if (isset($registrationError)) echo $registrationError?>" method="POST" action class="register">
+
+<div class="field">
+  <input type="text" name="first_name" id="firstname" placeholder="First Name" required>
+</div>
+<span class="error_form" id="firstname_error_message"></span>
+
+<div class="field">
+  <input type="text" name="last_name" id="lastname" placeholder="Last Name" required>
+</div>
+<span class="error_form" id="lastname_error_message"></span>
+
+<div class="field">
+  <input type="text" name="email_address" id="register_email" placeholder="Email Address" required>
+</div>
+<span class="error_form" id="registerEmail_error_message"></span>
+<span class="error"><?php echo $emailErr;?></span>
+
+<div class="field">
+  <input type="password" id="register_password" placeholder="Password" required>
+</div>
+<span class="error_form" id="registerPassword_error_message"></span>
+
+<div class="field">
+  <input type="password" name="password" id="samepass" placeholder="Confirm Password" required>
+</div>
+<span class="error_form" id="samepass_error_message"></span>
+
+<div class="field">
+  <input type="submit"class="validate-registration" name="register" value="Register">
+</div>
+<span class="error_form" id="registerValidateForm_error_message" style="color:red; font-size:15px;"></span>
+
+<!-- Link -->
+<div class="login-link">Already a member? <a href="#">Login</a></div>
+</form>
+</div>
+</div>
 </div>
 </div>
 
 
 
-    <div class="container">
-        <div class="row text-muted">
-          <p><?php if (isset($loginInfo)) echo $loginInfo ?></p>
-        </div>
-        <div class="col m-0 justify-content-center text-white">
-          <p>Copyright &copy; Astre Learning 2022</p>
-        </div>
-    </div>
-
-
-
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-
-<!-- Optional JavaScript -->
-    <script src="index/index.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
-    </body>
-    </html>
+  <?php include ('footer.php'); ?>
  

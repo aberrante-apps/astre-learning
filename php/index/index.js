@@ -88,9 +88,11 @@ $(function(){
 
 })
 
+
 /***************************************************************
 * REGISTER VALIDATION *******************************/
 
+$(function(){
 $("#firstname_error_message").hide();
 $("#lastname_error_message").hide();
 $("#registerEmail_error_message").hide();
@@ -198,8 +200,36 @@ function check_samepass() {
     }
 }
 
+$(".validate-registration").click(function(){
 
+error_firstname = false;
+error_lastname = false;
+error_registerEmail = false;
+error_registerPassword = false;
+error_samepass = false;
 
+check_firstname();
+check_lastname();
+check_registerEmail();
+check_registerPassword();
+check_samepass();
+
+if (error_firstname === false &&
+    error_lastname === false &&
+    error_registerEmail === false &&
+    error_registerPassword === false &&
+    error_samepass === false) 
+    {
+        $("#registerValidateForm_error_message").hide();
+        return true;
+    } else {
+        $("#registerValidateForm_error_message").html("Please fill out all fields of the form correctly");
+        $("#registerValidateForm_error_message").show();
+        return false;
+    }
+
+});
+})
 /***************************************************************
 * SHOPPING CART - Open and close side nav when Cart is clicked
 ****************************************************************/
