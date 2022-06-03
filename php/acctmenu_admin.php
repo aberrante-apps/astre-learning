@@ -305,7 +305,7 @@ include 'header.php';
                     </div>
 
                     <input type="hidden" name="MAX_FILE_SIZE" value="100000"><BR><BR>
-                    <button type="submit" class="btn validate-productform-btn btn-light btn-outline-dark" name="productSubmit"value="SUBMIT">Submit</button>
+                    <button type="submit" class="btn validate-productform-btn btn-light btn-outline-dark" name="productSubmit" value="SUBMIT">Submit</button>
 
                     
                 </div>
