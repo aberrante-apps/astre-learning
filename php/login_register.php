@@ -30,21 +30,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $first = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['first_name'])));
       $last = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['last_name'])));
 
-      $existencecheck = "SELECT * FROM Logins 
-      WHERE
-      email_address = '$loginemail';";
+      $existencecheck = "SELECT * FROM Logins WHERE email_address = '$loginemail';";
       $existenceresult = mysqli_query($dbc, $existencecheck);
 
       if (@mysqli_num_rows($existenceresult) < 1) {
   
         // Query & Result
-        $query = "INSERT INTO Logins 
-        (first_name, last_name, email_address, password, admin)
-        VALUES
-        ('$first', '$last', '$loginemail', '$passwordhash', false);";
+        $query = "INSERT INTO Logins (first_name, last_name, email_address, password, admin) VALUES ('$first', '$last', '$loginemail', '$passwordhash', false);";
         mysqli_query($dbc, $query);
 
-        $search = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$passwordhash';";
+        $search = "SELECT  * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
         $result = mysqli_query($dbc, $search);
   
         if (@mysqli_num_rows($result) == 1) {
