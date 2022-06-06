@@ -574,6 +574,14 @@ width: 200%;
     cursor: pointer;
 }
 
+.privacy-terms-checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.privacy-terms-checkbox a {
+    color: rgb(72 207 186);
+}
+
 /***********************************************************************
  *  ADMIN's ACCOUNT - BASE
  **********************************************************************/
