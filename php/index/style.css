@@ -372,6 +372,8 @@ Product Display
   a.closebtn {
     float: right;
   }
+
+
   
   input[type=text], select{
     width: 100%;
@@ -573,14 +575,94 @@ width: 200%;
 }
 
 /***********************************************************************
- *  ADMIN's ACCOUNT & Add Product Form
+ *  ADMIN's ACCOUNT - BASE
  **********************************************************************/
 
- .grid-container {
+.content-privacyTerms, .content-productForm{
+    display: none;
+}
+
+.account-sidenav ul li .orders-btn{
+    color: #4f43ec;
+} 
+
+ .grid-container{
+    display:grid;
+    grid-template-columns: 20% 65%;
+    grid-column-gap: 30px;
+    grid-row-gap: 10px;
+    margin-top: 30px;
+    justify-items: strecth;
+    
+    padding: 20px;
+}
+
+.grid-container > div{
+    background-color: #eee;
+    padding: 20px;
+    
+} 
+
+.c-account-line-title{
+    padding-bottom: 10px;
+    border-bottom:1px solid #404041;
+}
+
+.t-header-block{
+    background-color: #566bc4;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5em;
+    color: #fff;
+    line-height: 1.4em;
+    text-align: center;
+  }
+
+  .account-sidenav ul{
+    background-color: white;
+    padding: 0;
+  }
+
+
+.account-sidenav ul li{
+    border-bottom: 1px solid rgba(238,238,238,1);
+    list-style: none;
+    padding: 1em;
+}
+
+
+.account-sidenav ul li a {
+    color: black;
+}
+
+
+.t-white-block {
+    background-color: #fff;
+    height: fit-content;
+}
+
+form .t-white-block {
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.t-field-container{
+    margin-bottom: 1em;
+} 
+
+.form-inner form .field input:focus{
+    border-color:#4f3dee;
+}
+
+
+
+ /* BEFORE IS BELOW */
+
+ /* .grid-container {
     display: grid;
     column-gap: 50px;
     grid-template-columns: auto auto auto;
-    padding: 40px;
+    padding-top: 30px;
     background-color: rgba(238,238,238,1);
     justify-content: center;
   }
@@ -588,8 +670,7 @@ width: 200%;
     background-color: rgba(255, 255, 255, 0.8);
     font-size: 30px;
     padding: 0px;
-    max-height: 225px;
-    margin-top: 105px;
+    max-height: 290px;
     
   }
 
@@ -669,8 +750,6 @@ width: 200%;
     background-color: teal;
 }
 
-
-
 .t-white-block {
     padding: 1rem;
     background-color: #fff;
@@ -683,17 +762,16 @@ width: 200%;
 .is-darkteal {
     color: rgb(2, 108, 105);
 }
-
+*/
 input[type="file"]{
-    border: 1px solid black;
+    border: 1px solid grey;
     padding: 10px;
     width: 100%;
 }
 
 input[type="select"]{
 padding: 10px;
-/* height: 20px; */
-}
+} 
 
 /***********************************************************************
  *  FOOTER

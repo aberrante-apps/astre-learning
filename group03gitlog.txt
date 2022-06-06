@@ -1,0 +1,38 @@
+Cianna: Merge branch 'cd-register-validation-update' into 'main'
+Cianna: Form validation has been updated on the registration form. There are two front end JS validation checks, and one php side.
+Alex Nairn: Merge branch 'Alex' into 'main'
+Alex: Updated database build scripts to no longer require certain data fields in the Logins table at registration.
+Alex Nairn: Merge branch 'Alex' into 'main'
+Alex: Completed login_register.php so that registration now checks if the user's login data is already in the database
+Cianna: Merge branch 'cd-update-displayproducts-add2cart' into 'main'
+Cianna: Homepage and category pages are now connected to the shopping cart. Minor style edits to the footer and header were also made.
+Cianna: style updates. Work in progress
+Matthew Z: Merge branch 'matthew-r08-part-two' into 'main'
+Matthew Zerrath: Fixed a number of issues with implementing R08; refreshing the page does nothing, and amounts will increase and decrease by one when clicking on the appropriate button. The quantity number now shows up as a plain number and not in an input textbox.
+Matthew Zerrath: Changed GET methods for adding and subtracting products to POST; a warning now displays if the user tries to refresh the page.
+Matthew Z: Merge branch 'matthew-r08-part-one' into 'main'
+Matthew Zerrath: Last commit before I push; I have done my best to preserve as much of Cianna's work in resolving the merge conflict.
+Matthew Zerrath: Second attempt at resolving merge conflict
+Matthew Zerrath: Work for R08 is complete for now. Addition and subtraction button shapes may have to be adjusted to be circular again.
+Cianna: Merge branch 'cd-style-update' into 'main'
+Cianna: Style update. New colours, header alignment fixed, toggle nav bar changed, login menu colours changed. More editing needs to be done.
+Matthew Z: Merge branch 'matthew-r02-fix-two' into 'main'
+Matthew Zerrath: Put the entire entire Add Products algorithm into its own function. Hopefully, there will be no more strange errors.
+Cianna: Merge branch 'cd-updated-productform-validation' into 'main'
+Cianna: updated front-end product-form validation. form will not submit until form is filled out, else errors will display.
+Cianna: Merge branch 'cd-displayproduct-testpage' into 'main'
+Cianna: This is a test page for adding products to the shopping cart. Use this page when testing cart functionality in the header.php file.
+Cianna: Merge branch 'cd-add2cart-function' into 'main'
+Cianna: a user can now view and see products in their shopping cart. A user can also delete individual products from their cart, or empty the entire cart.
+Cianna: Merge branch 'cd-improved-product-form-verification' into 'main'
+Cianna: The product form now has an improved validation that will display input errors to the admin live as they fill out the form.
+Matthew Z: Merge branch 'matthew-r06-part-one' into 'main'
+Matthew Zerrath: Attempted to do R06; ended up spending hours going nowhere, sadly.
+Cianna: Merge branch 'cd-session-tracking-update' into 'main'
+Cianna: session tracking between pages has been fixed and improved. The user will not be able to accidentally or intentionally access any webpage without appropriate credentials
+Cianna: Merge branch 'cd-add-cart-functionality' into 'main'
+Cianna: header updated so the cart button in the header works and displays side nav shopping cart display
+Alex Nairn: Merge branch 'Alex-Development-Branch' into 'main'
+Alex: Added password hashing to database and login_register.php file, updated database Login Generation script to include hashed passwords instead of plaintext.
+Matthew Z: Merge branch 'matthew-r02-fix' into 'main'
+Matthew Zerrath: I haven't been able to get the modal to work, but I have been able to get the MySQL database check to ensure products with the same names and images do not get submitted again.
