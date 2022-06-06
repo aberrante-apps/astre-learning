@@ -186,133 +186,49 @@ include 'header.php';
                 }
             ?>
 
- <!-- LEFT-SIDE ACCOUNT DIRECTORY -->
+<!------------------------------------------------------------------------------------- 
+     LEFT-SIDE MENU DIRECTORY 
+    ------------------------------------------------------------------------------------- -->
  <!-- *** This still needs to be shut up in a hamburger menu when screen is mobile *** -->
- <div class="grid-container">
-    <div class="grid-item">
-        <div class="col-12 col-4-md col-3-lg">
-            <h2 class="t-header-block">
-                Account Menu
-            </h2>
-            <ul class="col-12 col-4-md col-3-lg">
-                <li>
-                    <a href="">Order History</a>
-                </li>
-                <li class="is-active">
-                    <a href="acctmenu_admin.php">Add a New Product</a>
-                </li>
-                <li>
-                    <a href="logout.php">Logout</a>
-                    
-                    
-                </li>
+ <div class="container">
+    <div class="grid-container">
 
+        <div class="account-sidenav t-white-block">
+        <h5 class="t-header-block">Account Menu</h5>
+            <ul class="">
+                <li class="is-active"><a href="javascript:void(0)" class="orders-btn ">Order History</a></li>
+                <li ><a href="javascript:void(0)" class="new-product-btn">Add a New Product</a></li>
+                <li><a href="javascript:void(0)"class="privacy-btn">Privacy Settings</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
-    </div>
 
-    <!-- MIDDLE ACCOUNT COLUMN -->
-    <div class="col-12 col-4-md col-3-lg">
-        <div class="">
-            <p>
-                <strong>Admin Account</strong>
-            </p>
-            <div class="c-account-line-title"></div>
+        <!--------------------------------------------------------------------------------------- 
+         MIDDLE ACCOUNT COLUMN 
+        ------------------------------------------------------------------------------------- -->
+
+        <div class="account-header">
+            <p class="c-account-line-title"><strong>My Account</strong></p>
+            <h3><span class="account_title">Order History</span></h3>
+
+            <div class="account-content">
+        <!-- Orders -->
+        <span class="content-orderHistory"><?php include ('order_history.php');?></span>
+
+        <!-- Privacy Agreement -->
+        <span class="content-privacyTerms"><?php include ('privacy-terms.php');?></span>
+
+        <!-- Add New Product -->
+        <span class="content-productForm"><?php include ('new_product_form.php');?></span>
+
         </div>
-        <h2>Add a New Product</h2>
-        <form name="addProduct" action="acctmenu_admin.php" method="POST" enctype="multipart/form-data">
-            <div class="col-12 vert-margin-lg">
-                <div class="t-white-block row">
-
-                    <!-- Product Name -->
-                    <div class="col-12 t-field-container">
-                    <label class="float-left is-darkteal" for="prodName">Product Name <span class="is-light"> * </span>
-                    </label>
-                        <div>
-                            <input class="text-box col-12 text-box single-line" id="prodName" name="ProdName" type="text" required>
-                        </div>
-                        <span class="error_form" id="prodName_error_message"></span>
-                    </div>
-
-                    <!-- Category -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodCat">Product Category <span class="is-light"> *</span></label>
-                        <div>
-                            <select class="text-box col-12 text-box single-line" id="prodCat" name="ProdCat" required>
-                                <option value="Pick a Category">Pick a Category</option>
-                                <option value="Astronomy">Astronomy</option>
-                                <option value="Biology">Biology</option>
-                                <option value="Chemistry">Chemisty</option>
-                                <option value="Math">Math</option>
-                                <option value="Physics">Physics</option>
-                                <option value="Technology">Technology</option>
-                            </select>
-                            
-                        </div>
-                        <span class="error_form" id="prodCat_error_message"></span>
-                    </div>
-
-                    <!-- Product Type -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodType">Product Type <span class="is-light"> *</span></label>
-                        <span class="error_form" id="prodType_error_message"></span>
-                        <div>
-                            <select class="text-box col-12 text-box single-line" id="prodType" name="ProdType" required>
-                                <option value="Pick a Type">Pick a Type</option>
-                                <option value="Book">Book</option>
-                                <option value="Kit">Kit</option>
-                                <!-- <option value="Software">Software</option>
-                                <option value="Software">Toys</option> -->
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodDesc">Product Description <span class="is-light"> *</span></label>
-                        <div>
-                            <textarea class="text-box col-12 text-box single-line" id="prodDesc" name="ProdDesc" type="text-area" value="" required></textarea>
-                            
-                        </div>
-                        <span class="error_form" id="prodDesc_error_message"></span>
-                    </div>
-
-                    <!-- Image -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodImg">Image <span class="is-light"> *</span></label>
-                        <div>
-                            <input type="file" id="prodImg" name="ProdImg" accept="image/*" required>
-                        </div>
-                        <span class="error_form" id="prodImg_error_message"></span>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodPrice">Price <span class="is-light"> *</span></label>
-                        <span class="error_form" id="prodPrice_error_message"></span>
-                        <div>
-                            <input type="number" pattern="^[0-9]*.[0-9][0-9]" id="prodPrice" name="ProdPrice" min="1" step="any" required>
-                        </div>
-                    </div>
-
-                    <!-- Stock Amount -->
-                    <div class="col-12 t-field-container">
-                        <label class="float-left is-darkteal" for="prodStock">Number in Stock <span class="is-light"> *</span></label>
-                        <span class="error_form" id="prodStock_error_message"></span>
-                        <div>
-                            <input type="number" name="ProdStock" id="prodStock" min="1" required>
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="MAX_FILE_SIZE" value="100000"><BR><BR>
-                    <button type="submit" class="btn validate-productform-btn btn-light btn-outline-dark" name="productSubmit" value="SUBMIT">Submit</button>
-
-                    
-                </div>
-                <span class="error_form" id="prodValidateForm_error_message" style="color:red; font-size:20px;"></span>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
+
+
+<script src="index/index.js"></script>
+</body>
+</html>
+

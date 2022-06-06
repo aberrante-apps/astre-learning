@@ -1,3 +1,4 @@
+<div class="col-12 t-white-block p-4">
 <h2>Terms of Service and Privacy Agreement</h2>
 <p>As of September 32nd, 2022, the Canadian Federal Government will introduce the General Data Protection Regulation, a new law that will require you (the User) to give explicit permission for us at Astre Learning (the Service Provider) to store and use your personal data while shopping at our online store (the Service), as well as providing you with the right to know who will access your data and how it will be used. In accordance to this new law, we advise that you read this document carefully before you consent to our Terms of Service and Privacy Agreement.</p>
 <br>
@@ -28,3 +29,4 @@
 <form method="POST" action="" >
 <button type="submit" name="rejectConditions" class="btn bg-light border rounded-circle">Decline</button>
 </form>
+</div>

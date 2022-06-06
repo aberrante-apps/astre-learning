@@ -244,6 +244,51 @@ function closeNav() {
 
 
 /***************************************************************
+* ACCOUNT MENU
+****************************************************************/
+
+$('.privacy-btn').click(function(){
+    $(".content-orderHistory").css("display","none");
+    $(".content-productForm").css("display","none");
+    $(".content-privacyTerms").css("display","block");
+
+    $(".orders-btn").css("color", "black");
+    $(".new-product-btn").css("color", "black");
+    $(".privacy-btn").css("color", "#4f3dee");
+
+    
+    $(".account_title").html("Privacy Settings");
+
+});
+
+$('.new-product-btn').click(function(){
+    $(".content-orderHistory").css("display","none");
+    $(".content-productForm").css("display","block");
+    $(".content-privacyTerms").css("display","none");
+    
+    $(".orders-btn").css("color", "black");
+    $(".new-product-btn").css("color", "#4f3dee");
+    $(".privacy-btn").css("color", "black");
+    
+
+    $(".account_title").html("Add a New Product");
+});
+
+$('.orders-btn').click(function(){
+    $(".content-orderHistory").css("display","block");
+    $(".content-productForm").css("display","none");
+    $(".content-privacyTerms").css("display","none");
+
+    $(".orders-btn").css("color", "#4f3dee");
+    $(".privacy-btn").css("color", "black");
+    $(".new-product-btn").css("color", "black");
+    
+    $(".account_title").html("Order History");
+});
+
+
+
+/***************************************************************
 * Product Form Verification - 
 ****************************************************************/
 
@@ -299,7 +344,8 @@ $(function() {
             $("#prodName").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodName_error_message").html("Please input the product's name.");
+            $("#prodName_error_message").html("* This field cannot be empty");
+            $("#prodName_error_message").css("color", "#fa2f2f");
             $("#prodName_error_message").show();
             $("#prodName").css("border-bottom","2px solid #F90A0A");
                error_prodName = true;
@@ -308,12 +354,13 @@ $(function() {
 
     function check_prodCat() {
         var prodCat = $("#prodCat").val();
-        if (prodCat !== "Pick a Category") {
+        if (prodCat !== "Product Category") {
             $("#prodCat_error_message").hide();
             $("#prodCat").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodCat_error_message").html("Please choose the product's category.");
+            $("#prodCat_error_message").html("* Choose the product's category.");
+            $("#prodCat_error_message").css("color", "#fa2f2f");
             $("#prodCat_error_message").show();
             $("#prodCat").css("border-bottom","2px solid #F90A0A");
             error_prodCat = true;
@@ -322,12 +369,13 @@ $(function() {
 
     function check_prodType() {
         var prodType = $("#prodType").val();
-        if (prodType !== "Pick a Type") {
+        if (prodType !== "Product Type") {
             $("#prodType_error_message").hide();
             $("#prodType").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodType_error_message").html("Please choose the product's type.");
+            $("#prodType_error_message").html("* Choose the product's type.");
+            $("#prodType_error_message").css("color", "#fa2f2f");
             $("#prodType_error_message").show();
             $("#prodType").css("border-bottom","2px solid #F90A0A");
             error_prodType = true;
@@ -341,7 +389,8 @@ $(function() {
             $("#prodDesc").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodDesc_error_message").html("Please describe the product.");
+            $("#prodDesc_error_message").html("* Describe the product.");
+            $("#prodDesc_error_message").css("color", "#fa2f2f");
             $("#prodDesc_error_message").show();
             $("#prodDesc").css("border-bottom","2px solid #F90A0A");
             error_prodDesc = true;
@@ -355,7 +404,8 @@ $(function() {
             $("#prodImg").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodImg_error_message").html("Please upload an image with a file name that has not been used before.");
+            $("#prodImg_error_message").html("* Upload an image with a unique file name.");
+            $("#prodImg_error_message").css("color", "#fa2f2f");
             $("#prodImg_error_message").show();
             $("#prodImg").css("border-bottom","2px solid #F90A0A");
             error_prodImg = true;
@@ -370,7 +420,8 @@ $(function() {
             $("#prodPrice").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodPrice_error_message").html("Please input a valid price for the product.");
+            $("#prodPrice_error_message").html("Input the price.");
+            $("#prodPrice_error_message").css("color", "#fa2f2f");
             $("#prodPrice_error_message").show();
             $("#prodPrice").css("border-bottom","2px solid #F90A0A");
             error_prodPrice = true;
@@ -379,12 +430,13 @@ $(function() {
 
     function check_prodStock() {
         var prodStock = $("#prodStock").val();
-        if (prodStock !== "" || prodStock > 0 ) {
+        if (prodStock !== "" && prodStock > 0 ) {
             $("#prodStock_error_message").hide();
             $("#prodStock").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodStock_error_message").html("Please input how many of this product are in stock.");
+            $("#prodStock_error_message").html("Input the quantity");
+            $("#prodStock_error_message").css("color", "#fa2f2f");
             $("#prodStock_error_message").show();
             $("#prodStock").css("border-bottom","2px solid #F90A0A");
             error_prodStock = true;
