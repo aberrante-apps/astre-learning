@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $query = "INSERT INTO Logins (first_name, last_name, email_address, password, admin) VALUES ('$first', '$last', '$loginemail', '$passwordhash', false);";
         mysqli_query($dbc, $query);
 
-        $search = "SELECT  * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
+        $search = "SELECT * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
         $result = mysqli_query($dbc, $search);
   
         if (@mysqli_num_rows($result) == 1) {
