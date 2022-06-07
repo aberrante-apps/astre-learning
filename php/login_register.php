@@ -154,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     </style>
   </head>
   <body class="brandpurple">
-
+  
 <!---------------------------------------------------------------------------------
  *  - HEADER - Main Nav
 ---------------------------------------------------------------------------------------->
@@ -175,7 +175,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 <!---------------------------------------------------------------------------------
  *  REGISTRATION - form
  ----------------------------------------------------------------------------------->
-<div class="body2">
+ <div class="page-contents">
+ <div class="body2">
  <div class="wrapper">
 
   <!-- TOP Title -->
@@ -305,6 +306,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
 </div>
     </div>
-
+    </div>
   <?php include ('footer.php'); ?>
  

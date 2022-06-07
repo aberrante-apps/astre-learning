@@ -12,7 +12,7 @@ session_start();
 if (isset($_SESSION['Account']))
   {
         // display greeting of user's name in header
-    $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+    $userGreeting = 'Hi' . " " . ($_SESSION['Account']['first_name']) . "!";
         // display 'logged in' in footer
     $loginInfo = 'Logged In';
         // account icon will take user to Customer account menu
@@ -22,7 +22,7 @@ if (isset($_SESSION['Account']))
     if (isset($_SESSION['Account']['admin']) && ($_SESSION['Account']['admin']) == 1) 
     {
           // display greeting of user's name in header
-      $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+      $userGreeting = 'Hi' . " " . ($_SESSION['Account']['first_name']) . "!";
           // display 'logged in as an admin' in footer
       $loginInfo = 'Logged In (Admin Active)';
           // account icon will take user to Admin account menu

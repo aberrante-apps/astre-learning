@@ -6,7 +6,7 @@ session_start();
 include ('header.php');
 
 ?>
-
+<div class="page-contents">
 <!-------------------------------------------------------------------------
  *  COVER 
  ------------------------------------------------------------------------->
@@ -55,6 +55,7 @@ if(mysqli_num_rows($result) > 0)
         </div>
         </section>
         </div>
+</div>
 <?php
 include ('footer.php');
 ?>
