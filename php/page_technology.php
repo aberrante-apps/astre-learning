@@ -4,7 +4,7 @@ include ('header.php');
 
 
 ?>
-
+<div class="page-contents">
 <!-------------------------------------------------------------------
  *  COVER - for Technology
  --------------------------------------------------------------------->
@@ -35,7 +35,7 @@ if(mysqli_num_rows($result) > 0)
         ?>
         <div class="col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch"  id="card-container">
         <div class="card text-center" style="width: 18rem;">
-        <form method="POST" action="display-products.php?action=add&id=<?php echo $row['id']; ?>">
+        <form method="POST" action="page_technology.php?action=add&id=<?php echo $row['id']; ?>">
         <img class ="img card-img-top" src=" <?php echo $row['picture']; ?>" alt="https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png">
         <div class="card-body">
         <h5 class="card-price">$<?php echo $row['price']; ?></h5>
@@ -57,18 +57,9 @@ if(mysqli_num_rows($result) > 0)
         </section>
         </div>
 <!-- END --------------------------------------------------------------------------------- -->
-
+</div>
 <?php
 include ('footer.php');
 ?>
 
 
-
-  
-  
-
-</body>
-</html>
-<?php
-// include ('footer.php');
-?>

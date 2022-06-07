@@ -1,33 +1,26 @@
-<?php include ('connection.php');
-// This is a webpage for Astronomy Products 
+<?php
+session_start();
+include ('connection.php');
 include ('header.php');
 
+# Display Products for Astre Learning
+ 
+
+ 
+
+
 
 ?>
-<div class="page-contents">
-<!-------------------------------------------------------------------
- *  COVER - for Astronomy
- --------------------------------------------------------------------->
- <div class="container zone purple cover">Astronomy</div>
 
-
- <!-------------------------------------------------------------------
- *  PRODUCTS - for Astronomy
- --------------------------------------------------------------------->
-   <?php
-$sql = 'SELECT Products.id, Products.name, Products.price, Products.picture, ProductCategories.category_id
-        FROM Products
-        LEFT JOIN ProductCategories ON Products.id=ProductCategories.product_id
-        WHERE ProductCategories.category_id = 1;';
-$result = mysqli_query($dbc, $sql);
-?>
 <!-- HTML container for catalogue -->
 <div class="container">
-            <section id="catalogue" class="section">
-                <!--Insert cards here-->
-                        <div class="row" id="cards">
+    <section id="catalogue" class="section">
+        <!--Insert cards here-->
+            <div class="row" id="cards">
 <?php
-// 
+$sql = 'SELECT * FROM Products ORDER BY id ASC';
+$result = mysqli_query($dbc, $sql);
+
 if(mysqli_num_rows($result) > 0) 
 {
     while ($row = mysqli_fetch_assoc($result))
@@ -35,7 +28,7 @@ if(mysqli_num_rows($result) > 0)
         ?>
         <div class="col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch"  id="card-container">
         <div class="card text-center" style="width: 18rem;">
-        <form method="POST" action="page_astronomy.php?action=add&id=<?php echo $row['id']; ?>">
+        <form method="POST" action="display-products.php?action=add&id=<?php echo $row['id']; ?>">
         <img class ="img card-img-top" src=" <?php echo $row['picture']; ?>" alt="https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png">
         <div class="card-body">
         <h5 class="card-price">$<?php echo $row['price']; ?></h5>
@@ -57,8 +50,7 @@ if(mysqli_num_rows($result) > 0)
         </section>
         </div>
 
-<!-- END --------------------------------------------------------------------------------- -->
-</div>
-<?php
-include ('footer.php');
-?>
+<!-- Optional JavaScript -->
+<script src="index/index.js"></script>
+</body>
+</html>
