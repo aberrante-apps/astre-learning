@@ -4,7 +4,7 @@ include ('header.php');
 
 
 ?>
-
+<div class="page-contents">
 <!-------------------------------------------------------------------
  *  COVER - for Chemistry
  --------------------------------------------------------------------->
@@ -57,7 +57,7 @@ if(mysqli_num_rows($result) > 0)
         </section>
         </div>
 <!-- END --------------------------------------------------------------------------------- -->
-
+</div>
 <?php
 include ('footer.php');
 ?>
@@ -67,8 +67,3 @@ include ('footer.php');
   
   
 
-</body>
-</html>
-<?php
-// include ('footer.php');
-?>

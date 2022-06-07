@@ -1,7 +1,7 @@
 <!--------------------------------------------------------------------------------
  *  FOOTER - basic
 ----------------------------------------------------------------------------------->
-<footer class="container-fluid bg-dark">
+<div id="footer" class="container-fluid bg-dark">
   <div class="footer-info">
           <div class=" col footer-copyright text-center py-3">
            <p class="text-muted"> &copy; 2022 Copyright:  <a href="homepage.php" > Astre Learning</a></p>
@@ -9,7 +9,7 @@
           </div>
             
 </div>
-</footer>
+</div>
 
 
 <!-- Bootstrap core JS-->

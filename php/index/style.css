@@ -33,6 +33,9 @@ body {
     justify-content: center;
 }
 
+.page-contents {
+    min-height: 100vh;
+}
 
 /*********************************
 * HEADER - MAIN NAV & TOGGLE NAV BAR
@@ -158,8 +161,9 @@ Cover
 ***********************************/
 
 .cover {
+    display: flex;
     margin-top: 30px;
-    height: 20vh;
+    height: 10vh;
 }
 
  /*********************************
@@ -662,115 +666,6 @@ form .t-white-block {
     border-color:#4f3dee;
 }
 
-
-
- /* BEFORE IS BELOW */
-
- /* .grid-container {
-    display: grid;
-    column-gap: 50px;
-    grid-template-columns: auto auto auto;
-    padding-top: 30px;
-    background-color: rgba(238,238,238,1);
-    justify-content: center;
-  }
-  .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 30px;
-    padding: 0px;
-    max-height: 290px;
-    
-  }
-
-  .t-header-block{
-    display: block;
-    margin: 0;
-    background-color: #566bc4;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.5em;
-    color: #fff;
-    line-height: 1.4em;
-    text-align: center;
-  }
-
-  .col-12 {
-    float: left;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.col-12 a{
-    color: black;
-    font-size: 20px;
-    
-}
-
-.col-pad {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    padding-top: .5em;
-}
-
-.t-header-block .col-12 li{
-    position: relative;
-    align-items: center;
-    border-bottom: 1px solid rgba(238,238,238,1);
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
-}
-
-.grid-item .col-12 ul li{
-    position: relative;
-    align-items: center;
-    border-bottom: 1px solid rgba(238,238,238,1);
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
-    list-style: none;
-}
-
-.grid-item .col-12 ul li a {
-    width: 100%;
-    padding: 1rem;
-    display: block;
-}
-
-.c-account-line-title{
-    border-top:1px solid #404041;
-    max-width:36.4em;
-}
-
-.vert-margin-lg {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-.grid-item .col-12 ul li.is-active:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 1px;
-    width: 0.3em;
-    height: 96%;
-    background-color: teal;
-}
-
-.t-white-block {
-    padding: 1rem;
-    background-color: #fff;
-}
-
-.t-field-container{
-    margin-bottom: 1em;
-}
-
-.is-darkteal {
-    color: rgb(2, 108, 105);
-}
-*/
 input[type="file"]{
     border: 1px solid grey;
     padding: 10px;
@@ -785,10 +680,10 @@ padding: 10px;
  *  FOOTER
  **********************************************************************/
 
- footer {
+ #footer {
      margin-top: 50px;
-     height: 100%;
      padding-top:20px;
+
  }
 
 /***********************************************************************
