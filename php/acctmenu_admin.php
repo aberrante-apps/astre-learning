@@ -216,7 +216,7 @@ include 'header.php';
         <span class="content-orderHistory"><?php include ('order_history.php');?></span>
 
         <!-- Privacy Agreement -->
-        <span class="content-privacyTerms"><?php include ('privacy-terms.php');?></span>
+        <span class="content-privacyTerms"><?php include ('privacy-terms1.php');?></span>
 
         <!-- Add New Product -->
         <span class="content-productForm"><?php include ('new_product_form.php');?></span>

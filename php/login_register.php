@@ -30,21 +30,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $first = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['first_name'])));
       $last = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['last_name'])));
 
-      $existencecheck = "SELECT * FROM Logins 
-      WHERE
-      email_address = '$loginemail';";
+      $existencecheck = "SELECT * FROM Logins WHERE email_address = '$loginemail';";
       $existenceresult = mysqli_query($dbc, $existencecheck);
 
       if (@mysqli_num_rows($existenceresult) < 1) {
   
         // Query & Result
-        $query = "INSERT INTO Logins 
-        (first_name, last_name, email_address, password, admin)
-        VALUES
-        ('$first', '$last', '$loginemail', '$passwordhash', false);";
+        $query = "INSERT INTO Logins (first_name, last_name, email_address, password, admin) VALUES ('$first', '$last', '$loginemail', '$passwordhash', false);";
         mysqli_query($dbc, $query);
 
-        $search = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$passwordhash';";
+        $search = "SELECT * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
         $result = mysqli_query($dbc, $search);
   
         if (@mysqli_num_rows($result) == 1) {
@@ -103,7 +98,17 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   
   
         $admintoggle = $_SESSION['Account']['admin'];
-        header('location:homepage.php');
+
+        // If the user has given data permission, send them to the homepage.
+        if ($_SESSION['Account']['data_permission'] == 1) {
+          header('location:homepage.php');
+        } else {
+          // If the user has not given data permission yet, send them to the privacy notice page
+          header('location:privacy-notice.php');
+        }
+
+
+        
         
       } else {
         $loginError = 'Wrong email address or password. Try again.';

@@ -286,6 +286,13 @@ $('.orders-btn').click(function(){
     $(".account_title").html("Order History");
 });
 
+$("#rejectConditions").click(function(){
+    let text = "Are you sure you want to decline the agreement?\nYou will be logged out and you won't have full site functionality until you agree later.";
+    if (confirm(text)) {
+        window.location.href="decline-privacy-terms.php";
+    }
+});
+
 
 
 /***************************************************************
