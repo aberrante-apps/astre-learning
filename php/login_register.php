@@ -64,7 +64,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   
   
           $admintoggle = $_SESSION['Account']['admin'];
-          header('location:homepage.php');
+
+          // Added in as further server-side guarantee the user gives explicit consent to privacy policy
+          // If the user has given data permission, send them to the homepage.
+          if ($_SESSION['Account']['data_permission'] == 1) {
+            header('location:homepage.php');
+          } else {
+          // If the user has not given data permission yet, send them to the privacy notice page
+            header('location:privacy-notice.php');
+          }
         
         } else {
           header('location:login_register.php');
