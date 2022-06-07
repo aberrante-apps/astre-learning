@@ -30,13 +30,19 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $first = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['first_name'])));
       $last = mysqli_real_escape_string($dbc, trim(strip_tags($_POST['last_name'])));
 
+      // Sets privacy checkbox boolean into MySQL friendly form
+      $permissionGranted = 0;
+      if ($_POST['privacy-agreement'] === "TRUE") {
+        $permissionGranted = 1;
+      }
+
       $existencecheck = "SELECT * FROM Logins WHERE email_address = '$loginemail';";
       $existenceresult = mysqli_query($dbc, $existencecheck);
 
       if (@mysqli_num_rows($existenceresult) < 1) {
   
         // Query & Result
-        $query = "INSERT INTO Logins (first_name, last_name, email_address, password, admin) VALUES ('$first', '$last', '$loginemail', '$passwordhash', false);";
+        $query = "INSERT INTO Logins (first_name, last_name, email_address, password, admin, data_permission) VALUES ('$first', '$last', '$loginemail', '$passwordhash', false, $permissionGranted);";
         mysqli_query($dbc, $query);
 
         $search = "SELECT * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
@@ -79,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   
       // Query & Result
-      $query = "SELECT  * from Logins WHERE email_address = '$loginemail'  AND password = '$passwordhash';";
+      $query = "SELECT * from Logins WHERE email_address = '$loginemail' AND password = '$passwordhash';";
       $result = mysqli_query($dbc, $query);
   
       if (@mysqli_num_rows($result) == 1) {
@@ -253,7 +259,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!-- PRIVACY AGREEMENT CHECKBOX -->
 <div class="privacy-terms-checkbox text-center">
-  <br><input type="checkbox" id="privacy-agreement" name="privacy-agreement" value="">
+  <br><input type="checkbox" id="privacy-agreement" name="privacy-agreement" value="TRUE" required>
   <label for="privacy-agreement">I agree to the terms of </label>
   <a href='javascript:void(0)' onclick="document.getElementById('id01').style.display='block'"> Astre Learning Service and Privacy Policy</a><br>
 
