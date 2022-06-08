@@ -79,6 +79,27 @@ if(isset($_POST['add_to_cart']))
         // & Create a new session['cart'] variable, that stores product
         $_SESSION['cart'][0] = $item_array;
     }
+
+    if(isset($_SESSION['Account'])) {
+
+      $overwritecheck_product = $_GET["id"];
+      $overwritecheck_login = $_SESSION['Account']['id'];
+      $overwritecheck = "SELECT * FROM Cart WHERE product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login';";
+      $overwritecheck_result = mysqli_query($dbc, $overwritecheck);
+
+      if (@mysqli_num_rows($overwritecheck_result) == 1) {
+
+        $carttable_newquantity = $_POST["quantity"];
+        $carttable_update = "UPDATE Cart SET quantity = '$carttable_newquantity' WHERE (product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login');";
+        $carttable_update_result = mysqli_query($dbc, $carttable_update);     
+
+      } else {
+
+        $carttable_new = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$overwritecheck_login', '$overwritecheck_product', 1);";
+        $carttable_new_result = mysqli_query($dbc, $carttable_new);
+      }
+    }
+
 }
 //-------------------------------------------------------------------------------
 // DELETE  - INDIVIDUAL ITEM FROM CART
@@ -96,7 +117,14 @@ if(isset($_GET["action"]))
         echo '<script>window.location="display-products.php"</script>';
       }
     }
- }
+
+    if(isset($_SESSION['Account'])) {
+      $productremoval_product = $_GET["id"];
+      $productremoval_login = $_SESSION['Account']['id'];
+      $productremoval = "DELETE FROM Cart WHERE (product_id = '$productremoval_product' AND login_id = '$productremoval_login');";
+      mysqli_query($dbc, $productremoval);
+    }
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -110,6 +138,12 @@ if(isset($_GET['action']))
         {
             unset($_SESSION["cart"][$keys]);
             echo '<script>window.location="display-products.php"</script>';
+        }
+        if(isset($_SESSION['Account'])) {
+
+          $cartremoval_login = $_SESSION['Account']['id'];
+          $cartremoval = "DELETE FROM Cart WHERE login_id = '$cartremoval_login';";
+          mysqli_query($dbc, $cartremoval);
         }
     }
 }
@@ -138,7 +172,29 @@ if(isset($_POST["addButton"])) {
       // Then increase the item quantity in the cart if it doesn't exceed the amount in stock
       if ($_SESSION['cart'][$i]['item_quantity'] < $productStock) {
         $_SESSION['cart'][$i]['item_quantity']++;
+        $passthroughquantity = $_SESSION['cart'][$i]['item_quantity'];
         echo '<script>window.location="display-products.php"</script>';
+
+        if(isset($_SESSION['Account'])) {
+
+  
+          $quantityincreasecheck_product = $_GET["id"];
+          $quantityincreasecheck_login = $_SESSION['Account']['id'];
+          $quantityincreasecheck = "SELECT * FROM Cart WHERE product_id = '$quantityincreasecheck_product' AND login_id = '$quantityincreasecheck_login';";
+          $quantityincreasecheck_result = mysqli_query($dbc, $quantityincreasecheck);
+
+          if (@mysqli_num_rows($quantityincreasecheck_result) == 1) {
+    
+            $quantityincrease_update = "UPDATE Cart SET quantity = '$passthroughquantity' WHERE (product_id = '$quantityincreasecheck_product' AND login_id = '$quantityincreasecheck_login');";
+            mysqli_query($dbc, $quantityincrease_update);     
+    
+          } else {
+            $quantityincrease_new = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$quantityincreasecheck_login', '$quantityincreasecheck_product', '$passthroughquantity');";
+            mysqli_query($dbc, $quantityincrease_new);
+          }
+        }
+
+
       }
     }
   }
@@ -155,6 +211,34 @@ if(isset($_POST["subtractButton"])) {
       // Remove one unit of the product from the cart
       $_SESSION['cart'][$i]['item_quantity']--;
       echo '<script>window.location="display-products.php"</script>';
+      $passthroughquantity = $_SESSION['cart'][$i]['item_quantity'];
+
+      if(isset($_SESSION['Account'])) {
+
+        $quantitydecreasecheck_product = $_GET["id"];
+        $quantitydecreasecheck_login = $_SESSION['Account']['id'];
+        $quantitydecreasecheck = "SELECT * FROM Cart WHERE product_id = '$quantitydecreasecheck_product' AND login_id = '$quantitydecreasecheck_login';";
+        $quantitydecreasecheck_result = mysqli_query($dbc, $quantitydecreasecheck);
+
+
+        if (@mysqli_num_rows($quantitydecreasecheck_result) == 1) {
+
+
+          if ($passthroughquantity != 0) {
+  
+            $quantitydecrease_update = "UPDATE Cart SET quantity = '$passthroughquantity' WHERE (product_id = '$quantitydecreasecheck_product' AND login_id = '$quantitydecreasecheck_login');";
+            mysqli_query($dbc, $quantitydecrease_update);     
+          }
+          else {
+            $quantitydecrease_removal = "DELETE FROM Cart WHERE (product_id = '$quantitydecreasecheck_product' AND login_id = '$quantitydecreasecheck_login');";
+            mysqli_query($dbc, $quantitydecrease_removal);
+          }
+  
+        } else {
+          $quantitydecrease_removal = "DELETE FROM Cart WHERE (product_id = '$quantitydecreasecheck_product' AND login_id = '$quantitydecreasecheck_login');";
+          mysqli_query($dbc, $quantitydecrease_removal);
+        }
+      }
     }
   }
 }
