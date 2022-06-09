@@ -233,14 +233,14 @@ if (error_firstname === false &&
 /***************************************************************
 * SHOPPING CART - Open and close side nav when Cart is clicked
 ****************************************************************/
-// open
-function openNav(){
-    $(".sidenav").toggle();
-}
-// close
-function closeNav() {
-    $(".sidenav").css("display", "none");    
-}
+// // open
+// function openNav(){
+//     $(".sidenav").toggle();
+// }
+// // close
+// function closeNav() {
+//     $(".sidenav").css("display", "none");    
+// }
 
 
 /***************************************************************
