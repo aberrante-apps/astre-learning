@@ -41,6 +41,7 @@ if(mysqli_num_rows($result) > 0)
         <h5 class="card-price">$<?php echo $row['price']; ?></h5>
         <h6 class="card-title" id="card-title"><?php echo $row['name']; ?></h6>
         <input type="hidden" name="quantity" value="1" class="form-control">
+        <input type="hidden" name="hidden_picture" value="<?php echo $row['picture']; ?>">
         <input type="hidden" name="hidden_name" value="<?php echo $row["name"]; ?>" >
         <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>" >
         <button type="submit" name="add_to_cart" class="btn add-to-cart text-center" value="Add to Cart">Add to Cart</button>
