@@ -83,6 +83,16 @@ body {
     align-items: center;
 }
 
+.orderSummary-table tfoot td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.orderSummary-table tfoot .push-left {
+    text-align: end;
+    padding-right: 15px;
+}
+
 .push-right {
     margin-left: auto;
     display: flex;
@@ -414,6 +424,7 @@ Product Display
   }
 
 
+
   /*********************************************
  ** CHECKOUT modals
 ************************************************/
@@ -454,10 +465,14 @@ Product Display
   
   .modal-header {
     flex-direction: row-reverse;
+    border-bottom: none;
+    padding: 0px;
   }
   
   a.closebtn {
     float: right;
+    color: #f25e83;
+    font-size: 20px;
   }
 
 
@@ -475,6 +490,7 @@ Product Display
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 3px;
+    padding: 12px;
   }
   
   td div {
@@ -496,6 +512,54 @@ Product Display
     padding: 7px 0;
     font-size: 24px;
   }
+
+  .modal-body .row label {
+      margin: 0;
+  }
+
+  .modal-body .row .check-address {
+    color: #3b39f7;
+    
+  }
+
+  .checkout-btn:hover, .validateBilling-btn:hover, .validateShipping-btn:hover, .confirmOrder-btn:hover {
+      color: white;
+  }
+
+  .backToShipping-btn i, .backToBilling-btn i {
+      color: #3b39f7;
+  }
+
+  .backToShipping-btn, .backToBilling-btn {
+    color: grey;
+    background-color: transparent;
+}
+
+  .backToShipping-btn:hover, .backToBilling-btn:hover {
+      color:  rgb(92, 238, 184);
+  }
+
+  .check-address {
+    cursor: pointer;
+  }
+  
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.order-summary {
+    border: 1px solid grey;
+}
+
+
   
  /*********************************************
  ** LOGIN / REGISTER FORM

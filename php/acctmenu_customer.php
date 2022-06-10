@@ -20,7 +20,7 @@ include 'header.php';
      LEFT-SIDE MENU DIRECTORY 
     ------------------------------------------------------------------------------------- -->
  <!-- *** This still needs to be shut up in a hamburger menu when screen is mobile *** -->
- <div class="container">
+ <div class="container menu">
     <div class="grid-container">
 
         <div class="account-sidenav t-white-block">
