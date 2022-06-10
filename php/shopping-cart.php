@@ -342,7 +342,7 @@ if(isset($_POST["subtractButton"])) {
             <input type="text" id="phone" name="phone" placeholder="(___) ___-____" required>
           </div>
         </div>
-
+          <!-- Address -->
       <div class="row">
         <div class="col-12">
         <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
@@ -429,7 +429,7 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-6">
       <label for="lname" class="required"><i class="bi bi-person-fill"> </i> Last Name</label>
       <span class="error_form" id="lname_error_message"></span>
-      <input type="text" id="billing_lname" name="lastname" required>
+      <input type="text" id="billing_lname" name="billing_lastname" required>
     </div>
   </div>
       
@@ -445,7 +445,7 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-6">
       <label for="phone" class="required"><i class="bi bi-telephone-fill"></i> Phone Number</label>
       <span class="error_form" id="phone_error_message"></span>
-      <input type="text" id="billing_phone" name="phone" placeholder="(___) ___-____" required>
+      <input type="text" id="billing_phone" name="billing_phone" placeholder="(___) ___-____" required>
     </div>
   </div>
 
@@ -454,9 +454,9 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-12">
     <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
     <span class="error_form" id="address_error_message"></span>
-    <input type="text" id="billing_adr" name="address" placeholder="123 Example St S" required>
+    <input type="text" id="billing_adr" name="billing_address" placeholder="123 Example St S" required>
         
-    <input type="text" id="billing_adr2" name="address" placeholder="Apartment, suite, unit, etc (optional)">
+    <input type="text" id="billing_adr2" name="billing_address" placeholder="Apartment, suite, unit, etc (optional)">
     </div>
   </div>
 
@@ -465,13 +465,13 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-8">
       <label for="city" class="required"><i class="bi bi-building"></i> City</label>
       <span class="error_form" id="city_error_message"></span>
-      <input type="text" id="billing_city" name="city" placeholder="City..." required>
+      <input type="text" id="billing_city" name="billing_city" placeholder="City..." required>
     </div>
 
     <!-- Country -->
     <div class="col-4">
       <label for="country" class="required"><i class="bi bi-flag-fill"></i> Country</label>
-    <select id="billing_country" name="country">
+    <select id="billing_country" name="billing_country">
       <option value="CAD">Canada</option>
     </select>
     </div>
@@ -482,7 +482,7 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-5">
       <label for="province" class="required">Province</label>
       <span class="error_form" id="province_error_message"></span>
-      <select id="billing_province" name="province">
+      <select id="billing_province" name="billing_province">
         <option value="">Select a Province..</option>
         <option value="AB">Alberta</option>
         <option value="BC">British Columbia</option>
@@ -504,7 +504,7 @@ if(isset($_POST["subtractButton"])) {
     <div class="col-5">
       <label for="postalcode" class="required">Postal Code</label>
       <span class="error_form" id="pcode_error_message"></span>
-      <input type="text" id="billing_postalcode" name="postalcode" placeholder="A1A 1A1" required>
+      <input type="text" id="billing_postalcode" name="billing_postalcode" placeholder="A1A 1A1" required>
       </select>
     </div>
 
@@ -555,7 +555,7 @@ if(isset($_POST["subtractButton"])) {
         <div class="col-5">
           <label for="ccnum" class="required">Card Number</label>
           <span class="error_form" id="ccnum_error_message"></span>
-          <input type="text" id="ccnum" name="cardnumber" placeholder="1111222233334444">
+          <input type="text" id="ccnum" name="cardnumber" placeholder="4242424242424242">
         </div>
       <!-- </div> -->
 
@@ -564,13 +564,13 @@ if(isset($_POST["subtractButton"])) {
         <div class="col-3">
           <label for="expdate" class="required">Expiry</label>
           <span class="error_form" id="expdate_error_message"></span>
-          <input type="text" id="expdate" name="expdate" maxlength="4" placeholder="MM/YY">
+          <input type="text" id="expdate" name="expdate" maxlength="4" placeholder="09/22">
         </div>
         <!-- CVC -->
         <div class="col-3 cvc">
           <label for="cvc" class="required">CVC</label><br>
           <span class="error_form" id="cvc_error_message"></span>
-          <input type="number" id="cvc" name="cvc" maxlength="4" placeholder="CVC"> 
+          <input type="number" id="cvc" name="cvc" maxlength="4" placeholder="123"> 
         </div>
       </div>
 
@@ -635,7 +635,7 @@ if(isset($_POST["subtractButton"])) {
                 $<?php echo number_format($tax, 2); ?> <br>
               </td>
             </tr>
-            <tr>
+            <tr class="order-total">
               <td><h4><strong>Total:</strong></h4></td>
               <td></td><td></td>
               <!-- ORDER TOTAL -->
