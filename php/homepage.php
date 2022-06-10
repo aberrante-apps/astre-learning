@@ -43,10 +43,12 @@ if(mysqli_num_rows($result) > 0)
         <input type="hidden" name="hidden_picture" value="<?php echo $row['picture']; ?>">
         <input type="hidden" name="hidden_name" value="<?php echo $row["name"]; ?>" >
         <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>" >
+        
         <button type="submit" name="add_to_cart" class="btn add-to-cart text-center" value="Add to Cart">Add to Cart</button>
 
         </div>
         </form>
+        
         </div>
         </div>
 <?php
