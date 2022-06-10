@@ -1,15 +1,15 @@
 <?php
 
 // Variables
-$server = 'deepblue.cs.camosun.bc.ca';
-$user = 'Group03_dev';
-$pswd = '246800D';
-$db='ICS199Group03_dev';
-
 // $server = 'deepblue.cs.camosun.bc.ca';
-// $user = 'Group03_prod';
-// $pswd = '246800P';
-// $db='ICS199Group03_prod';
+// $user = 'Group03_dev';
+// $pswd = '246800D';
+// $db='ICS199Group03_dev';
+
+$server = 'deepblue.cs.camosun.bc.ca';
+$user = 'Group03_prod';
+$pswd = '246800P';
+$db='ICS199Group03_prod';
 
 
 // Create Connection
