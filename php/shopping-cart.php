@@ -302,7 +302,7 @@ if(isset($_SESSION['Account'])) {
     </div>
 
     <div class="col-100 container ">
-    <form method="POST" action="shopping-cart/charge.php" id="checkoutModalForm" name="checkoutModalForm">
+    <form method="POST" action="charge.php" id="checkoutModalForm" name="checkoutModalForm">
 
       <!-- MODAL 1 SHIPPING ADDRESS -->
       <div class="modal-body" id="shipping-address-form">
@@ -317,12 +317,12 @@ if(isset($_SESSION['Account'])) {
           <div class="col-6">
             <label for="fname" class="required"><i class="bi bi-person-fill"></i> First Name</label>
             <span class="error_form" id="fname_error_message"></span>
-            <input type="text" id="fname" name="firstname" required>
+            <input type="text" id="fname" name="fname" required>
           </div>
           <div class="col-6">
             <label for="lname" class="required"><i class="bi bi-person-fill"> </i> Last Name</label>
             <span class="error_form" id="lname_error_message"></span>
-            <input type="text" id="lname" name="lastname" required>
+            <input type="text" id="lname" name="lname" required>
           </div>
         </div>
       
@@ -347,9 +347,9 @@ if(isset($_SESSION['Account'])) {
         <div class="col-12">
         <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
         <span class="error_form" id="address_error_message"></span>
-        <input type="text" id="adr" name="address" placeholder="123 Example St S" required>
+        <input type="text" id="adr" name="adr" placeholder="123 Example St S" required>
         
-        <input type="text" id="adr2" name="address" placeholder="Apartment, suite, unit, etc (optional)">
+        <input type="text" id="adr2" name="adr2" placeholder="Apartment, suite, unit, etc (optional)">
         </div>
       </div>
 
@@ -424,25 +424,19 @@ if(isset($_SESSION['Account'])) {
     <div class="col-6">
       <label for="fname" class="required"><i class="bi bi-person-fill"></i> First Name</label>
       <span class="error_form" id="fname_error_message"></span>
-      <input type="text" id="billing_fname" name="firstname" required>
+      <input type="text" id="billing_fname" name="billing_fname" required>
     </div>
     <div class="col-6">
       <label for="lname" class="required"><i class="bi bi-person-fill"> </i> Last Name</label>
       <span class="error_form" id="lname_error_message"></span>
-      <input type="text" id="billing_lname" name="billing_lastname" required>
+      <input type="text" id="billing_lname" name="billing_lname" required>
     </div>
   </div>
       
 
-  <!-- Email -->
+  <!-- Phone -->
   <div class="row">
-    <div class="col-6">
-      <label for="email" class="required"><i class="bi bi-envelope-fill"></i> Email</label> 
-      <span class="error_form" id="email_error_message"></span>
-      <input type="text" id="billing_email" name="email" placeholder="you@example.com" required>
-    </div>
-    <!-- Phone -->
-    <div class="col-6">
+    <div class="col-12">
       <label for="phone" class="required"><i class="bi bi-telephone-fill"></i> Phone Number</label>
       <span class="error_form" id="phone_error_message"></span>
       <input type="text" id="billing_phone" name="billing_phone" placeholder="(___) ___-____" required>
@@ -454,9 +448,9 @@ if(isset($_SESSION['Account'])) {
     <div class="col-12">
     <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
     <span class="error_form" id="address_error_message"></span>
-    <input type="text" id="billing_adr" name="billing_address" placeholder="123 Example St S" required>
+    <input type="text" id="billing_address1" name="billing_address1" placeholder="123 Example St S" required>
         
-    <input type="text" id="billing_adr2" name="billing_address" placeholder="Apartment, suite, unit, etc (optional)">
+    <input type="text" id="billing_address2" name="billing_address2" placeholder="Apartment, suite, unit, etc (optional)">
     </div>
   </div>
 
