@@ -3,6 +3,9 @@ include ('connection.php');
 session_start();
 include ('header.php');
 
+// Preparation for Stripe Payment Handling
+require_once('shopping-cart/config.php');
+
 // SHOPPING CART
 
 //-------------------------------------------------------------------------------
@@ -235,12 +238,14 @@ if(isset($_SESSION['Account'])) {
                 
         <?php 
         // 
-        // CALCULATING - Total, Tax, and Final Order Total
+        // CALCULATING - Total, Tax, Final Order Total and what to send to Stripe
         // 
-                  $total = $total + ($values['item_quantity'] * $values['item_price']); 
+                  $total = $total + ($values['item_quantity'] * $values['item_price']);
                   $taxRate='13.00';
                   $tax=$total*$taxRate/100;
                   $orderTotal=$total+$tax;
+                  // Because Stripe does things in terms of cents, not dollars
+                  $stripeTotal = round(($orderTotal * 100));
 
         ?> 
               </tbody>
@@ -268,7 +273,7 @@ if(isset($_SESSION['Account'])) {
           </tr>
           </table>
         </div>
-        <button type="button" class="btn checkout-btn open-checkout">Proceed to Checkout</button>
+          <button type="button" class="btn checkout-btn open-checkout">Proceed to Checkout</button>
         </div>
         
         <?php     
@@ -280,11 +285,12 @@ if(isset($_SESSION['Account'])) {
             echo '<strong><a href="homepage.php" class="keep-shopping push-center"> Keep Shopping?</a></strong>';
           }
       ?>
+        </form>
         </div> <!-- .shoppingcart #shopping-cart -->
         </div> <!-- .grid-container end -->
         </div> <!-- .container  #shoppingcart  end -->
         </div> <!-- Page Contents end -->
-        
+
 <!--------------------------------------------------------------------------------
 //  * CHECKOUT MODAL - Shipping Address
 // ----------------------------------------------------------------------------------->
@@ -296,7 +302,7 @@ if(isset($_SESSION['Account'])) {
     </div>
 
     <div class="col-100 container ">
-    <form method="POST" action="#" id="test_form_id">
+    <form method="POST" action="charge.php" id="checkoutModalForm" name="checkoutModalForm">
 
       <!-- MODAL 1 SHIPPING ADDRESS -->
       <div class="modal-body" id="shipping-address-form">
@@ -311,12 +317,12 @@ if(isset($_SESSION['Account'])) {
           <div class="col-6">
             <label for="fname" class="required"><i class="bi bi-person-fill"></i> First Name</label>
             <span class="error_form" id="fname_error_message"></span>
-            <input type="text" id="fname" name="firstname" required>
+            <input type="text" id="fname" name="fname" required>
           </div>
           <div class="col-6">
             <label for="lname" class="required"><i class="bi bi-person-fill"> </i> Last Name</label>
             <span class="error_form" id="lname_error_message"></span>
-            <input type="text" id="lname" name="lastname" required>
+            <input type="text" id="lname" name="lname" required>
           </div>
         </div>
       
@@ -341,9 +347,9 @@ if(isset($_SESSION['Account'])) {
         <div class="col-12">
         <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
         <span class="error_form" id="address_error_message"></span>
-        <input type="text" id="adr" name="address" placeholder="123 Example St S" required>
+        <input type="text" id="adr" name="adr" placeholder="123 Example St S" required>
         
-        <input type="text" id="adr2" name="address" placeholder="Apartment, suite, unit, etc (optional)">
+        <input type="text" id="adr2" name="adr2" placeholder="Apartment, suite, unit, etc (optional)">
         </div>
       </div>
 
@@ -418,25 +424,19 @@ if(isset($_SESSION['Account'])) {
     <div class="col-6">
       <label for="fname" class="required"><i class="bi bi-person-fill"></i> First Name</label>
       <span class="error_form" id="fname_error_message"></span>
-      <input type="text" id="billing_fname" name="firstname" required>
+      <input type="text" id="billing_fname" name="billing_fname" required>
     </div>
     <div class="col-6">
       <label for="lname" class="required"><i class="bi bi-person-fill"> </i> Last Name</label>
       <span class="error_form" id="lname_error_message"></span>
-      <input type="text" id="billing_lname" name="billing_lastname" required>
+      <input type="text" id="billing_lname" name="billing_lname" required>
     </div>
   </div>
       
 
-  <!-- Email -->
+  <!-- Phone -->
   <div class="row">
-    <div class="col-6">
-      <label for="email" class="required"><i class="bi bi-envelope-fill"></i> Email</label> 
-      <span class="error_form" id="email_error_message"></span>
-      <input type="text" id="billing_email" name="email" placeholder="you@example.com" required>
-    </div>
-    <!-- Phone -->
-    <div class="col-6">
+    <div class="col-12">
       <label for="phone" class="required"><i class="bi bi-telephone-fill"></i> Phone Number</label>
       <span class="error_form" id="phone_error_message"></span>
       <input type="text" id="billing_phone" name="billing_phone" placeholder="(___) ___-____" required>
@@ -448,9 +448,9 @@ if(isset($_SESSION['Account'])) {
     <div class="col-12">
     <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
     <span class="error_form" id="address_error_message"></span>
-    <input type="text" id="billing_adr" name="billing_address" placeholder="123 Example St S" required>
+    <input type="text" id="billing_adr" name="billing_adr" placeholder="123 Example St S" required>
         
-    <input type="text" id="billing_adr2" name="billing_address" placeholder="Apartment, suite, unit, etc (optional)">
+    <input type="text" id="billing_adr2" name="billing_adr2" placeholder="Apartment, suite, unit, etc (optional)">
     </div>
   </div>
 
@@ -519,71 +519,13 @@ if(isset($_SESSION['Account'])) {
 </div> <!-- modal body --> <!-- BILLING MODAL END -->
 
 <!--------------------------------------------------------------------------------
-//  * CHECKOUT MODAL 3 - Payment and Order summary
+//  * CHECKOUT MODAL 3 - Order summary
 // ----------------------------------------------------------------------------------->
-
-<!-- PAYMENT ----------------------------------------------------------------------------->
 
 <div class="modal-body" id="payment-form">
   <div class="row">
 
-  <!-- PAYMENT -->
-    <div class="col-6"> 
-
-      <!-- Header -->
-      <div class="row pb-3">
-        <h3 class="col-11">Payment Method</h3>
-      </div>
-
-    <!-- Name -->
-      <div class="row">
-        <div class="col-11">
-          <label for="cname" class="required">Name on Card</label>
-          <span class="error_form" id="cname_error_message"></span>
-          <input type="text" id="cname" name="cardname" placeholder="John Doe">
-        </div>
-      </div>
-
-      <!-- Credit Cart Number -->
-      <div class="row">
-        <div class="col-5">
-          <label for="ccnum" class="required">Card Number</label>
-          <span class="error_form" id="ccnum_error_message"></span>
-          <input type="text" id="ccnum" name="cardnumber" placeholder="4242424242424242">
-        </div>
-      <!-- </div> -->
-
-      <!-- <div class="row"> -->
-        <!-- Expirary Date -->
-        <div class="col-3">
-          <label for="expdate" class="required">Expiry</label>
-          <span class="error_form" id="expdate_error_message"></span>
-          <input type="text" id="expdate" name="expdate" maxlength="4" placeholder="09/22">
-        </div>
-        <!-- CVC -->
-        <div class="col-3 cvc">
-          <label for="cvc" class="required">CVC</label><br>
-          <span class="error_form" id="cvc_error_message"></span>
-          <input type="number" id="cvc" name="cvc" maxlength="4" placeholder="123"> 
-        </div>
-      </div>
-
-      <!-- VALIDATE PAY MSG -->
-      <span class="error_form" id="validatePay_error_message"></span>
-
-      <!-- Back / Continue Buttons -->
-      <div class="row">
-        <div class="col-6">
-          <button type="button" class="btn backToBilling-btn"><i class="bi bi-arrow-left-circle"></i> Billing Information</button>
-        </div>
-        
-      </div>  
-
-    </div> <!-- End Col Payment -->
-
-<!-- ORDER SUMMARY ----------------------------------------------------------------------------->
-
-    <div class="col-6">
+    <div class="col-12">
       <!-- Header -->
       <div class="row">
         <div class="col-12 push-center"><h3>Order Summary</h3></div>
@@ -640,22 +582,27 @@ if(isset($_SESSION['Account'])) {
           
         </div> <!-- end of col-12 -->
       </div> <!-- end of row -->
+
+      <!-- Back / Continue Buttons -->
+      <div class="row">
+        <div class="col-6">
+          <button type="button" class="btn backToBilling-btn"><i class="bi bi-arrow-left-circle"></i> Billing Information</button>
+        </div>
+      </div>  
+
       <div class="col-12 pt-3">
-          <button type="button" style="width:100%;" class="btn confirmOrder-btn">Place Order</button>
-          </div>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<?php echo $stripe['publishable_key']; ?>"
+            data-description="Checkout"
+            data-amount= <?php echo $stripeTotal; ?>
+            data-locale="auto"></script>      
+          <input type="hidden" id="stripeTotal" name="stripeTotal" value="<?php echo $stripeTotal; ?>">
+      </div>
+
+      
 
 
     </div> <!-- End of Col Order Summary  -->
-
-
-  </div> <!-- End of Modal row -->
-</div> <!-- End of Modal Body -->
-
-        </form>
-    </div> <!-- container-->
-  </div> <!-- modal-content -->
-</div> <!-- checkoutModal -->
-
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -668,3 +615,12 @@ if(isset($_SESSION['Account'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+          
+<!--
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<?php echo $stripe['publishable_key']; ?>"
+            data-description="Checkout"
+            data-amount= <?php echo $stripeTotal; ?>
+            data-locale="auto"></script>      
+          <input type="hidden" id="stripeTotal" name="stripeTotal" value="<?php echo $stripeTotal; ?>">
+          ->
