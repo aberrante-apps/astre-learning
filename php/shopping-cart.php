@@ -448,9 +448,9 @@ if(isset($_SESSION['Account'])) {
     <div class="col-12">
     <label for="adr" class="required"><i class="bi bi-house-door-fill"></i> Street Address</label>
     <span class="error_form" id="address_error_message"></span>
-    <input type="text" id="billing_address1" name="billing_address1" placeholder="123 Example St S" required>
+    <input type="text" id="billing_adr" name="billing_adr" placeholder="123 Example St S" required>
         
-    <input type="text" id="billing_address2" name="billing_address2" placeholder="Apartment, suite, unit, etc (optional)">
+    <input type="text" id="billing_adr2" name="billing_adr2" placeholder="Apartment, suite, unit, etc (optional)">
     </div>
   </div>
 

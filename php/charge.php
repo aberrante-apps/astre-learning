@@ -1,7 +1,6 @@
 <?php
     include ('connection.php');
     session_start();
-    require_once('shopping-cart/config.php');
     include ('header.php');
 
   // Basic POST variables
@@ -12,8 +11,8 @@
   $billingFirstName = strip_tags($_POST['billing_fname']);
   $billingLastName = strip_tags($_POST['billing_lname']);
   $billingPhone = strip_tags($_POST['billing_phone']);
-  $billingAddress1 = strip_tags($_POST['billing_address1']);
-  $billingAddress2 = strip_tags($_POST['billing_address2']);
+  $billingAddress1 = strip_tags($_POST['billing_adr']);
+  $billingAddress2 = strip_tags($_POST['billing_adr2']);
   $billingCity = strip_tags($_POST['billing_city']);
   $billingProvince = strip_tags($_POST['billing_province']);
   $billingCountry = strip_tags($_POST['billing_country']);
@@ -31,48 +30,47 @@
   $shippingCountry = strip_tags($_POST['country']);
   $shippingPostalCode = strip_tags($_POST['postalcode']);
 
-  // POST variables for the price of the order
-  $grandTotal = $_POST['stripeTotal'];
-  $grandTotalPrice = number_format(($grandTotal/100),2);
 
-  $customer = \Stripe\Customer::create([
-      'email' => $email,
-      'source'  => $token,
-  ]);
 
-  $charge = \Stripe\Charge::create([
-      'customer' => $customer->id,
-      'amount'   => "$grandTotal",
-      'currency' => 'cad',
-  ]);
+  // Stores order information into the Orders and OrderedProducts tables //
+  // Orders table
+  $unixTime = time();
 
-  // Stores order information into the Orders and OrderedProducts tables
-  // Orders table. First, insert the order id with the user id and the current time, then get the order id
-  $currentTime = date("Y-m-d H-i-s");
   $userID = $_SESSION['Account']['id'];
-  $orderQuery = "INSERT INTO Orders (login_id, timestamp) VALUES ($userID, '$currentTime');";
-  mysqli_query($dbc, $orderQuery);
-//   $orderIDQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp = '$currentTime';";
-//   $orderID = mysqli_query($dbc, $orderIDQuery);
-//   if ($orderID) {
-//     echo "The order number is $orderID";
-// } else {
-//     print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
-//     print mysqli_error($dbc);
-// }
-  
+  $orderQuery = "INSERT INTO Orders (login_id, timestamp) VALUES ($userID, FROM_UNIXTIME($unixTime));";
+  $result = mysqli_query($dbc, $orderQuery);
 
-  // OrderedProducts table
-  for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-      // Get information for each product
-      $productID = $_SESSION['cart'][$i]["item_id"];
-      $productPrice = $_SESSION['cart'][$i]['item_price'];
-      $productQuantity = $_SESSION['cart'][$i]['item_quantity'];
+  //// NOTE: WHILE ENTERING DATA INTO THE ORDERS TABLE WORKS, TRYING TO GET THE ORDER ID AND THE ACTUAL TIMESTAMO IS A PAIN IN THE REAR. ////
+  //// I'VE TRIED EVERYTHING I CAN THINK OF TO GET THE ORDER ID AND THE TIMESTAMP TO USE IN STORING THINGS INTO THE ORDER PRODUCTS TABLE, ////
+  //// BUT EVERYTHING I'VE TRIED FAILED. AS SUCH, I'LL LEAVE IT TO EITHER ONE OF YOU TO FIGURE OUT HOW TO MAKE THIS WHOLE COMMENTED OUT ////
+  //// SECTION WORK AS IT SHOULD. OTHERWISE, I'LL ASK DOUG IN CLASS TOMORROW. -MZ ////
+
+  // $orderInfoQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp LIKE FROM_UNIXTIME($unixTime);";
+
+  // $orderInfo = mysqli_query($dbc, $orderIDQuery);
+
+  // $orderID;
+  // $orderTime;
+  // echo "There are $orderInfo rows found.";
+
+  // if (mysqli_num_rows($orderInfo) == 1) {
+  //   $row = mysqli_fetch_assoc($result)
+
+  //   $orderID = $row['id'];
+  //   $orderTime = $row['timestamp'];
+  // }
+
+  // // OrderedProducts table
+  // for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+  //     // Get information for each product
+  //     $productID = $_SESSION['cart'][$i]["item_id"];
+  //     $productPrice = $_SESSION['cart'][$i]['item_price'];
+  //     $productQuantity = $_SESSION['cart'][$i]['item_quantity'];
       
-      // Insert the product into the OrderedProducts table
-      $orderedProductsQuery = "INSERT INTO OrderedProducts (order_id, product_id, price, quantity) VALUES ($orderID, $productID, $productPrice, $productQuantity);";
-      $result2 = mysqli_query($dbc, $orderedProductsQuery);
-  }
+  //     // Insert the product into the OrderedProducts table
+  //     $orderedProductsQuery = "INSERT INTO OrderedProducts (order_id, product_id, price, quantity) VALUES ($orderID, $productID, $productPrice, $productQuantity);";
+  //     $result2 = mysqli_query($dbc, $orderedProductsQuery);
+  // }
 
 ?>
 
@@ -92,8 +90,8 @@
 
                 <!-- Order ID & Date -->
                 <div class="row  pt-3">
-                    <div class="col-12"><p>Your order is #<?php echo $orderID ?> </p>
-                    <p>Order date is: <!--INSERT PHP CALL FOR ORDER DATE HERE --> Month DD, YYYY </p></div>
+                    <div class="col-12"><p>Your order is #<?php echo $orderID; ?> </p>
+                    <p>Order date: <?php echo $orderTime; ?> </p></div>
                 </div>
 
                 <!-- Order Information -->
@@ -105,6 +103,10 @@
                                 <td><h6><strong>Shipping Address</strong><br>
                                     <?php echo $shippingFirstName . " " . $shippingLastName; ?><br>
                                     <?php echo $shippingAddress1; ?><br>
+                                    <?php if ($shippingAddress2 !== "") {
+                                          echo $shippingAddress2; ?> <br> <?php
+                                    }
+                                    ?>
                                     <?php echo $shippingCity . ", " . $shippingProvince; ?><br>
                                     <?php echo $shippingCountry; ?><br>
                                     <?php echo $shippingPostalCode; ?><br>
@@ -115,6 +117,10 @@
                             <td><h6><strong>Billing Address</strong><br>
                                     <?php echo $billingFirstName . " " . $billingLastName; ?><br>
                                     <?php echo $billingAddress1; ?><br>
+                                    <?php if ($billingAddress2 !== "") {
+                                          echo $billingAddress2; ?> <br> <?php
+                                    }
+                                    ?>
                                     <?php echo $billingCity . ", " . $billingProvince; ?><br>
                                     <?php echo $billingCountry; ?><br>
                                     <?php echo $billingPostalCode; ?><br>
@@ -201,5 +207,26 @@
         </div> <!-- grid-container -->
     </div> <!-- container -->
 <div> <!-- page-contents -->
-<!-- ORDER SUCCESS PAGE -->
+
+<?php
+  require_once('shopping-cart/config.php');
+
+  // POST variables for the price of the order
+  $grandTotal = $_POST['stripeTotal'];
+  $grandTotalPrice = number_format(($grandTotal/100),2);
+
+  $customer = \Stripe\Customer::create([
+      'email' => $email,
+      'source'  => $token,
+  ]);
+
+  $charge = \Stripe\Charge::create([
+      'customer' => $customer->id,
+      'amount'   => "$grandTotal",
+      'currency' => 'cad',
+  ]);
+
+  // Empty shopping cart once payment processing is done.
+  
+?>
 
