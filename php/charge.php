@@ -3,9 +3,28 @@
     session_start();
     include ('header.php');
 
+    require_once('shopping-cart/config.php');
+
+
+
   // Basic POST variables
   $token  = $_POST['stripeToken'];
   $email  = $_POST['stripeEmail']; // Also used as the billing email
+
+  // POST variables for the price of the order
+  $grandTotal = $_POST['stripeTotal'];
+  $grandTotalPrice = number_format(($grandTotal/100),2);
+      
+  $customer = \Stripe\Customer::create([
+      'email' => $email,
+      'source'  => $token,
+  ]);
+      
+  $charge = \Stripe\Charge::create([
+      'customer' => $customer->id,
+      'amount'   => "$grandTotal",
+      'currency' => 'cad',
+  ]);
 
   // POST variables for customer billing address
   $billingFirstName = strip_tags($_POST['billing_fname']);
@@ -29,7 +48,7 @@
   $shippingProvince = strip_tags($_POST['province']);
   $shippingCountry = strip_tags($_POST['country']);
   $shippingPostalCode = strip_tags($_POST['postalcode']);
-
+  
 
 
   // Stores order information into the Orders and OrderedProducts tables //
@@ -42,8 +61,8 @@
 
   //// NOTE: WHILE ENTERING DATA INTO THE ORDERS TABLE WORKS, TRYING TO GET THE ORDER ID AND THE ACTUAL TIMESTAMO IS A PAIN IN THE REAR. ////
   //// I'VE TRIED EVERYTHING I CAN THINK OF TO GET THE ORDER ID AND THE TIMESTAMP TO USE IN STORING THINGS INTO THE ORDER PRODUCTS TABLE, ////
-  //// BUT EVERYTHING I'VE TRIED FAILED. AS SUCH, I'LL LEAVE IT TO EITHER ONE OF YOU TO FIGURE OUT HOW TO MAKE THIS WHOLE COMMENTED OUT ////
-  //// SECTION WORK AS IT SHOULD. OTHERWISE, I'LL ASK DOUG IN CLASS TOMORROW. -MZ ////
+  //// BUT EVERYTHING I'VE TRIED FAILED. AS SUCH, I'LL LEAVE IT TO EITHER ONE OF YOU TO FIGURE OUT HOW TO MAKE THE WHOLE COMMENTED-OUT ////
+  //// SECTION BELOW (LINES 67 TO 92) WORK AS IT SHOULD. OTHERWISE, I'LL ASK DOUG IN CLASS TOMORROW. -MZ ////
 
   // $orderInfoQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp LIKE FROM_UNIXTIME($unixTime);";
 
@@ -209,24 +228,18 @@
 <div> <!-- page-contents -->
 
 <?php
-  require_once('shopping-cart/config.php');
-
-  // POST variables for the price of the order
-  $grandTotal = $_POST['stripeTotal'];
-  $grandTotalPrice = number_format(($grandTotal/100),2);
-
-  $customer = \Stripe\Customer::create([
-      'email' => $email,
-      'source'  => $token,
-  ]);
-
-  $charge = \Stripe\Charge::create([
-      'customer' => $customer->id,
-      'amount'   => "$grandTotal",
-      'currency' => 'cad',
-  ]);
-
-  // Empty shopping cart once payment processing is done.
+  // Empty shopping cart once payment processing is done
+  // Session variable emptying
+  foreach($_SESSION["cart"] as $keys => $values)
+      {
+        unset($_SESSION["cart"][$keys]);
+      }
+  // Database variable emptying
+  if(isset($_SESSION['Account'])) {
+    $cartremoval_login = $_SESSION['Account']['id'];
+    $cartremoval = "DELETE FROM Cart WHERE login_id = '$cartremoval_login';";
+    mysqli_query($dbc, $cartremoval);
+  }
   
 ?>
 
