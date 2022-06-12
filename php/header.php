@@ -29,6 +29,41 @@ if (isset($_SESSION['Account']))
           // account icon will take user to Admin account menu
       $accountLink = 'acctmenu_admin.php'; 
     }
+
+    $currentCartQuery = "SELECT * FROM Cart WHERE login_id = " . $_SESSION['Account']['id'] . ";";
+    $currentCartQuery_result = mysqli_query($dbc, $currentCartQuery);
+
+    if(mysqli_num_rows($currentCartQuery_result) > 0) {
+
+      $numRowGet = mysqli_num_rows($currentCartQuery_result);
+      $prodCount = 0;
+
+      while ($prodCount < $numRowGet) {
+
+        $queryRow = mysqli_fetch_assoc($currentCartQuery_result);
+        $queryRow_prod = $queryRow['product_id'];
+        $queryRow_quantity = $queryRow['quantity'];
+        $productLookup = "SELECT * FROM Products WHERE id = '$queryRow_prod';";
+        $productLookup_result = mysqli_query($dbc, $productLookup);
+
+        if(mysqli_num_rows($productLookup_result) == 1) {
+          $LookupRow = mysqli_fetch_assoc($productLookup_result);
+          $prodToAdd_picture = $LookupRow['picture'];
+          $prodToAdd_name = $LookupRow['name'];
+          $prodToAdd_price = $LookupRow['price'];
+      
+          $prodToAdd_array = array(
+            'item_id' => $queryRow_prod,
+            'item_picture' => $prodToAdd_picture,
+            'item_name' => $prodToAdd_name,
+            'item_price' => $prodToAdd_price,
+            'item_quantity' => $queryRow_quantity
+          );
+          $_SESSION['cart'][$prodCount] = $prodToAdd_array;
+        }
+        $prodCount++;
+      }
+    }
   } else{
     $loginInfo = 'Not Logged In';
     // account icon will take user to login/register page
@@ -115,25 +150,25 @@ if(isset($_POST['add_to_cart']))
     // STORE CART IN DATABASE - R10 R09
     // ----------------------------------------------------
 
-    // if(isset($_SESSION['Account'])) {
+    if(isset($_SESSION['Account'])) {
 
-    //   $overwritecheck_product = $_GET["id"];
-    //   $overwritecheck_login = $_SESSION['Account']['id'];
-    //   $overwritecheck = "SELECT * FROM Cart WHERE product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login';";
-    //   $overwritecheck_result = mysqli_query($dbc, $overwritecheck);
+      $overwritecheck_product = $_GET["id"];
+      $overwritecheck_login = $_SESSION['Account']['id'];
+      $overwritecheck = "SELECT * FROM Cart WHERE product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login';";
+      $overwritecheck_result = mysqli_query($dbc, $overwritecheck);
 
-    //   if (@mysqli_num_rows($overwritecheck_result) == 1) {
+      if (@mysqli_num_rows($overwritecheck_result) == 1) {
 
-    //     $carttable_newquantity = $_POST["quantity"];
-    //     $carttable_update = "UPDATE Cart SET quantity = '$carttable_newquantity' WHERE (product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login');";
-    //     $carttable_update_result = mysqli_query($dbc, $carttable_update);     
+        $carttable_newquantity = $_POST["quantity"];
+        $carttable_update = "UPDATE Cart SET quantity = '$carttable_newquantity' WHERE (product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login');";
+        $carttable_update_result = mysqli_query($dbc, $carttable_update);     
 
-    //   } else {
+      } else {
 
-    //     $carttable_new = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$overwritecheck_login', '$overwritecheck_product', 1);";
-    //     $carttable_new_result = mysqli_query($dbc, $carttable_new);
-    //   }
-    // }
+        $carttable_new = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$overwritecheck_login', '$overwritecheck_product', 1);";
+        $carttable_new_result = mysqli_query($dbc, $carttable_new);
+      }
+    }
 }
 ?>
  <!--------------------------------------------------------------------------------
