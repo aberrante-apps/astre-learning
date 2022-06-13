@@ -1,0 +1,57 @@
+Billing Address:
+
+            Homer Simpson
+
+            742 Evergreen Terrace
+
+            Springfield, Oregon
+
+            USA
+
+            90210
+
+
+            Shipping Address:
+
+            Homer Simpson
+
+            742 Evergreen Terrace
+
+            Springfield
+
+            Oregon
+
+            USA
+
+            90210
+
+
+            Thank you very much for your order!Billing Address:
+
+            Homer Simpson
+
+            742 Evergreen Terrace
+
+            Springfield, Oregon
+
+            USA
+
+            90210
+
+
+            Shipping Address:
+
+            Homer Simpson
+
+            742 Evergreen Terrace
+
+            Springfield
+
+            Oregon
+
+            USA
+
+            90210
+
+
+            Thank you very much for your order!
