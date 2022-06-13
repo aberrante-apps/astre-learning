@@ -365,7 +365,7 @@ if(isset($_SESSION['Account'])) {
         <div class="col-4">
         <label for="country" class="required"><i class="bi bi-flag-fill"></i> Country</label>
         <select id="country" name="country">
-          <option value="CAD">Canada</option>
+          <option value="Canada">Canada</option>
         </select>
         </div>
         </div>
@@ -466,7 +466,7 @@ if(isset($_SESSION['Account'])) {
     <div class="col-4">
       <label for="country" class="required"><i class="bi bi-flag-fill"></i> Country</label>
     <select id="billing_country" name="billing_country">
-      <option value="CAD">Canada</option>
+      <option value="Canada">Canada</option>
     </select>
     </div>
   </div>

@@ -64,32 +64,40 @@
   //// BUT EVERYTHING I'VE TRIED FAILED. AS SUCH, I'LL LEAVE IT TO EITHER ONE OF YOU TO FIGURE OUT HOW TO MAKE THE WHOLE COMMENTED-OUT ////
   //// SECTION BELOW (LINES 67 TO 92) WORK AS IT SHOULD. OTHERWISE, I'LL ASK DOUG IN CLASS TOMORROW. -MZ ////
 
-  // $orderInfoQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp LIKE FROM_UNIXTIME($unixTime);";
+  $orderTimeQuery = "SELECT FROM_UNIXTIME($unixTime);";
+  $orderTime = "";
+  $result0 = mysqli_query($dbc, $orderTimeQuery);
+  if ($result0) {
+    $row = $result0 -> fetch_array(MYSQLI_NUM);
+    $orderTime = $row[0];
+  } else {
+    print "<h3>SQL ERROR: " . $orderTimeQuery . "<br></h3>";
+    print mysqli_error($dbc);
+  }
 
-  // $orderInfo = mysqli_query($dbc, $orderIDQuery);
+  $orderInfoQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp = '$orderTime;'";
+  $orderID = 0;
+  $result1 = mysqli_query($dbc, $orderInfoQuery);
+  if ($result1) {
+    $row = $result1 -> fetch_array(MYSQLI_NUM);
+    $orderID = $row[0];
+    
+  } else {
+    print "<h3>SQL ERROR: " . $orderInfoQuery . "<br></h3>";
+    print mysqli_error($dbc);
+  }
 
-  // $orderID;
-  // $orderTime;
-  // echo "There are $orderInfo rows found.";
-
-  // if (mysqli_num_rows($orderInfo) == 1) {
-  //   $row = mysqli_fetch_assoc($result)
-
-  //   $orderID = $row['id'];
-  //   $orderTime = $row['timestamp'];
-  // }
-
-  // // OrderedProducts table
-  // for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-  //     // Get information for each product
-  //     $productID = $_SESSION['cart'][$i]["item_id"];
-  //     $productPrice = $_SESSION['cart'][$i]['item_price'];
-  //     $productQuantity = $_SESSION['cart'][$i]['item_quantity'];
+  // OrderedProducts table
+  for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+      // Get information for each product
+      $productID = $_SESSION['cart'][$i]["item_id"];
+      $productPrice = $_SESSION['cart'][$i]['item_price'];
+      $productQuantity = $_SESSION['cart'][$i]['item_quantity'];
       
-  //     // Insert the product into the OrderedProducts table
-  //     $orderedProductsQuery = "INSERT INTO OrderedProducts (order_id, product_id, price, quantity) VALUES ($orderID, $productID, $productPrice, $productQuantity);";
-  //     $result2 = mysqli_query($dbc, $orderedProductsQuery);
-  // }
+      // Insert the product into the OrderedProducts table
+      $orderedProductsQuery = "INSERT INTO OrderedProducts (order_id, product_id, price, quantity) VALUES ($orderID, $productID, $productPrice, $productQuantity);";
+      $result2 = mysqli_query($dbc, $orderedProductsQuery);
+  }
 
 ?>
 
