@@ -52,18 +52,13 @@
 
 
   // Stores order information into the Orders and OrderedProducts tables //
-  // Orders table
+  // Orders table; get the current time in Unix time, then add to the Orders table
   $unixTime = time();
-
   $userID = $_SESSION['Account']['id'];
   $orderQuery = "INSERT INTO Orders (login_id, timestamp) VALUES ($userID, FROM_UNIXTIME($unixTime));";
   $result = mysqli_query($dbc, $orderQuery);
 
-  //// NOTE: WHILE ENTERING DATA INTO THE ORDERS TABLE WORKS, TRYING TO GET THE ORDER ID AND THE ACTUAL TIMESTAMO IS A PAIN IN THE REAR. ////
-  //// I'VE TRIED EVERYTHING I CAN THINK OF TO GET THE ORDER ID AND THE TIMESTAMP TO USE IN STORING THINGS INTO THE ORDER PRODUCTS TABLE, ////
-  //// BUT EVERYTHING I'VE TRIED FAILED. AS SUCH, I'LL LEAVE IT TO EITHER ONE OF YOU TO FIGURE OUT HOW TO MAKE THE WHOLE COMMENTED-OUT ////
-  //// SECTION BELOW (LINES 67 TO 92) WORK AS IT SHOULD. OTHERWISE, I'LL ASK DOUG IN CLASS TOMORROW. -MZ ////
-
+  // Get the timestamp through MySQL
   $orderTimeQuery = "SELECT FROM_UNIXTIME($unixTime);";
   $orderTime = "";
   $result0 = mysqli_query($dbc, $orderTimeQuery);
@@ -75,6 +70,7 @@
     print mysqli_error($dbc);
   }
 
+  // Retrieve the order id from the Orders table
   $orderInfoQuery = "SELECT id FROM Orders WHERE login_id = $userID AND timestamp = '$orderTime;'";
   $orderID = 0;
   $result1 = mysqli_query($dbc, $orderInfoQuery);
@@ -236,18 +232,82 @@
 <div> <!-- page-contents -->
 
 <?php
-  // Empty shopping cart once payment processing is done
-  // Session variable emptying
-  foreach($_SESSION["cart"] as $keys => $values)
-      {
-        unset($_SESSION["cart"][$keys]);
-      }
-  // Database variable emptying
-  if(isset($_SESSION['Account'])) {
-    $cartremoval_login = $_SESSION['Account']['id'];
-    $cartremoval = "DELETE FROM Cart WHERE login_id = '$cartremoval_login';";
-    mysqli_query($dbc, $cartremoval);
-  }
-  
+// Create order confirmation file within the "orders" directory, which is outside the PHP folder
+// Create unique file and store shipping and billing data
+$filename = "Order" . $orderID . "_" . $billingFirstName . $billingLastName . ".txt";
+$data = "ASTRE LEARNING ORDER #$orderID     DATE OF ORDER: $orderTime
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         $shippingFirstName $shippingLastName
+Address 1:    $shippingAddress1
+Address 2:    $shippingAddress2
+City:         $shippingCity
+Province:     $shippingProvince
+Country:      $shippingCountry
+Postal Code:  $shippingPostalCode
+Phone:        $shippingPhone
+Email:        $shippingEmail
+
+BILLING INFORMATION
+-------------------
+Name:         $billingFirstName $billingLastName
+Address 1:    $billingAddress1
+Address 2:    $billingAddress2
+City:         $billingCity
+Province:     $billingProvince
+Country:      $billingCountry
+Postal Code:  $billingPostalCode
+Phone:        $billingPhone
+Email:        $email
+
+PRODUCTS ORDERED
+----------------\n";
+
+// Change directories to the orders folder
+chdir('../orders');
+file_put_contents($filename, $data, FILE_APPEND | LOCK_EX);
+
+// Gather cart information then append to the file
+for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+  // Get information for each product
+  $productID = $_SESSION['cart'][$i]["item_id"];
+  $productName = $_SESSION['cart'][$i]["item_name"];
+  $productPrice = $_SESSION['cart'][$i]['item_price'];
+  $productQuantity = $_SESSION['cart'][$i]['item_quantity'];
+  $productTotal = $productPrice * $productQuantity;
+
+  // Format product information, then append it to the file
+  $productInfo = "ID: $productID | Name: $productName | Price: $$productPrice | Quantity: $productQuantity | Total: $$productTotal\n";
+  file_put_contents($filename, $productInfo, FILE_APPEND | LOCK_EX);
+}
+
+// Gather payment information, then append it to the file
+$paymentInfo =
+"\nPAYMENT INFORMATION
+-------------------
+Subtotal: $" . number_format($total, 2) . "
+Shipping: N/A
+Tax: $" . number_format($tax, 2) . "
+FINAL TOTAL: $" . number_format($orderTotal, 2) . "
+Payment completed with Stripe Payment Processing.";
+file_put_contents($filename, $paymentInfo, FILE_APPEND | LOCK_EX);
+
+// Change directory back to the original directory
+chdir('../php');
+
+// Empty shopping cart once payment processing and information collection is done
+// Session variable emptying
+foreach($_SESSION["cart"] as $keys => $values)
+    {
+      unset($_SESSION["cart"][$keys]);
+    }
+// Database variable emptying
+if(isset($_SESSION['Account'])) {
+  $cartremoval_login = $_SESSION['Account']['id'];
+  $cartremoval = "DELETE FROM Cart WHERE login_id = '$cartremoval_login';";
+  mysqli_query($dbc, $cartremoval);
+}
 ?>
 
