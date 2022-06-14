@@ -1,4 +1,4 @@
-ASTRE LEARNING ORDER #70     DATE OF ORDER: 2022-06-13 19:00:22
+ASTRE LEARNING ORDER #8     DATE OF ORDER: 2022-06-14 14:07:42
 ---------------------------------------------------------------
 
 SHIPPING INFORMATION
@@ -16,24 +16,24 @@ Email:        matthewzerrath@hotmail.com
 BILLING INFORMATION
 -------------------
 Name:         Matthew Zerrath
-Address 1:    10173 Melissa St.
-Address 2:    
-City:         Sidney
+Address 1:    1838 Raspberry Row
+Address 2:    Under the Oak Tree
+City:         Victoria
 Province:     BC
 Country:      Canada
-Postal Code:  V8L 3M5
+Postal Code:  V8N 6K3
 Phone:        2506861203
 Email:        matthewzerrath@hotmail.com
 
+
 PRODUCTS ORDERED
 ----------------
-ID: 7 | Name: The Kitchen Pantry Scientist Chemistry for Kids: Science Experiments and Activities Inspired by Awesome Chemists, Past and Present | Price: $25.00 | Quantity: 10 | Total: $250
-ID: 10 | Name: Crayola Colour Chemistry Lab Set | Price: $24.00 | Quantity: 1 | Total: $24
+ID: 5 | Name: Thames & Kosmos Physics Workshop | Price: $69.99 | Quantity: 3 | Total: $209.97
 
 PAYMENT INFORMATION
 -------------------
-Subtotal: $274.00
+Subtotal: $209.97
 Shipping: N/A
-Tax: $35.62
-FINAL TOTAL: $309.62
+Tax: $27.30
+FINAL TOTAL: $237.27
 Payment completed with Stripe Payment Processing.

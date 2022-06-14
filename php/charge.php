@@ -37,6 +37,15 @@
   $billingCountry = strip_tags($_POST['billing_country']);
   $billingPostalCode = strip_tags($_POST['billing_postalcode']);
 
+  // Constructs the billing address for each order
+  $orderBillingAddress = "$billingFirstName $billingLastName<br>$billingAddress1<br>";
+  // If there is a second line to the address, enter it in.
+  if ($billingAddress2 !== "") {
+    $orderBillingAddress .= "$billingAddress2<br>";
+  }
+  $orderBillingAddress .= "$billingCity, $billingProvince<br>$billingCountry<br>$billingPostalCode<br>";
+  $orderBillingAddress = mysqli_real_escape_string($dbc, $orderBillingAddress);
+
   // POST variables for shipping address
   $shippingFirstName = strip_tags($_POST['fname']);
   $shippingLastName = strip_tags($_POST['lname']);
@@ -48,6 +57,17 @@
   $shippingProvince = strip_tags($_POST['province']);
   $shippingCountry = strip_tags($_POST['country']);
   $shippingPostalCode = strip_tags($_POST['postalcode']);
+
+  // Constructs the shipping address for each order
+  $orderShippingAddress =
+"$shippingFirstName $shippingLastName<br>$shippingAddress1<br>";
+  // If there is a second line to the address, enter it in.
+  if ($shippingAddress2 !== "") {
+    $orderShippingAddress .= "$shippingAddress2<br>";
+  }
+  $orderShippingAddress .= "
+$shippingCity, $shippingProvince<br>$shippingCountry<br>$shippingPostalCode<br>";
+  $orderShippingAddress = mysqli_real_escape_string($dbc, $orderShippingAddress);
   
 
 
@@ -55,7 +75,7 @@
   // Orders table; get the current time in Unix time, then add to the Orders table
   $unixTime = time();
   $userID = $_SESSION['Account']['id'];
-  $orderQuery = "INSERT INTO Orders (login_id, timestamp) VALUES ($userID, FROM_UNIXTIME($unixTime));";
+  $orderQuery = "INSERT INTO Orders (login_id, timestamp, shipping_address, billing_address) VALUES ($userID, FROM_UNIXTIME($unixTime), '$orderShippingAddress', '$orderBillingAddress');";
   $result = mysqli_query($dbc, $orderQuery);
 
   // Get the timestamp through MySQL
@@ -262,6 +282,7 @@ Postal Code:  $billingPostalCode
 Phone:        $billingPhone
 Email:        $email
 
+
 PRODUCTS ORDERED
 ----------------\n";
 
@@ -309,5 +330,5 @@ if(isset($_SESSION['Account'])) {
   $cartremoval = "DELETE FROM Cart WHERE login_id = '$cartremoval_login';";
   mysqli_query($dbc, $cartremoval);
 }
-?>
 
+?>

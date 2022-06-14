@@ -1,0 +1,39 @@
+ASTRE LEARNING ORDER #2     DATE OF ORDER: 2022-06-14 13:43:34
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Matthew Zerrath
+Address 1:    10173 Melissa St.
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  V8L 3M5
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Matthew Zerrath
+Address 1:    10173 Melissa St.
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  V8L 3M5
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+
+PRODUCTS ORDERED
+----------------
+ID: 2 | Name: Discovering Planets & Moons: The Ultimate Guide to the Most Fascinating Features of our Solar System | Price: $10.00 | Quantity: 1 | Total: $10
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $10.00
+Shipping: N/A
+Tax: $1.30
+FINAL TOTAL: $11.30
+Payment completed with Stripe Payment Processing.
