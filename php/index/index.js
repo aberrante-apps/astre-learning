@@ -284,6 +284,10 @@ $("#rejectConditions").click(function(){
 });
 
 
+$(".view-order").click(function(){
+    $(".collapse").toggle();
+});
+
 
 /***************************************************************
 * Product Form Verification - 

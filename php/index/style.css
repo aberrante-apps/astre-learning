@@ -781,7 +781,7 @@ width: 200%;
 
 .c-account-line-title{
     padding-bottom: 10px;
-    border-bottom:1px solid #404041;
+    border-bottom:1px solid #e1e1e1;
 }
 
 .t-header-block{
@@ -839,6 +839,18 @@ input[type="file"]{
 input[type="select"]{
 padding: 10px;
 } 
+
+.is-right{
+    text-align: right;
+}
+
+.is-gray{
+    color:gray;
+}
+
+.view-order{
+    color:#48ceba;
+}
 
 /***********************************************************************
  *  FOOTER
