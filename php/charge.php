@@ -1,7 +1,7 @@
 <?php
     include ('connection.php');
     session_start();
-    include ('header.php');
+    include ('header-alt.php');
 
     require_once('shopping-cart/config.php');
 
