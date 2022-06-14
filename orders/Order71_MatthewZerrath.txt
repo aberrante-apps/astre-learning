@@ -1,0 +1,38 @@
+ASTRE LEARNING ORDER #71     DATE OF ORDER: 2022-06-13 19:04:11
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Matthew Zerrath
+Address 1:    1838 Raspberry Row
+Address 2:    
+City:         Victoria, BC
+Province:     BC
+Country:      Canada
+Postal Code:  V8N 6K3
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Matthew Zerrath
+Address 1:    1838 Raspberry Row
+Address 2:    
+City:         Victoria, BC
+Province:     BC
+Country:      Canada
+Postal Code:  V8N 6K3
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+PRODUCTS ORDERED
+----------------
+ID: 2 | Name: Discovering Planets & Moons: The Ultimate Guide to the Most Fascinating Features of our Solar System | Price: $10.00 | Quantity: 3 | Total: $30
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $30.00
+Shipping: N/A
+Tax: $3.90
+FINAL TOTAL: $33.90
+Payment completed with Stripe Payment Processing.

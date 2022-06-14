@@ -12,7 +12,6 @@ if (isset($_SESSION['Account']) && $_SESSION['Account']['data_permission'] == 0)
   header('location:logout.php');
 }
 
-
 // <!--------------------------------------------------------------------------------
 //  *  SESSION TRACKING - for not logged in, logged in as customer, and logged in as Admin
 // ----------------------------------------------------------------------------------->
@@ -38,10 +37,6 @@ if (isset($_SESSION['Account']))
           // account icon will take user to Admin account menu
       $accountLink = 'acctmenu_admin.php'; 
     }
-
-    // <!--------------------------------------------------------------------------------
-//  *  RESTORE CART WHEN LOGGED IN
-// ----------------------------------------------------------------------------------->
 
     $currentCartQuery = "SELECT * FROM Cart WHERE login_id = " . $_SESSION['Account']['id'] . ";";
     $currentCartQuery_result = mysqli_query($dbc, $currentCartQuery);
@@ -75,13 +70,6 @@ if (isset($_SESSION['Account']))
           $_SESSION['cart'][$prodCount] = $prodToAdd_array;
         }
         $prodCount++;
-      }
-    } else {
-      foreach($_SESSION['cart'] as $keys => $values) {
-        $add_prodID = $values['item_id'];
-        $add_quantity = $values['item_quantity'];
-        $add_loginID = $_SESSION['Account']['id'];
-        $intoCart_query = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$add_loginID', '$add_prodID', $add_quantity);";
       }
     }
   } else{
@@ -179,13 +167,12 @@ if(isset($_POST['add_to_cart']))
 
       if (@mysqli_num_rows($overwritecheck_result) == 1) {
 
-        $carttable_row = $overwritecheck_result -> fetch_array(MYSQLI_NUM);
-        $carttable_oldquantity = $carttable_row[2];
-        $carttable_newquantity = $carttable_oldquantity + 1;
+        $carttable_newquantity = $_POST["quantity"];
         $carttable_update = "UPDATE Cart SET quantity = '$carttable_newquantity' WHERE (product_id = '$overwritecheck_product' AND login_id = '$overwritecheck_login');";
         $carttable_update_result = mysqli_query($dbc, $carttable_update);     
 
       } else {
+
         $carttable_new = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$overwritecheck_login', '$overwritecheck_product', 1);";
         $carttable_new_result = mysqli_query($dbc, $carttable_new);
       }
@@ -238,22 +225,7 @@ if(isset($_POST['add_to_cart']))
                 <a href="shopping-cart.php">
               <li>
               <button type="button" class="btn shopping-cart-btn">
-                    <i class="fa fa-shopping-cart" style="font-size:20px"> 
-                    <?php
-                    // CART COUNT
-                    if(isset($_SESSION['cart']))
-                    {
-                      foreach($_SESSION['cart'] as $keys => $values)
-                      {
-                      $product_count =  $values['item_quantity'];
-                      $total_count += $product_count;
-                    }
-                    
-                    echo "<span id='cart_count'>$total_count</span></i>";
-                    } else{
-                      echo "<span id='cart_count'></span></i>";
-                    }
-                    ?>
+                    <i class="fa fa-shopping-cart" style="font-size:20px"></i>
                 </button>
               </li>
                   </a>

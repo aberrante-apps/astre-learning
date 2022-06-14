@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 0)
   {
-      header('location:acctmenu_admin.php');
+    header('location:acctmenu_customer.php');
   } 
   else if (isset($_SESSION['Account']) && $_SESSION['Account']['admin'] == 1)
   {
