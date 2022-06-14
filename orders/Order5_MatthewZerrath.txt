@@ -1,38 +1,39 @@
-ASTRE LEARNING ORDER #71     DATE OF ORDER: 2022-06-13 19:04:11
+ASTRE LEARNING ORDER #5     DATE OF ORDER: 2022-06-14 13:55:55
 ---------------------------------------------------------------
 
 SHIPPING INFORMATION
 --------------------
 Name:         Matthew Zerrath
-Address 1:    1838 Raspberry Row
+Address 1:    10173 Melissa St.
 Address 2:    
-City:         Victoria, BC
+City:         Sidney
 Province:     BC
 Country:      Canada
-Postal Code:  V8N 6K3
+Postal Code:  V8L 3M5
 Phone:        2506861203
 Email:        matthewzerrath@hotmail.com
 
 BILLING INFORMATION
 -------------------
 Name:         Matthew Zerrath
-Address 1:    1838 Raspberry Row
+Address 1:    10173 Melissa St.
 Address 2:    
-City:         Victoria, BC
+City:         Sidney
 Province:     BC
 Country:      Canada
-Postal Code:  V8N 6K3
+Postal Code:  V8L 3M5
 Phone:        2506861203
 Email:        matthewzerrath@hotmail.com
 
+
 PRODUCTS ORDERED
 ----------------
-ID: 2 | Name: Discovering Planets & Moons: The Ultimate Guide to the Most Fascinating Features of our Solar System | Price: $10.00 | Quantity: 3 | Total: $30
+ID: 6 | Name: Weird But True Animals | Price: $11.99 | Quantity: 1 | Total: $11.99
 
 PAYMENT INFORMATION
 -------------------
-Subtotal: $30.00
+Subtotal: $11.99
 Shipping: N/A
-Tax: $3.90
-FINAL TOTAL: $33.90
+Tax: $1.56
+FINAL TOTAL: $13.55
 Payment completed with Stripe Payment Processing.

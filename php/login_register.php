@@ -56,11 +56,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
           $_SESSION['Account']['last_name'] = $row[2];
           $_SESSION['Account']['email_address'] = $row[3];
           $_SESSION['Account']['phone_number'] = $row[4];
-          $_SESSION['Account']['shipping_address'] = $row[6];
-          $_SESSION['Account']['admin'] = $row[7];
+          $_SESSION['Account']['admin'] = $row[6];
 
           // PRIVACY AGREEMENT
-          $_SESSION['Account']['data_permission'] = $row[8];
+          $_SESSION['Account']['data_permission'] = $row[7];
   
   
           $admintoggle = $_SESSION['Account']['admin'];
@@ -104,11 +103,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['Account']['last_name'] = $row[2];
         $_SESSION['Account']['email_address'] = $row[3];
         $_SESSION['Account']['phone_number'] = $row[4];
-        $_SESSION['Account']['shipping_address'] = $row[6];
-        $_SESSION['Account']['admin'] = $row[7];
+        $_SESSION['Account']['admin'] = $row[6];
 
          // PRIVACY AGREEMENT
-        $_SESSION['Account']['data_permission'] = $row[8];
+        $_SESSION['Account']['data_permission'] = $row[7];
   
   
         $admintoggle = $_SESSION['Account']['admin'];
