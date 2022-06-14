@@ -1,0 +1,38 @@
+ASTRE LEARNING ORDER #74     DATE OF ORDER: 2022-06-14 12:22:47
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Matthew Zerrath
+Address 1:    10173 Melissa St.
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  V8L 3M5
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Matthew Zerrath
+Address 1:    10173 Melissa St.
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  V8L 3M5
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+PRODUCTS ORDERED
+----------------
+ID: 1 | Name: Discovery™ Build & Create Robotics Kit | Price: $49.99 | Quantity: 1 | Total: $49.99
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $49.99
+Shipping: N/A
+Tax: $6.50
+FINAL TOTAL: $56.49
+Payment completed with Stripe Payment Processing.

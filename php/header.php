@@ -82,6 +82,7 @@ if (isset($_SESSION['Account']))
         $add_quantity = $values['item_quantity'];
         $add_loginID = $_SESSION['Account']['id'];
         $intoCart_query = "INSERT INTO Cart (login_id, product_id, quantity) VALUES ('$add_loginID', '$add_prodID', $add_quantity);";
+        $intoCartResult = mysqli_query($dbc, $intoCart_query);
       }
     }
   } else{
