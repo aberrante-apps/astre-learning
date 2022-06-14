@@ -12,9 +12,9 @@ session_start();
 if (isset($_SESSION['Account']))
   {
         // display greeting of user's name in header
-    $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+    
         // display 'logged in' in footer
-    $loginInfo = 'Logged In';
+    
         // account icon will take user to Customer account menu
     $accountLink = 'acctmenu_customer.php';
 
@@ -22,9 +22,9 @@ if (isset($_SESSION['Account']))
     if (isset($_SESSION['Account']['admin']) && ($_SESSION['Account']['admin']) == 1) 
     {
           // display greeting of user's name in header
-      $userGreeting = 'Welcome back' . ", " . ($_SESSION['Account']['first_name']) . "!";
+      
           // display 'logged in as an admin' in footer
-      $loginInfo = 'Logged In (Admin Active)';
+      
           // account icon will take user to Admin account menu
       $accountLink = 'acctmenu_admin.php'; 
     }
@@ -69,7 +69,7 @@ if (isset($_SESSION['Account']))
             <div class="container">
             <div class="row">
                 <ul class="col main-nav">
-                    <li><a class="logo"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
+                    <li><a class="logo" style="color:white;"><i class="fa-solid fa-lightbulb"></i></i>Astre Learning</a></li>
                     <li><span style="font-family:Dancing Script; color:white;"><?php if (isset($userGreeting)) echo $userGreeting ?></span></li>
                     <div class="push-left">
                 </div>
