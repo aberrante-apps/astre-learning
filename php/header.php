@@ -5,6 +5,15 @@ session_start();
 // HEADER FUNCTIONALITY
 
 // <!--------------------------------------------------------------------------------
+//  *  PERMISSIONS CHECK - If the user didn't consent to the privacy policy,
+//  *  log them out if they're not on the privacy notice page
+// ----------------------------------------------------------------------------------->
+if (isset($_SESSION['Account']) && $_SESSION['Account']['data_permission'] == 0) {
+  header('location:logout.php');
+}
+
+
+// <!--------------------------------------------------------------------------------
 //  *  SESSION TRACKING - for not logged in, logged in as customer, and logged in as Admin
 // ----------------------------------------------------------------------------------->
 

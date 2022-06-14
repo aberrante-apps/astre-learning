@@ -1,0 +1,42 @@
+ASTRE LEARNING ORDER #69     DATE OF ORDER: 2022-06-13 18:55:26
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Matthew Zerrath
+Address 1:    123 Fake Street
+Address 2:    In the cupboard under the stairs
+City:         Victoria
+Province:     BC
+Country:      Canada
+Postal Code:  H0H 0H0
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Matthew Zerrath
+Address 1:    123 Fake Street
+Address 2:    In the cupboard under the stairs
+City:         Victoria
+Province:     BC
+Country:      Canada
+Postal Code:  H0H 0H0
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+PRODUCTS ORDERED
+----------------
+ID: 1 | Name: Discovery™ Build & Create Robotics Kit | Price: $49.99 | Quantity: 5 | Total: $249.95
+ID: 2 | Name: Discovering Planets & Moons: The Ultimate Guide to the Most Fascinating Features of our Solar System | Price: $10.00 | Quantity: 4 | Total: $40
+ID: 3 | Name: Coding Games in Python | Price: $25.99 | Quantity: 3 | Total: $77.97
+ID: 4 | Name: STEM STARTERS FOR KIDS ENGINEERING ACTIVITY BOOK: Packed with Activities and Engineering Facts | Price: $6.99 | Quantity: 2 | Total: $13.98
+ID: 5 | Name: Thames & Kosmos Physics Workshop | Price: $69.99 | Quantity: 1 | Total: $69.99
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $451.89
+Shipping: N/A
+Tax: $58.75
+FINAL TOTAL: $510.64
+Payment completed with Stripe Payment Processing.
