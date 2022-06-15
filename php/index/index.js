@@ -261,7 +261,7 @@ $('.new-product-btn').click(function(){
     $(".privacy-btn").css("color", "black");
     
 
-    $(".account_title").html("Add a New Product");
+    $(".account_title").html("");
 });
 
 $('.orders-btn').click(function(){
@@ -283,10 +283,17 @@ $("#rejectConditions").click(function(){
     }
 });
 
+/***************************************************************
+* Order History
+****************************************************************/ 
+$(".view-order").click(function(event)
+{
+var order = $(event.target).closest('.view-order');
+$('.collapse').toggle();
+$(order).css("color","#4f3dee");
 
-$(".view-order").click(function(){
-    $(".collapse").toggle();
 });
+
 
 
 /***************************************************************
@@ -345,7 +352,7 @@ $(function() {
             $("#prodName").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodName_error_message").html("* This field cannot be empty");
+            $("#prodName_error_message").html("* Input a unique product name.");
             $("#prodName_error_message").css("color", "#fa2f2f");
             $("#prodName_error_message").show();
             $("#prodName").css("border-bottom","2px solid #F90A0A");
@@ -358,11 +365,13 @@ $(function() {
         if (prodCat !== "Product Category") {
             $("#prodCat_error_message").hide();
             $("#prodCat").css("border-bottom","2px solid #34F458");
+            $("#prodCat").css("color", "black");
 
         } else {
-            $("#prodCat_error_message").html("* Choose the product's category.");
+            // $("#prodCat_error_message").html("* Choose the product's category.");
             $("#prodCat_error_message").css("color", "#fa2f2f");
-            $("#prodCat_error_message").show();
+            $("#prodCat").css("color", "#fa2f2f");
+            // $("#prodCat_error_message").show();
             $("#prodCat").css("border-bottom","2px solid #F90A0A");
             error_prodCat = true;
         }
@@ -373,11 +382,13 @@ $(function() {
         if (prodType !== "Product Type") {
             $("#prodType_error_message").hide();
             $("#prodType").css("border-bottom","2px solid #34F458");
+            $("#prodType").css("color", "black");
 
         } else {
-            $("#prodType_error_message").html("* Choose the product's type.");
+            // $("#prodType_error_message").html("* Choose the product's type.");
             $("#prodType_error_message").css("color", "#fa2f2f");
-            $("#prodType_error_message").show();
+            $("#prodType").css("color", "#fa2f2f");
+            // $("#prodType_error_message").show();
             $("#prodType").css("border-bottom","2px solid #F90A0A");
             error_prodType = true;
         }
@@ -436,7 +447,7 @@ $(function() {
             $("#prodStock").css("border-bottom","2px solid #34F458");
 
         } else {
-            $("#prodStock_error_message").html("Input the quantity");
+            $("#prodStock_error_message").html("Input the quantity.");
             $("#prodStock_error_message").css("color", "#fa2f2f");
             $("#prodStock_error_message").show();
             $("#prodStock").css("border-bottom","2px solid #F90A0A");

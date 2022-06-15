@@ -273,7 +273,17 @@ if(isset($_SESSION['Account'])) {
           </tr>
           </table>
         </div>
+        <?php 
+        if (isset($_SESSION['Account'])){
+          ?>
           <button type="button" class="btn checkout-btn open-checkout">Proceed to Checkout</button>
+          <?php
+        } else {
+          ?>
+          <a href="login_register.php" class="btn checkout-btn">Login to Checkout</a>
+          <?php
+        }
+        ?>
         </div>
         
         <?php     

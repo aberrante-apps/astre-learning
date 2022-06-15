@@ -214,6 +214,8 @@ if(isset($_POST['add_to_cart']))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/c70abeedb1.js" crossorigin="anonymous"></script>
     <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
+
+   
     <!-- Shopping Cart JavaScript File
     <script src="index/shoppingcart.js"></script> -->
 
