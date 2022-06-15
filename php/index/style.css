@@ -107,7 +107,7 @@ body {
     align-items: center;
 }
 
-a {
+main-nav > a {
     color: #f5f5f6;
     text-decoration: none;
 }
@@ -338,7 +338,7 @@ Product Display
     padding: 10px;
   }
   
-  .checkout-btn, .confirmOrder-btn, .validatePayment-btn, .validateBilling-btn, .validateShipping-btn {
+  .checkout-btn, .confirmOrder-btn, .validatePayment-btn, .validateBilling-btn, .validateShipping-btn, .validate-productform-btn, .accept-btn  {
     background: -webkit-linear-gradient(left, rgb(31, 218, 212), rgb(92, 238, 184));
   }
 
@@ -424,7 +424,6 @@ Product Display
   }
 
 
-
   /*********************************************
  ** CHECKOUT modals
 ************************************************/
@@ -476,8 +475,8 @@ Product Display
   }
 
 
-  
-  input[type=text], select{
+   
+  input[type=text], select, textarea, input[type=file], input[type=number]{
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
@@ -702,7 +701,7 @@ width: 200%;
     transition: all 0.4s ease;
 }
 
-.form-inner form .field input:focus{
+.form-inner form .field input:focus, .field select:focus, .field textarea .text-box:focus{
     border-color:#4f3dee;
 }
 
@@ -851,6 +850,11 @@ padding: 10px;
 .view-order{
     color:#48ceba;
 }
+
+a {
+    color:white;
+}
+
 
 /***********************************************************************
  *  FOOTER
