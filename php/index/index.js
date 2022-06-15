@@ -600,7 +600,7 @@ $(function()  {
 
     function check_phone () {
         var phoneNumber = $("#phone").val(); 
-        const phoneRGX = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/; 
+        const phoneRGX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; 
         if (phoneRGX.test(phoneNumber) && phoneNumber !== "") {
             $("#phone_error_message").hide();
             $("#phone").css("border-bottom","2px solid #34F458");

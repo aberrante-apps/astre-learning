@@ -1,0 +1,39 @@
+ASTRE LEARNING ORDER #12     DATE OF ORDER: 2022-06-15 15:20:36
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Matthew Zerrath
+Address 1:    10173 Melissa St.
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  V8L 3M5
+Phone:        2506861203
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Homer Simpson
+Address 1:    742 Evergreen Terrace
+Address 2:    
+City:         Springfield
+Province:     SK
+Country:      Canada
+Postal Code:  H0H 0H0
+Phone:        5555555555
+Email:        homersimpson@simpmail.com
+
+
+PRODUCTS ORDERED
+----------------
+ID: 8 | Name: Super Simple Math Flash Cards | Price: $18.99 | Quantity: 1 | Total: $18.99
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $18.99
+Shipping: N/A
+Tax: $2.47
+FINAL TOTAL: $21.46
+Payment completed with Stripe Payment Processing.
