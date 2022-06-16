@@ -1,0 +1,39 @@
+ASTRE LEARNING ORDER #3     DATE OF ORDER: 2022-06-16 10:50:45
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Jennifer Turick
+Address 1:    789 Fake Road
+Address 2:    Apt. 789
+City:         Prince George
+Province:     BC
+Country:      Canada
+Postal Code:  V8N 1N1
+Phone:        12505551234
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Jennifer Turick
+Address 1:    789 Fake Road
+Address 2:    Apt. 789
+City:         Prince George
+Province:     BC
+Country:      Canada
+Postal Code:  V8N 1N1
+Phone:        12505551234
+Email:        matthewzerrath@hotmail.com
+
+
+PRODUCTS ORDERED
+----------------
+ID: 10 | Name: Crayola Colour Chemistry Lab Set | Price: $24.00 | Quantity: 1 | Total: $24
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $24.00
+Shipping: N/A
+Tax: $3.12
+FINAL TOTAL: $27.12
+Payment completed with Stripe Payment Processing.

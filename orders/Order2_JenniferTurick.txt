@@ -1,0 +1,39 @@
+ASTRE LEARNING ORDER #2     DATE OF ORDER: 2022-06-16 10:49:54
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Jennifer Turick
+Address 1:    789 Fake Road
+Address 2:    Apt. 789
+City:         Prince George
+Province:     MB
+Country:      Canada
+Postal Code:  V8N 1N1
+Phone:        12505551234
+Email:        matthewzerrath@hotmail.com
+
+BILLING INFORMATION
+-------------------
+Name:         Jennifer Turick
+Address 1:    789 Fake Road
+Address 2:    Apt. 789
+City:         Prince George
+Province:     MB
+Country:      Canada
+Postal Code:  V8N 1N1
+Phone:        12505551234
+Email:        matthewzerrath@hotmail.com
+
+
+PRODUCTS ORDERED
+----------------
+ID: 13 | Name: Professor Noggin's Outer Space | Price: $12.99 | Quantity: 1 | Total: $12.99
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $12.99
+Shipping: N/A
+Tax: $1.69
+FINAL TOTAL: $14.68
+Payment completed with Stripe Payment Processing.
