@@ -38,6 +38,17 @@ $(loginLink).click(function(){
     loginBtn.click();
 });
 
+
+    $(".navbar-nav .nav-item a").click(function() {
+        //remove active class from any of nav-item
+        $(this).closest(".nav-item").siblings().removeClass("active");
+        // add active class to clicked item but at li not the anchor
+        $(this).closest(".nav-item").addClass("active");
+    });
+
+
+
+
 /***************************************************************
 * LOGIN VALIDATION *******************************/
 
@@ -915,5 +926,11 @@ $(function() {
             }
             
         });
-})
+});
 // -------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------
+// HEADER LINK FUNCTIONS
+// -------------------------------------------------------------------------------------------------
+
+

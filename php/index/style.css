@@ -136,31 +136,53 @@ main-nav > a {
     -webkit-transition: color 2s;
     transition: color 2s;
 }
+
+#shop-all:hover{
+    font-size: larger;
+    font-weight: bold;
+}
+
 /* astronomy */
 #hover-purple:hover{
-    color: purple;
+    color: rgb(83, 0, 128);
+    font-size: larger;
+    font-weight: bold;
 }
 /* Biology */
 #hover-green:hover{
-    color: green;
+    color: rgb(13, 203, 13);
+    font-size: larger;
+    font-weight: bold;
 }
 /* Chemistry */
 #hover-yellow:hover{
-    color: rgb(245, 208, 0);
+    color: rgb(0, 132, 255);
+    font-size: larger;
+    font-weight: bold;
 }
 /* Math */
 #hover-blue:hover{
-    color: rgb(0, 132, 255);
+    color: rgb(245, 208, 0);
+    font-size: larger;
+    font-weight: bold;
 }
 /* Physics */
 #hover-orange:hover{
-    color: orange;
+    color: rgb(183, 0, 255);
+    font-size: larger;
+    font-weight: bold;
 }
 /* Technology */
-.nav-item a #hover-red:hover{
+#hover-red:hover{
     color: rgb(210, 1, 81);
+    font-size: larger;
+    font-weight: bold;
 }
 
+.active{
+    color:black;
+    font-weight: bold;
+}
 /***********************************************************************
  *  Shopping Cart Button
  **********************************************************************/
@@ -209,10 +231,14 @@ Product Display
 
 .img {
     width: 100%;
-    height: 300px;
+    height: 315px;
     object-fit: fill;
     position: relative;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
+
+
 
 .add-to-cart {
     /* position: absolute;*/
