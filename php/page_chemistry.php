@@ -8,7 +8,7 @@ include ('header.php');
 <!-------------------------------------------------------------------
  *  COVER - for Chemistry
  --------------------------------------------------------------------->
- <div class="container zone yellow cover">Chemistry</div>
+ <div><img class="container zone cover" src="images/Chemistry.png"></div>
 
 
  <!-------------------------------------------------------------------

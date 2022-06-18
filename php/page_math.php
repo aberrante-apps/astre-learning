@@ -8,8 +8,7 @@ include ('header.php');
 <!-------------------------------------------------------------------
  *  COVER - for Math
  --------------------------------------------------------------------->
- <div class="container zone blue cover">Math</div>
-
+ <div><img class="container zone cover" src="images/Math.png"></div>
 
  <!-------------------------------------------------------------------
  *  PRODUCTS - for Math

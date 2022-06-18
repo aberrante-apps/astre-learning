@@ -8,8 +8,7 @@ include ('header.php');
 <!-------------------------------------------------------------------
  *  COVER - for Technology
  --------------------------------------------------------------------->
- <div class="container zone red cover">Technology</div>
-
+ <div><img class="container zone cover" src="images/Technology.png"></div>
 
  <!-------------------------------------------------------------------
  *  PRODUCTS - for Technology
