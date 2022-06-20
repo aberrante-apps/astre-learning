@@ -38,16 +38,17 @@ foreach($result as $keys => $values)
     <div class="row col-12">
         <div class="col-3 is-gray">Order Date: </div>
             <span class="col-5"><?php echo $values[timestamp];?></span> 
-            <p class="col-4 is-right"> 
+            <!-- <p class="col-4 is-right"> 
                 <a class="view-order" data-toggle="collapse" data-target="#order-details" href="#<?php echo $values['id'];?>">View Order</a>
-            </p> 
+            </p>  -->
         </div>
     </div>
 
     <p class="col-12 "></p>
     <!-- Collpased Order Details -->
     <div class="col-12">
-        <div class="order-details panel-collapse collapse" id="order-details <?php echo $values['id'];?>">
+        <!-- <div class="order-details panel-collapse collapse" id="order-details <php echo $values['id'];?>"> -->
+             <div class="order-details" id="order-details <?php echo $values['id'];?>">
             <div class="col-12 card card-body">
                 <div class="row">
                     <div class="col-2 is-gray">Qty</div>

@@ -90,26 +90,6 @@
                     <button type="submit" class="btn validate-productform-btn btn-light btn-outline-dark" name="productSubmit" value="SUBMIT">Add Product</button>
                     
                     <!-- MySQL INSERT statement into Product Database -->
-        <span> <?php if (isset($SQL_Success1)) echo $SQL_Success1?></span><br>
-                    <span><?php if (isset($SQL_Error1)) echo $SQL_Error1?></span><br>
-                    <span><?php if (isset($SQL_Error2)) echo $SQL_Error2?></span><br>
-                    
-                    <!-- Retrieve product ID of the newly inserted product -->
-                    <span><?php if (isset($SQL_Error3)) echo $SQL_Error3?></span><br>
-                    <span><?php if (isset($SQL_Error4)) echo $SQL_Error4?></span><br>
-
-                    <!-- INSERT product category info into the Product Category table -->
-                    <span> <?php if (isset($SQL_Success2)) echo $SQL_Success2?></span><br>
-                    <span><?php if (isset($SQL_Error5)) echo $SQL_Error5?></span><br>
-                    <span><?php if (isset($SQL_Error6)) echo $SQL_Error6?></span><br>
-
-                    <!-- Insert product type info into the Product Type table -->
-                    <span> <?php if (isset($SQL_Success3)) echo $SQL_Success3?></span><br>
-                    <span><?php if (isset($SQL_Error7)) echo $SQL_Error7?></span><br>
-                    <span><?php if (isset($SQL_Error8)) echo $SQL_Error8?></span><br>
-
-                    <!-- IF Not Valid Input -->
-                    <span><?php if (isset($SQL_Error9)) echo $SQL_Error9?></span><br>
 
                     
 
