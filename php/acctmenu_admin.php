@@ -62,13 +62,10 @@ include 'header.php';
                         $productSQLTable = "INSERT INTO Products (name, description, picture, price, stock) VALUES ('$productName', '$productDescription', '$productImage', $productPrice, $productStock);";
                         $result1 = mysqli_query($dbc, $productSQLTable);
                         if ($result1) {
-                                // echo "<p>Main Product Table successfully inserted.</p>";
-                            $SQL_Success1 = 'Main Product Table successfully inserted.';
+                                echo "<p>Main Product Table successfully inserted.</p>";
                         } else {
-                            // print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
-                                // print mysqli_error($dbc);
-                            $SQL_Error1 = 'SQL ERROR1: ' . $productSQLTable . '<br>';
-                            $SQL_Error2 = 'SQL ERROR2: ' . mysqli_error($dbc);
+                            print "<h3>SQL ERROR: " . $productSQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
                         }
 
                         // Retrieve product ID of the newly inserted product
@@ -79,23 +76,18 @@ include 'header.php';
                             $row = $result2 -> fetch_array(MYSQLI_NUM);
                             $productID = $row[0];
                         } else {
-                            // print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
-                            // print mysqli_error($dbc);
-                            $SQL_Error3 = 'SQL ERROR3: ' . $productIDQuery . '<br>';
-                            $SQL_Error4 = 'SQL ERROR4: ' . mysqli_error($dbc);
+                            print "<h3>SQL ERROR: " . $productIDQuery . "<br></h3>";
+                            print mysqli_error($dbc);
                         }
 
                         // INSERT product category info into the Product Category table
                         $categorySQLTable = "INSERT INTO ProductCategories (product_id, category_id) VALUES ($productID, $categoryCode);";
                         $result3 = mysqli_query($dbc, $categorySQLTable);
                         if ($result3) {
-                            // echo "<p>Product Category Table successfully inserted.</p>";
-                            $SQL_Success2 = 'Product Category Table successfully inserted.';
+                            echo "<p>Product Category Table successfully inserted.</p>";
                         } else {
-                            // print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
-                            // print mysqli_error($dbc);
-                            $SQL_Error5 = 'SQL ERROR5: ' . $categorySQLTable . '<br>';
-                            $SQL_Error6 = 'SQL ERROR6: ' . mysqli_error($dbc);
+                            print "<h3>SQL ERROR: " . $categorySQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
                         }
 
                         // Insert product type info into the Product Type table
@@ -105,10 +97,8 @@ include 'header.php';
                             // echo "<p>Product Type Table successfully inserted.</p>";
                             $SQL_Success3 = 'Product Type Table successfully inserted.';
                         } else {
-                            // print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
-                            // print mysqli_error($dbc);
-                            $SQL_Error7 = 'SQL ERROR7: ' . $typeSQLTable . '<br>';
-                            $SQL_Error8 = 'SQL ERROR8: ' . mysqli_error($dbc);
+                            print "<h3>SQL ERROR: " . $typeSQLTable . "<br></h3>";
+                            print mysqli_error($dbc);
                         }
                     }
                 }
@@ -233,7 +223,7 @@ include 'header.php';
             <p class="c-account-line-title"><strong>My Account</strong></p>
             <!-- Function for adding product to database -->
 
-    <span style="color:black;"> <?php echo $add_error; ?></span><br>
+    
 
             <h3><span class="account_title">Order History</span></h3>
 

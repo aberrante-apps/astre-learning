@@ -38,17 +38,6 @@ $(loginLink).click(function(){
     loginBtn.click();
 });
 
-
-    $(".navbar-nav .nav-item a").click(function() {
-        //remove active class from any of nav-item
-        $(this).closest(".nav-item").siblings().removeClass("active");
-        // add active class to clicked item but at li not the anchor
-        $(this).closest(".nav-item").addClass("active");
-    });
-
-
-
-
 /***************************************************************
 * LOGIN VALIDATION *******************************/
 
@@ -297,13 +286,18 @@ $("#rejectConditions").click(function(){
 /***************************************************************
 * Order History
 ****************************************************************/ 
-$(".view-order").click(function(event)
-{
-var order = $(event.target).closest('.view-order');
-$('.collapse').toggle();
-$(order).css("color","#4f3dee");
+// -------------------------
+//Can't figure out a way to target only one order at a time
+// using the bootstrap method ends up distorting allllll the css in the website.
+//--------------------
 
-});
+// $(".view-order").click(function(event)
+// {
+// var order = $(event.target).closest('.view-order');
+// $('.collapse').toggle();
+// $(order).css("color","#4f3dee");
+
+// });
 
 
 

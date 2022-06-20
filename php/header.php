@@ -281,25 +281,25 @@ if(isset($_POST['add_to_cart']))
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="homepage.php">Shop All <span class="sr-only">(current)</span></a>
+          <a class="nav-link hover" id="shop-all" href="homepage.php">Shop All</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="hover hover-purple" href="page_astronomy.php">Astronomy</a>
+            <a class="nav-link hover" id="hover-purple" href="page_astronomy.php">Astronomy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="hover hover-green" href="page_biology.php">Biology</a>
+            <a class="nav-link hover" id="hover-green" href="page_biology.php">Biology</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="hover hover-yellow" href="page_chemistry.php">Chemistry</a>
+            <a class="nav-link hover" id="hover-yellow" href="page_chemistry.php">Chemistry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="hover hover-blue" href="page_math.php">Math</a>
+            <a class="nav-link hover" id="hover-blue" href="page_math.php">Math</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="hover hover-orange" href="page_physics.php">Physics</a>
+            <a class="nav-link hover" id="hover-orange" href="page_physics.php">Physics</a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link" id="hover hover-red"  href="page_technology.php">Technology</a>
+            <a class="nav-link hover" id="hover-red"  href="page_technology.php">Technology</a>
           </li>
       </ul>
       </div>

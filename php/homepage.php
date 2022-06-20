@@ -10,9 +10,10 @@ include ('header.php');
 <!-------------------------------------------------------------------------
  *  COVER 
  ------------------------------------------------------------------------->
-<div class="container zone grey cover">Shop All</div>
+ <div>
+    <img class="container zone cover" style="height:550px; border:1px solid #ddd; border-radius: 4px; padding:10px;" src="images/hero_cover3.png">
+</div>
 
-<!-- Add image into cover -->
 
 <!-------------------------------------------------------------------------
  *  Catalogue Preview 
