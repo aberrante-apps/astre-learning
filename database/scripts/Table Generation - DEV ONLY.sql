@@ -1,3 +1,7 @@
+-- ------------------------------------------------------------------------------
+-- Automated Script For Creation of Pre-Defined Tables to Be Used In the Database
+-- ------------------------------------------------------------------------------
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -27,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Products` (
   `price` DECIMAL(6,2) NOT NULL,
   `stock` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `prod_name_UNIQUE` (`name` ASC) ,
-  UNIQUE INDEX `prod_picture_UNIQUE` (`picture` ASC) )
+  UNIQUE INDEX `prod_name_UNIQUE` (`name` ASC),
+  UNIQUE INDEX `prod_picture_UNIQUE` (`picture` ASC))
 ENGINE = InnoDB;
 
 
@@ -41,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Categories` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `cat_name_UNIQUE` (`name` ASC) )
+  UNIQUE INDEX `cat_name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -57,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Logins` (
   `email_address` VARCHAR(45) NOT NULL,
   `phone_number` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
-  `shipping_address` VARCHAR(255) NULL,
   `admin` TINYINT NOT NULL,
+  `data_permission` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_address_UNIQUE` (`email_address` ASC) )
+  UNIQUE INDEX `email_address_UNIQUE` (`email_address` ASC))
 ENGINE = InnoDB;
 
 
@@ -73,8 +77,10 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login_id` INT NOT NULL,
   `timestamp` DATETIME NOT NULL,
+  `shipping_address` VARCHAR(255) NOT NULL,
+  `billing_address` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Orders_Logins1_idx` (`login_id` ASC) ,
+  INDEX `fk_Orders_Logins1_idx` (`login_id` ASC),
   CONSTRAINT `fk_Orders_Logins1`
     FOREIGN KEY (`login_id`)
     REFERENCES `ICS199Group03_dev`.`Logins` (`id`)
@@ -94,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`OrderedProducts` (
   `price` DECIMAL(6,2) NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY (`order_id`, `product_id`),
-  INDEX `fk_OrderedProducts_Products1_idx` (`product_id` ASC) ,
+  INDEX `fk_OrderedProducts_Products1_idx` (`product_id` ASC),
   CONSTRAINT `fk_OrderedProducts_Orders1`
     FOREIGN KEY (`order_id`)
     REFERENCES `ICS199Group03_dev`.`Orders` (`id`)
@@ -117,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`ProductCategories` (
   `product_id` INT NOT NULL,
   `category_id` INT NOT NULL,
   PRIMARY KEY (`product_id`, `category_id`),
-  INDEX `fk_ProductCategories_Products1_idx` (`product_id` ASC) ,
+  INDEX `fk_ProductCategories_Products1_idx` (`product_id` ASC),
   CONSTRAINT `fk_ProductCategories_Categories1`
     FOREIGN KEY (`category_id`)
     REFERENCES `ICS199Group03_dev`.`Categories` (`id`)
@@ -140,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Types` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `type_name_UNIQUE` (`name` ASC) )
+  UNIQUE INDEX `type_name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -153,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`ProductTypes` (
   `product_id` INT NOT NULL,
   `type_id` INT NOT NULL,
   PRIMARY KEY (`product_id`, `type_id`),
-  INDEX `fk_ProductTypes_Products1_idx` (`product_id` ASC) ,
+  INDEX `fk_ProductTypes_Products1_idx` (`product_id` ASC),
   CONSTRAINT `fk_ProductTypes_Types1`
     FOREIGN KEY (`type_id`)
     REFERENCES `ICS199Group03_dev`.`Types` (`id`)
@@ -177,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `ICS199Group03_dev`.`Cart` (
   `product_id` INT NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY (`login_id`, `product_id`),
-  INDEX `fk_Cart_Products1_idx` (`product_id` ASC) ,
+  INDEX `fk_Cart_Products1_idx` (`product_id` ASC),
   CONSTRAINT `fk_Cart_Logins1`
     FOREIGN KEY (`login_id`)
     REFERENCES `ICS199Group03_dev`.`Logins` (`id`)

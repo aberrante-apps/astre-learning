@@ -1,3 +1,8 @@
+-- -----------------------------------------------------------------------------------------
+-- Automated Script For Insertion of Pre-Made Product Information Into the Products Table
+-- Script Also Automatically Generates All Available Product Categories and Types Beforehand
+-- -----------------------------------------------------------------------------------------
+
 INSERT INTO Categories
 (name)
 VALUES
@@ -37,7 +42,6 @@ INSERT INTO Types
 (name)
 VALUES
 ('Kit');
-
 
 INSERT INTO Products 
 (name, description, picture, price, stock) 
@@ -286,9 +290,6 @@ INSERT INTO ProductTypes
 VALUES
 (10, 2);
 
-
-SELECT * FROM Categories;
-SELECT * FROM Types;
 SELECT * FROM Products;
 
 
