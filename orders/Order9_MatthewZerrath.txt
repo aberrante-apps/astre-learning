@@ -1,0 +1,41 @@
+ASTRE LEARNING ORDER #9     DATE OF ORDER: 2022-06-21 20:27:22
+---------------------------------------------------------------
+
+SHIPPING INFORMATION
+--------------------
+Name:         Vic Wittenburg
+Address 1:    123 Fake Street
+Address 2:    
+City:         Victoria
+Province:     BC
+Country:      Canada
+Postal Code:  H0H 0H0
+Phone:        12505559876
+Email:        vicwittenburg@gmail.ca
+
+BILLING INFORMATION
+-------------------
+Name:         Matthew Zerrath
+Address 1:    742 Evergreen Terrace
+Address 2:    
+City:         Sidney
+Province:     BC
+Country:      Canada
+Postal Code:  L0L 0L0
+Phone:        12505551234
+Email:        example@example.com
+
+
+PRODUCTS ORDERED
+----------------
+ID: 2 | Name: Discovering Planets & Moons: The Ultimate Guide to the Most Fascinating Features of our Solar System | Price: $10.00 | Quantity: 1 | Total: $10
+ID: 3 | Name: Coding Games in Python | Price: $25.99 | Quantity: 2 | Total: $51.98
+ID: 15 | Name: Quantum Physics for Smart Kids | Price: $11.99 | Quantity: 2 | Total: $23.98
+
+PAYMENT INFORMATION
+-------------------
+Subtotal: $85.96
+Shipping: N/A
+Tax: $11.17
+FINAL TOTAL: $97.13
+Payment completed with Stripe Payment Processing.
